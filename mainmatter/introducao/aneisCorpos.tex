@@ -1,0 +1,212 @@
+\section{Anéis e corpos}
+
+Anéis e corpos possuem como objetivo generalizar estruturas numéricas conhecidas que possuem uma soma e um produto, como os números inteiros, racionais, reais e complexos.
+
+Se $A$ é um conjunto, uma \textbf{operação binária} em $A$ é uma função $*: A \times A \to A$ 
+\begin{definition}
+Um \emph{anel} \index{anel} é um conjunto $A$ munido de duas operações binárias, geralmente denotadas por $+$ e $\cdot$, e por dois elementos destacados, geralmente denotados por $0$ e $1$, tais que, para todos $a, b, c \in A$, valem:
+\begin{itemize}
+    \item[(A1)] $(a+b)+c = a+(b+c)$ (associatividade da soma),
+    \item[(A2)] $a+b = b+a$ (comutatividade da soma),
+    \item[(A3)] $a+0=a$ (elemento neutro),
+    \item[(A4)] existe $x \in A$ tal que $a+x=0$ (elemento oposto),
+    \item[(M1)] $(a\cdot b)\cdot c = a\cdot(b\cdot c)$ (associatividade do produto),
+    \item[(M2)] $a\cdot 1=1\cdot a=a$ (elemento neutro do produto),
+    \item[(D1)] $a\cdot(b+c)=a\cdot b+a\cdot c$ (distributiva à esquerda),
+    \item[(D2)] $(a+b)\cdot c=a\cdot c+b\cdot c$ (distributiva à direita).
+\end{itemize}
+
+Se, além disso, para todos $a, b \in A$ vale que:
+\begin{itemize}
+    \item[(M3)] $a\cdot b = b\cdot a$ (comutatividade do produto),
+\end{itemize}
+então dizemos que $A$ é um \emph{anel comutativo}\index{anel!comutativo}.
+\end{definition}
+
+No contexto de anéis, quando não há confusão, é usual denotar $a\cdot b$ simplesmnete por $ab$.
+Além disso, valem as regras usuais de precedência de parênteses, de modo que $a+b\cdot c$ é interpretado como $a+(b\cdot c)$, e \textbf{não} como $(a+b)\cdot c$.
+
+Exemplos de anéis incluem os inteiros $\mathbb{Z}$, os números racionais $\mathbb{Q}$, os números reais $\mathbb{R}$ e os números complexos $\mathbb{C}$.
+
+Outro exemplo de anel é o conjunto unitário $\{a\}$ com as operações $a+a=0$ e $a\cdot a=a$, onde $a$ é qualquer objeto. Denotando-se $1=0=a$, verifica-se facilmente que $\{a\}$ é um anel comutativo.
+Os anéis dessa forma são chamados de \emph{anéis triviais}\index{anel!trivial}.
+
+Os números naturais $\mathbb{N}$ não formam um anel, pois não possuem elementos opostos para a soma.
+
+Vejamos algumas propriedades básicas.
+
+\begin{proposition}[Unicidade do elemento neutro da soma]
+    Seja $A$ um anel. Então só existe um elemento neutro para a soma.
+    Ou seja, se $x \in A$ é tal que para todos $a \in A$ vale $a+x=a$, então $x=0$.
+\end{proposition}
+\begin{proof}
+    Como $0$ é elemento neutro da soma, temos que $0+x=x$.
+    Por outro lado, como $x$ é elemento neutro da soma, temos que $x+0=x$.
+    Logo, $x=0$.
+\end{proof}
+
+Do mesmo modo, prova-se a unicidade do elemento neutro do produto.
+Deixamos a redação da demonstração como exercício de fixação ao leitor. 
+
+\begin{proposition}[Unicidade do elemento neutro do produto]\label{proposition:unicidadeNeutroProduto}
+    Seja $A$ um anel.
+    Então só existe um elemento neutro para o produto.
+    Ou seja, se $x \in A$ é tal que para todos $a \in A$ vale $a\cdot x=x\cdot a=a$, então $x=1$.
+\end{proposition}
+\begin{proof}
+    Exercício.
+\end{proof}
+
+
+
+Da mesma forma, os \emph{opostos aditivos} são únicos.
+
+\begin{proposition}[Unicidade dos opostos aditivos]
+    Seja $A$ um anel.
+    Então, para cada $a \in A$, existe um \emph{único} elemento $x \in A$ tal que $a+x=0$.
+\end{proposition}
+\begin{proof}
+    A existência de um tal $x$ é garantida pela propriedade A4.
+    Para a unicidade, suponha que $x$ e $y$ são elementos de $A$ tais que $a+x=0$ e $a+y=0$.
+    Segue que:
+    \begin{equation*}
+        x=x+0=x+(a+y)=(x+a)+y=0+y=y.
+    \end{equation*}
+\end{proof}
+
+Assim, podemos dar um nome especial para o oposto aditivo de um elemento $a \in A$:
+
+\begin{definition}[Opostos aditivos]\index{oposto aditivo!em um anel}
+    Seja $A$ um anel.
+    Então, para cada $a \in A$ o \emph{oposto aditivo} de $a$, denotado por $-a$, é o único elemento de $A$ que satisfaz $a+(-a)=0$.
+
+    Em particular, veja que $-0=0$, pois $0+0=0$.
+\end{definition}
+
+
+Uma propriedade particular interessante do elemento nulo é que ele anula, via multiplicação, qualquer outro elemento.
+
+Notacionalmente, é útil definir uma notação binária para a \emph{diferença} de dois elementos.
+
+\begin{definition}[Diferença]
+    Seja $A$ um anel e $a, b \in A$.
+    A \emph{diferença} de $a$ e $b$, denotada por $a-b$, é definida como $a+(-b)$.
+\end{definition}
+Algumas propriedades dos elementos opostos são:
+\begin{proposition}
+    Seja $A$ um anel e $a, b \in A$.
+    Então:
+    \begin{enumerate}[label=(\roman*)]
+        \item $-(-a)=a$.
+        \item $-(a+b)=(-a)+(-b)$.
+        \item $-0=0$.
+        \item $a\cdot 0=0=0\cdot a$.
+        \item $(-a)b=a(-b)=-(ab)$.
+        \item $(-a)(-b)=ab$.
+        \item $-a=(-1)a$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+        \begin{enumerate}[label=(\roman*)]
+        \item Como $(-a)+a=0$, temos que $-(-a)=a$.
+        \item Como $(a+b)+((-a)+(-b))=a+(-a)+b+(-b)=0+0=0$, temos que $-(a+b)=(-a)+(-b)$.
+        \item Note que $0+0=0$, temos que $-0=0$.
+        \item Veja que $0\cdot a=(0+0)\cdot a=0\cdot a+0\cdot a$.
+        Assim, $0=(0\cdot a)+(-(0\cdot a))=[(0\cdot a)+(0\cdot a)]+(-(0\cdot a))=(0\cdot a)+[(0\cdot a)+(-(0\cdot a))]=0\cdot a$.
+
+        Analogamente, $a\cdot 0=0$.
+        \item Note que $ab+(-a)b=[a+(-a)]b=0b=0$.
+        Assim, $(-a)b=-(ab)$.
+        Da mesma forma, $a(-b)=-(ab)$.
+        \item Pelo item anterior, temos que $(-a)(-b)=-[a(-b)]=-(-(ab))=ab$.
+        \item Finalmente, $(-1)a=-(1\cdot a)=-a$.
+    \end{enumerate}
+\end{proof}
+
+Assim, as chamadas ``regras de sinais'' decorrem das definições iniciais sobre anéis, e as operações numéricas de subtração usuais podem ser vistas como casos particulares de somas, fazendo-se uso da noção de opostos.
+
+Nesse contexto, como podemos encarar a divisão?
+Para isso, precisamos da noção de \emph{inverso multiplicativo}.
+
+\begin{definition}\index{elemento!invertível}
+    Seja $A$ um anel e $a \in A$.
+    Dizemos que $a$ é \emph{invertível} se existe $b \in A$ tal que $a\cdot b=b\cdot a=1$.
+\end{definition}
+
+É de conhecimento do leitor que não existe um elemento $b \in \mathbb{Z}$ tal que $2\cdot b=1$.
+Assim, $2$ não é invertível em $\mathbb{Z}$.
+Por outro lado, $2$ é invertível em $\mathbb{Q}$, pois $2\cdot \frac{1}{2}=\frac{1}{2}\cdot 2=1$.
+
+Similarmente ao que ocorre com opostos aditivos, os inversos multiplicativos, caso existam, são únicos.
+
+\begin{proposition}
+    Seja $A$ um anel e $a \in A$ um elemento invertível.
+    Então existe um \emph{único} elemento $b \in A$ tal que $a\cdot b=b\cdot a=1$.
+\end{proposition}
+\begin{proof}
+    A existência de $b$ é garantida pela definição de elemento invertível.
+    Para a unicidade, suponha que $b$ e $c$ são elementos de $A$ tais que $a\cdot b=b\cdot a=1$ e $a\cdot c=c\cdot a=1$.
+
+    Segue que $b=b.1=b(ac)=(ba)c=1\cdot c=c$.
+\end{proof}
+
+\begin{definition}
+\index{inverso multiplicativo}
+    Seja $A$ um anel e $a \in A$ um elemento invertível.
+    O \emph{inverso multiplicativo} de $a$, denotado por $a^{-1}$, é o único elemento de $A$ tal que $a\cdot a^{-1}=a^{-1}\cdot a=1$.
+\end{definition}
+
+Algumas propriedades dos inversos multiplicativos são:
+
+\begin{proposition}
+    Seja $A$ um anel e $a, b \in A$ elementos invertíveis. Então:
+    \begin{enumerate}[label=(\roman*)]
+        \item $ab$ é invertível e $(ab)^{-1}=b^{-1}a^{-1}$.
+        \item $a^{-1}$ é invertível e $(a^{-1})^{-1}=a$.
+        \item $1$ é invertível e $1^{-1}=1$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    \begin{enumerate}[label=(\roman*)]
+        \item Notemos que $(ab)(b^{-1}a^{-1})=abb^{-1}a^{-1}=aa^{-1}=1$. Similarmente, $(b^{-1}a^{-1})(ab)=b^{-1}(a^{-1}a)b=b^{-1}b=1$. Assim, $ab$ é invertível e $(ab)^{-1}=b^{-1}a^{-1}$.
+        \item Note que $a^{-1}a=aa^{-1}=1$, logo $a^{-1}$ é invertível e $(a^{-1})^{-1}=a$.
+        \item Como $1\cdot 1=1$, temos que $1^{-1}=1$.
+    \end{enumerate}
+\end{proof}
+
+Finalmente, chegamos a noção de corpo.
+Um corpo é um anel comutativo no qual todo elemento é invertível, a excessão do $0$, que deve necessariamente ser diferente de $1$.
+
+\begin{definition}\index{corpo}
+    Um \emph{corpo} é um anel comutativo $\mathbb K$ no qual valem, adicionalmente, as seguintes propriedades:
+    \begin{itemize}
+        \item[(NT)] $0\neq 1$ (não trivialidade).
+        \item[(M4)] Para todo $a\in \mathbb K$, se $a\neq 0$ então $a$ é invertível (existência de inversos multiplicativos).
+    \end{itemize}
+\end{definition}
+
+Assim, em um corpo, todo elemento não nulo é invertível.
+De fato, esses são todos, como mostra a proposição a seguir.
+
+\begin{proposition}
+    Seja $\mathbb K$ um corpo.
+    Então $0\in K$ não é invertível.
+\end{proposition}
+\begin{proof}
+    Suponha por absurdo que $0$ é invertível.
+    Então existe $x \in \mathbb K$ tal que $0x=1$.
+    Porém, conforme visto, $0x=0$, logo, $0=1$, violando a não trivialidade do corpo.
+\end{proof}
+
+Neste texto, nossos principais exemplos de corpos serão o conjunto dos números reais e o conjunto dos números complexos, e, por vezes, o conjunto dos números racionais, com os quais supomos que o leitor tenha alguma familiaridade, ainda que informal.
+Porém, como exemplo de um corpo diferente destes, temos:
+
+\begin{example}\label{example:corpoF2}
+    Seja $\mathbb F_2=\{0, 1\}$, com as operações de soma e produto definidas por:
+    \begin{itemize}
+        \item $0+0=0$, $0+1=1$, $1+0=1$, $1+1=0$ (soma módulo 2),
+        \item $0\cdot 0=0$, $0\cdot 1=0$, $1\cdot 0=0$, $1\cdot 1=1$ (produto usual).
+    \end{itemize}
+    Verifica-se que $\mathbb F_2$ é um corpo (ver Exercício~\ref{exercise:corpoF2}).
+\end{example}

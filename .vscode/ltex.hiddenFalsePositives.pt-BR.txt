@@ -1,0 +1,1 @@
+{"rule":"MORFOLOGIK_RULE_PT_BR","sentence":"^\\Q[NT] \\E(?:Dummy|Ina|Jimmy-|Dummy-|Maniquí-|Maniquíes-)[0-9]+\\Q (não trivialidade).\\E$"}

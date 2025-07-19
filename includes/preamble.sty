@@ -1,10 +1,27 @@
 % Pacotes
+\usepackage[brazil]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[brazil]{babel}
 \usepackage{amsmath, amssymb, amsthm}
 \usepackage{geometry}
-
-
+\usepackage{import}
+\usepackage{indentfirst}
+\usepackage{makeidx}
+\usepackage{enumitem}
 % Layout geral
-\geometry{a4paper}
+\geometry{
+    a4paper,
+    left=3cm,
+    right=2cm,
+    top=3cm,
+    bottom=2cm
+}
+
+% Teoremas e ambientes
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definição}[section]
+\newtheorem{proposition}[definition]{Proposição}
+\newtheorem{example}[definition]{Exemplo}
+
+\newtheorem{exercise}{Exercício}[chapter]
