@@ -78,17 +78,13 @@ Em particular, matrizes quadradas formam um anel.
             0 & 0 & \cdots & 1
         \end{pmatrix}
     \end{equation*}
+
+    Ainda mais: se $m, n$ são inteiros positivos e $A \in M_{m \times n}(R)$, então $I_m A=A$ e $AI_n=A$.
 \end{proposition}
 \begin{proof}
-    Resta ver apenas que a matriz identidade é elemento neutro para o produto de matrizes.
-    Note que, para $A=(a_{ij})_{i, j}\in M_n(R)$, temos que:
-    \begin{equation*}
-        I_n A = \left( \sum_{k=1}^n \delta_{ik} a_{kj} \right)_{i, j}=\left( a_{ij} \right)_{i, j}=A.
-    \end{equation*}
-    Analogamente:
-    \begin{equation*}
-        A I_n = \left( \sum_{k=1}^n a_{ik} \delta_{kj} \right)_{i, j}=\left( a_{ij} \right)_{i, j}=A.
-    \end{equation*}
+    Note que, para $A=(a_{ij})_{i, j}\in M_{m \times n}(R)$, temos que $I_m A$ é uma matriz de dimensões $m \times n$. Se $i, j$ são tais que $1\leq i \leq m$ e $1\leq j \leq n$ o elemento $ij$ de $I_m A$ é dado por $\sum_{k=1}^n \delta_{ik}a_{kj}=a_{ij}$.
+
+    Analogamente, $AI_n$ é uma matriz de dimensões $m \times n$ e o elemento $ij$ de $AI_n$ é dado por $\sum_{k=1}^m a_{ik}\delta_{kj}=a_{ij}$.
 \end{proof}
 
 O produto de matrizes não é comutativo.
