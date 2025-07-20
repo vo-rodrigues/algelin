@@ -1,1 +1,173 @@
-\section{Propriedades de matrizes}}
+\section{Operações com matrizes}
+
+Nesta seção, faremos um interlúdio sobre operações gerais de matrizes.
+
+\begin{proposition}
+    Seja $R$ um anel e $m, n$ inteiros positivos.
+    Então $M_{m \times n}(R)$ é, com a soma de matrizes, um \emph{grupo abeliano}, ou seja, satisfaz as seguintes propriedades. Para todos $A, B, C \in M_{m \times n}(R)$:
+    \begin{enumerate}[label=(\roman*)]
+        \item A soma é associativa, ou seja, $(A+B)+C=A+(B+C)$.
+        \item A soma é comutativa, ou seja, $A+B=B+A$.
+        \item Existe um elemento neutro para a soma, a matriz nula $0_{m \times n}=(0)_{i, j}$.
+        \item Todo elemento tem oposto aditivo, a matriz $-A$ dada por $(-a_{ij})_{i, j}$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    Sejam $A=(a_{ij})_{i, j}, B=(b_{ij})_{i, j}, C=(c_{ij})_{i, j} \in M_{m \times n}(R)$.
+    \begin{enumerate}[label=(\roman*)]
+        \item Temos que \begin{equation*}
+            (A+B)+C=(a_{ij}+b_{ij})_{i, j}+(c_{ij})_{i, j}=((a_{ij}+b_{ij})+c_{ij})_{i, j}=(a_{ij}+(b_{ij}+c_{ij}))_{i, j}=A+(B+C).
+        \end{equation*}
+        \item Temos que \begin{equation*}
+            A+B=(a_{ij}+b_{ij})_{i, j}=(b_{ij}+a_{ij})_{i, j}=B+A.
+        \end{equation*}
+        \item Veja que \begin{equation*}
+            A+0_{m \times n}=(a_{ij}+0)_{i, j}=(a_{ij})_{i, j}=A.
+        \end{equation*}
+        \item Note que \begin{equation*}
+            A+(-A)=(a_{ij}+(-a_{ij}))_{i, j}=(0)_{i, j}=0_{m \times n}.
+        \end{equation*}
+    \end{enumerate}
+\end{proof}
+
+A operação de produto, por sua vez, possui propriedades típicas das de multiplicação em um anel, porém, ela não está definida para quaisquer duas matrizes: os tamanhos devem ser compatíveis.
+
+\begin{proposition}
+    Seja $R$ um anel e $m, n, p, q$ inteiros positivos.
+    Seja $A, A'\in M_{m \times n}(R)$, $B, B'\in M_{p \times m}(R)$ e $C\in M_{q \times p}(R)$ matrizes.
+    Segue que:
+    \begin{enumerate}[label=(\roman*)]
+        \item O produto é associativo, ou seja, $(CB)A=C(BA)$.
+        \item O produto é distributivo em relação à soma, ou seja, $B(A+A')=BA+BA'$ e $(B+B')A=BA+BA'$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    Sejam $A=(a_{ij})_{i, j}\in M_{m \times n}(R)$, $B=(b_{ki})_{k, i}\in M_{p \times m}(R)$, $C=(c_{lk})_{l, k}\in M_{q \times p}(R)$. Temos que:
+
+    \begin{equation*}
+        (CB)A=(\sum_{k=1}^p c_{lk}b_{ki})_{l, i}(\sum_{j=1}^n a_{ij})_{i, j}=(\sum_{j=1}^n\sum_{k=1}^p c_{lk}b_{ki}a_{ij})_{l, j}.
+    \end{equation*}
+
+    Por outro lado, temos que:
+    \begin{equation*}
+        C(BA)=(c_{lk})_{l, k}(\sum_{i=1}^m b_{ki}a_{ij})_{k, j}=(\sum_{k=1}^p \sum_{j=1}^nc_{lk}b_{ki}a_{ij})_{l, j}.
+    \end{equation*}
+
+    Assim, segue a (i).
+
+    Para a (ii), temos que, sendo $A'=(a'_{ij})_{i, j}\in M_{m \times n}(R)$:
+    \begin{equation*}
+        B(A+A')=(b_{ki})_{k, i}(a_{ij}+a'_{ij})_{i, j}=(\sum_{i=1}^m b_{ki}(a_{ij}+a'_{ij}))_{k, j}=(\sum_{i=1}^m b_{ki}a_{ij}+\sum_{i=1}^m b_{ki}a'_{ij})_{k, j}=BA+BA'
+    \end{equation*}
+    Analogamente, $(B+B')A=BA+B'A$.
+\end{proof}
+
+Em particular, matrizes quadradas formam um anel.
+
+\begin{proposition}[Anel de matrizes]\index{anel de matrizes}
+    Seja $R$ um anel e $n$ um inteiro positivo.
+    Então $M_n(R)$, com a soma e produto de matrizes, é um anel, cuja identidade multiplicativa é a matriz identidade $I_n=(\delta_{ij})_{i, j}$, onde $\delta_{ij}$ é o \emph{símbolo de Kronecker}, ou seja, $\delta_{ij}=1$ se $i=j$ e $\delta_{ij}=0$ se $i\neq j$.
+    Mais explicitamente:
+
+    \begin{equation*}
+        I_n = \begin{pmatrix}
+            1 & 0 & \cdots & 0 \\
+            0 & 1 & \cdots & 0 \\
+            \vdots & \vdots & \ddots & \vdots \\
+            0 & 0 & \cdots & 1
+        \end{pmatrix}
+    \end{equation*}
+\end{proposition}
+\begin{proof}
+    Resta ver apenas que a matriz identidade é elemento neutro para o produto de matrizes.
+    Note que, para $A=(a_{ij})_{i, j}\in M_n(R)$, temos que:
+    \begin{equation*}
+        I_n A = \left( \sum_{k=1}^n \delta_{ik} a_{kj} \right)_{i, j}=\left( a_{ij} \right)_{i, j}=A.
+    \end{equation*}
+    Analogamente:
+    \begin{equation*}
+        A I_n = \left( \sum_{k=1}^n a_{ik} \delta_{kj} \right)_{i, j}=\left( a_{ij} \right)_{i, j}=A.
+    \end{equation*}
+\end{proof}
+
+O produto de matrizes não é comutativo.
+
+\begin{example}
+    Seja $A=(a_{ij})_{i, j}\in M_{2}(\mathbb R)$ e $B=(b_{ij})_{i, j}\in M_{2}(\mathbb R)$ matrizes dadas por:
+    \begin{equation*}
+        A = \begin{pmatrix}
+            0 & 1 \\
+            1 & 0
+        \end{pmatrix}, \quad B = \begin{pmatrix}
+            0 & 1 \\
+            0 & 0
+        \end{pmatrix}
+    \end{equation*}
+
+    Então, temos que:
+    \begin{equation*}
+        AB = \begin{pmatrix}
+            0 & 1 \\
+            1 & 0
+        \end{pmatrix} \begin{pmatrix}
+            0 & 1 \\
+            0 & 0
+        \end{pmatrix} = \begin{pmatrix}
+            0 & 0 \\
+            0 & 1
+        \end{pmatrix}, \quad BA = \begin{pmatrix}
+            0 & 1 \\
+            0 & 0
+        \end{pmatrix} \begin{pmatrix}
+            0 & 1 \\
+            1 & 0
+        \end{pmatrix} = \begin{pmatrix}
+            1 & 0 \\
+            0 & 0
+        \end{pmatrix}.
+    \end{equation*}
+    Note que $AB\neq BA$.
+\end{example}
+
+Além disso, há matrizes que não são invertíveis.
+
+\begin{example}
+    Considere a matriz $A=(a_{ij})_{i, j}\in M_{2}(\mathbb R)$ dada por:
+    \begin{equation*}
+        A = \begin{pmatrix}
+            1 & 0 \\
+            0 & 0
+        \end{pmatrix}
+    \end{equation*}
+    Afirmamos que $A$ não é invertível.
+    De fato, suponha por absurdo que exista uma matriz $B$ tal que $AB=BA=I_2$.
+    Escreva $B=(b_{ij})_{i, j}\in M_{2}(\mathbb R)$.
+    Então, temos que:
+    \begin{equation*}
+        I_n=AB = \begin{pmatrix}
+            1 & 0 \\
+            0 & 0
+        \end{pmatrix} \begin{pmatrix}
+            b_{11} & b_{12} \\
+            b_{21} & b_{22}
+        \end{pmatrix} = \begin{pmatrix}
+            b_{11} & b_{12} \\
+            0 & 0
+        \end{pmatrix}.
+    \end{equation*}
+
+    Assim:
+
+    \begin{equation*}
+        \begin{pmatrix}
+            1 & 0 \\
+            0 & 1
+        \end{pmatrix}
+        = AB = \begin{pmatrix}
+            b_{11} & b_{12} \\
+            0 & 0
+        \end{pmatrix}
+    \end{equation*}
+    Em particular, $0=1$, o que é absurdo.
+\end{example}
