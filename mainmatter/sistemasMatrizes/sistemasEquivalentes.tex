@@ -1,0 +1,190 @@
+
+\section{Sistemas Equivalentes}
+Resgatemos conhecimentos elementares sobre resolução de equações simples: considerando nosso universo de discurso o conjunto dos números reais, como se obtém uma solução para a equação $3x+2=5$?
+Ora, transformamos tal expressão na equação $3x=3$, e, após, na equação $x=1$.
+
+Por que tal processo é válido?
+Ora, se $x$ é um número real tal que $3x+2=5$, então $3x=3$, e, se $x$ é um número real tal que $3x=3$, então $x=1$.
+Ou seja, se $x$ é uma solução da equação $3x+2=5$, então necessariamente $x$ é $1$.
+Por outro lado, tais operações são \emph{reversíveis}: se $x=1$, então $3x=3$, e, se $3x=3$, então $3x+2=5$.
+Assim, podemos dizer, ao menos intuitivamente, que as equações $3x+2=5$, $3x=3$ e $x=1$ são \emph{equivalentes}, ou seja, possuem as mesmas soluções.
+
+Perceba que, de modo geral, nosso método de resolução de equações é baseado em transformar uma equação em outra, sucessivamente, preservando todas as suas soluções, de modo a torná-la cada vez mais simples, até que se obtenha uma equação que seja trivialmente resolvida.
+Como fazer isso de modo generalizado para sistemas lineares?
+Nesta seção, estudaremos este tema.
+
+O primeiro passo nesta direção é, dentro do nosso formalismo, definir a equivalência entre dois sistemas lineares.
+
+\begin{definition}
+    Seja $\mathbb K$ um corpo, $A, B\in M_{m \times n}(\mathbb K)$ matrizes e $b, c \in \mathbb K^m$.
+    Dizemos que os sistemas lineares $AX=b$ e $BX=c$ são \emph{equivalentes} se o conjunto solução da equação $AX=b$ é igual ao conjunto solução da equação $BX=c$.
+\end{definition}
+
+Continuando nosso discurso, consideremos um sistema linear homogêneo qualquer, por exemplo, em $\mathbb R$:
+
+\begin{equation}\label{eq:exemploSistema}
+    \begin{cases}
+        2x_1 + 3x_2 + 5x_3 = 0 \\
+        4x_1 + 6x_2 - x_3 = 0 \\
+    \end{cases}
+\end{equation}
+
+Quaisquer $(x_1, x_2, x_3)\in \mathbb R^3$ que satisfaça tal sistema satisfará também as equações $2x_1 + 3x_2 + 5x_3 = 0$ e $4x_1 + 6x_2 - x_3 = 0$, bem como a soma destas, $6x_1 + 9x_2 + 4x_3 = 0$, bem como o dobro da primeira, $4x_1 + 6x_2 + 10x_3 = 0$, bem como o dobro da primeira menos o triplo da segunda, $-2x_1 - 3x_2 + 8x_3 = 0$.
+
+Vamos pensar em como sistematizar tal raciocínio. Olhemos para a matriz dos coeficientes do sistema da Equação~\eqref{eq:exemploSistema}:
+\begin{equation*}
+    A = \begin{pmatrix}
+        2 & 3 & 5 \\
+        4 & 6 & -1 \\
+        3 & 2 & 4
+    \end{pmatrix}
+\end{equation*}
+
+Se montarmos um novo sistema obtido pela soma de múltiplos de linhas de $A$, obtemos um novo sistema linear homogêneo tal que toda solução do sistema original é também solução do novo sistema.
+
+Segundo nosso exemplo, qualquer solução do sistema da Equação~\eqref{eq:exemploSistema} é também solução do sistema homogêneo associado à matriz $B$ dada por:
+\begin{equation*}
+    B = \begin{pmatrix}
+        6 & 9 & 4 \\
+        4 & 6 & 10 \\
+        -2 & -3 & 8
+    \end{pmatrix}
+\end{equation*}
+
+Para obter a primeira linha de $B$, somamos a primeira linha de $A$ com a segunda, e para obter a segunda linha de $B$, multiplicamos a primeira linha de $A$ por $2$.
+Para obter a terceira linha de $B$, subtraímos o dobro da primeira linha de $A$ com o triplo da segunda linha de $A$.
+
+Tais operações consistem em obter o que chamamos de \emph{combinações lineares} das linhas de $A$.
+
+Para melhor expressar tais operações, definamos o seguinte:
+
+\begin{definition}
+    Seja $R$ um anel e $n$ um inteiro positivo. Sejam $v=(a_1, \dots, a_n)\in R^n$ e $u=(c_1, \dots, c_n)\in R^n$.
+    Define-se a \emph{soma} de $v$ com $u$ como $v+u=(a_1+c_1, \dots, a_n+c_n)$.
+    Define-se o \emph{produto por escalar} de $v$ por um elemento $b\in R$ como $b\cdot v=(ba_1, \dots, ba_n)$.
+
+    Se $v_1, \dots, v_n\in R^n$, uma \emph{combinação linear de $v_1, \dots, v_n$} é uma $n$-upla da forma $\sum_{i=1}^n c_i v_i$, com $c_i\in R$.
+\end{definition}
+
+Com essa notação, qual a forma geral para se obter, a partir de uma matriz $A$ uma nova matriz $C$ formada de combinações lineares de linhas de $A$?
+Tal matriz $C$, como $A$, deve possuir $n$ colunas. Porém, o número de linhas de $C$ não possui limite. Imaginemos que $C$ tem $p$ linhas.
+
+Ora, sendo $A=(a_{ij})_{i, j}\in M_{m \times n}(A)$, cada linha de $A$ pode ser encarada como uma $n$-upla $a_i=(a_{i1}, a_{i2}, \ldots, a_{in})\in A^n$.
+
+Se $1\leq k \leq p$, a $k$-ésima linha de $C$ é uma combinação linear de $a_1, \dots, a_n$, ou seja, é da forma $\sum_{i=1}^m b_{ik} a_i$, com $b_{ik}\in A$.
+A $i$-ésima linha de $C$, é, então, $(\sum_{i=1}^m b_{ik} a_{i1}, \dots, \sum_{i=1}^m b_{ik} a_{in})$.
+Explicitamente:
+
+\begin{equation*}
+    C = \begin{pmatrix}
+        \sum_{i=1}^m b_{i1} a_{i1} & \cdots & \sum_{i=1}^m b_{i1} a_{in} \\
+        \vdots & \ddots & \vdots \\
+        \sum_{i=1}^m b_{ip} a_{i1} & \cdots & \sum_{i=1}^m b_{ip} a_{in}
+    \end{pmatrix}
+\end{equation*}
+
+Ou seja, escolhendo-se uma matriz $B=(b_{ik})_{i,k}\in M_{p \times m}(A)$ e operando os elementos $b_{ik}$ como acima, obtemos uma matriz $C$ de ordem $p \times n$ cujas linhas são combinações lineares das linhas de $A$, e todas tais matrizes $C$ são equivalentes a $A$.
+
+Seria útil formalizar tal operação.
+Tal operação é muito conhecida e chamada de \emph{produto matricial}.
+
+\begin{definition}
+    Sejam $m, n, p$ inteiros positivos e $A=(a_{ij})_{i, j}\in M_{m \times n}(R)$ e $B=(b_{jk})_{j, k}\in M_{p \times m}(R)$ matrizes.
+    O \emph{produto matricial} de $B$ por $A$, denotado por $BA$, é a matriz $C\in M_{p \times n}(R)$ dada por:
+    \begin{equation*}
+        C = BA = \begin{pmatrix}
+            \sum_{i=1}^m b_{i1} a_{i1} & \cdots & \sum_{i=1}^m b_{i1} a_{in} \\
+            \vdots & \ddots & \vdots \\
+            \sum_{i=1}^m b_{ip} a_{i1} & \cdots & \sum_{i=1}^m b_{ip} a_{in}
+        \end{pmatrix}
+    \end{equation*}
+
+    Ou seja, $C=(\sum_{i=1}^m b_{ik} a_{ij})_{k, j}\in M_{p \times n}(R)$.
+\end{definition}
+
+Conforme esperado, o seguinte resultado é, então, verdadeiro:
+
+\begin{proposition}
+    Seja $\mathbb K$ um corpo, $A\in M_{m \times n}(\mathbb K)$ e $B\in M_{p \times m}(\mathbb K)$ matrizes.
+    Então toda solução do sistema linear homogêneo $AX=0$ é também solução do sistema linear homogêneo $BAX=0$.
+\end{proposition}
+\begin{proof}
+    Escreva $A=(a_{ij})_{i, j}\in M_{m \times n}(\mathbb K)$ e $B=(b_{jk})_{j, k}\in M_{p \times m}(\mathbb K)$.
+    Seja $(x_1, x_2, \ldots, x_n)\in \mathbb K^n$ uma solução do sistema linear homogêneo $AX=0$.
+
+    Devemos ver que para todo $k$ tal que $1\leq k \leq p$, vale $\sum_{j=1}^n\left(\sum_{i=1}^m b_{ik} a_{ij} \right)x_j=0$.
+
+    Ora, dado $i$ tal que $1\leq i \leq m$, temos que $\sum_{j=1}^n a_{ij} x_j=0$.
+    Daí, temos:
+    
+    \begin{equation*}
+    \sum_{j=1}^n\left(\sum_{i=1}^m b_{ik} a_{ij} \right)x_j=\sum_{j=1}^n\left(\sum_{i=1}^m b_{ik} a_{ij}x_j \right)=\sum_{i=1}^m\left(\sum_{j=1}^n b_{ik} a_{ij}x_j \right)=\sum_{i=1}^m b_{ik}\left(\sum_{j=1}^n a_{ij}x_j \right)=\sum_{i=1}^m b_{ik}0=0.
+    \end{equation*}
+\end{proof}
+
+Note, ainda, que a notação $AX=b$ não é por acaso.
+
+\begin{proposition}
+    Seja $\mathbb K$ um corpo, $A\in M_{m \times n}(\mathbb K)$ e $B\in M_{p \times m}(\mathbb K)$ matrizes.
+
+    Seja $b=(b_1, b_2, \ldots, b_m)\in \mathbb K^m$ e $x=(x_1, x_2, \ldots, x_n)\in \mathbb K^n$. Considere $X$ a matriz coluna dada por $\begin{pmatrix}
+        x_1 \\
+        x_2 \\
+        \vdots \\
+        x_n
+    \end{pmatrix}$ e $B$ a matriz coluna dada por $\begin{pmatrix}
+        b_1 \\
+        b_2 \\
+        \vdots \\
+        b_m
+    \end{pmatrix}$.
+
+    Então $x$ é solução do sistema linear $AX=b$ se, e somente se, $AX=B$, ou seja, se, e somente se, sendo $A=(a_{ij})_{i, j}$:
+
+    \begin{equation*}
+        \begin{pmatrix}
+            a_{11}& \cdots & a_{1n} \\
+            \vdots & \ddots & \vdots \\
+            a_{m1} & \cdots & a_{mn}
+        \end{pmatrix}
+        \begin{pmatrix}
+            x_1 \\
+            x_2 \\
+            \vdots \\
+            x_n
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            b_1 \\
+            b_2 \\
+            \vdots \\
+            b_m
+        \end{pmatrix}
+    \end{equation*}
+\end{proposition}
+
+\begin{proof}
+    Note que:
+
+    \begin{equation*}
+        \begin{pmatrix}
+            a_{11}& \cdots & a_{1n} \\
+            \vdots & \ddots & \vdots \\
+            a_{m1} & \cdots & a_{mn}
+        \end{pmatrix}
+        \begin{pmatrix}
+            x_1 \\
+            x_2 \\
+            \vdots \\
+            x_n
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            \sum_{j=1}^n a_{1j} x_j \\
+            \vdots \\
+            \sum_{j=1}^n a_{mj} x_j
+        \end{pmatrix}
+    \end{equation*}
+
+    Logo, $AX=B$ se, e somente se para cada $i$ tal que $1\leq i \leq m$, temos $\sum_{j=1}^n a_{ij} x_j = b_i$, ou seja, se, e somente se $x$ é solução do sistema linear $AX=b$.
+\end{proof}

@@ -1,0 +1,192 @@
+\section{A representação matricial de um sistema linear}
+
+No Brasil, é usual um estudo introdutório sobre sistemas lineares de números reais.
+
+Um sistema linear de números reais é, intuitivamente, uma coleção finita de equações da forma:
+\begin{equation}\label{eq:sistemaLinear}\index{sistema linear}
+    \begin{cases}
+        a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n = b_1 \\
+        a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n = b_2 \\
+        \vdots \\
+        a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n = b_m
+    \end{cases}
+\end{equation}
+
+Em que cada $a_{ij}$ e cada $b_i$ é um número real, para $1 \leq i \leq m$ e $1 \leq j \leq n$.
+Os números $a_{ij}$ são chamados de \emph{coeficientes} do sistema, e os números $b_i$ são chamados de \emph{termos independentes} do sistema.
+
+Caso todos os $b_i$ sejam iguais a zero, dizemos que o sistema é dito \emph{homogêneo}.
+
+Os símbolos $x_1, x_2, \ldots, x_n$ são chamados de \emph{variáveis} do sistema.
+Resolver um sistema linear consiste em determinar (todos) os valores reais para as variáveis $x_1, x_2, \ldots, x_n$ que satisfaçam todas as equações do sistema.
+
+\begin{example}
+    Considere o seguinte sistema linear:
+    \begin{equation}\label{eq:exemploVar1}
+        \begin{cases}
+            2x_1 + 3x_2 = 5 \\
+            x_1 - x_2 = 1
+        \end{cases}
+    \end{equation}
+
+    Nesse caso, temos $m=2$, $n=2$, $a_{11}=2$, $a_{12}=3$, $a_{21}=1$, $a_{22}=-1$, $b_1=5$ e $b_2=1$.
+    As variáveis do sistema são $x_1$ e $x_2$.
+    O leitor pode verificar, por meios elementares, que a única solução do sistema é dada por $(x_1, x_2)=(2, 1)$.
+\end{example}
+
+Enfatizamos que não é um requisito para a leitura deste texto o conhecimento prévio de técnicas para resolver sistemas lineares, uma vez que um dos objetivos deste capítulo é apresentar técnicas gerais que resolvam qualquer sistema linear.
+
+Aproveitando o exemplo anterior, considere o seguinte sistema linear:
+
+    \begin{equation}\label{eq:exemploVar2}
+        \begin{cases}
+            2y_1 + 3y_2 = 5 \\
+            y_1 - y_2 = 1
+        \end{cases}
+    \end{equation}
+
+O sistema linear da Equação~\eqref{eq:exemploVar2} é essencialmente o mesmo que o sistema linear da Equação~\eqref{eq:exemploVar1}, apenas com as variáveis renomeadas.
+Por óbvio, as soluções de ambos os sistemas devem ser as mesmas.
+Por isso, ao estudar soluções de sistemas lineares, nos preocupamos apenas com os coeficientes dos mesmos.
+
+Assim, para estudar sistemas lineares, podemos definir formalmente objetos matemáticos que agem como ``tabelas'' de números.
+Tais objetos são as \emph{matrizes}.
+
+\begin{definition}\index{matriz}
+    Seja $A$ um anel e $m, n$ inteiros positivos.
+    Uma \emph{matriz de ordem $m \times n$} (de $m$ linhas e $n$ colunas) com entradas em $A$ é uma família $A=(a_{ij})_{1 \leq i \leq m, 1 \leq j \leq n}$ de elementos de $A$.
+
+    Podemos ainda a denotar por:
+
+    \begin{equation*}
+        A = \begin{pmatrix}
+            a_{11} & a_{12} & \cdots & a_{1n} \\
+            a_{21} & a_{22} & \cdots & a_{2n} \\
+            \vdots & \vdots & \ddots & \vdots \\
+            a_{m1} & a_{m2} & \cdots & a_{mn}
+        \end{pmatrix}
+    \end{equation*}
+
+    Ou ainda, por:
+    \begin{equation*}
+        A = \begin{pmatrix}
+            a_{11} & a_{12} & \cdots & a_{1n} \\
+            a_{21} & a_{22} & \cdots & a_{2n} \\
+            \vdots & \vdots & \ddots & \vdots \\
+            a_{m1} & a_{m2} & \cdots & a_{mn}
+        \end{pmatrix}
+    \end{equation*}
+
+    E, finalmente, quando $m, n$ são subentendidos, podemos escrever $A=(a_{ij})_{i, j}$.
+
+    O conjunto de todas as matrizes de ordem $m \times n$ com entradas em $A$ é denotado por $M_{m \times n}(A)$.
+    Quando $m=n$, dizemos que a matriz é \emph{quadrada} de ordem $n$ e denotamos por $M_n(A)$.
+
+    Os elementos $a_{ij}$ são chamados de \emph{coeficientes} de $A$.
+\end{definition}
+
+Neste texto, daremos particular atenção para o corpo $A=\mathbb R$, ou, com maior generalidade, para corpos.
+
+\begin{example}
+    Seja $(a_{ij})_{i, j}\in M_{2}(\mathbb R)$ a matriz dada por:
+    \begin{equation*}
+        A = \begin{pmatrix}
+            2 & 3 \\
+            1 & -1
+        \end{pmatrix}
+    \end{equation*}
+    Então seus coeficientes são $a_{11}=2$, $a_{12}=3$, $a_{21}=1$ e $a_{22}=-1$.
+\end{example}
+
+Neste texto, estudaremos sistemas lineares sobre corpos, com ênfase especial no corpo dos números reais $\mathbb R$.
+O estudo de sistemas lineares sobre corpos, conforme veremos, tem relação direta com o estudo do que é conhecido por \emph{espaço vetorial}, e este é objeto da \emph{Álgebra Linear}.
+
+O estudo de sistemas lineares com coeficientes em anéis é mais geral, e, apesar de possuir muitas semelhanças com o que será apresentado, possui também muitas características próprias estudadas na Teoria de Módulos.
+Tal estudo não é objeto deste texto.
+
+\begin{definition}\index{sistema linear!matricial}
+    Seja $\mathbb K$ um corpo e $A=(a_{ij})_{i, j}\in M_{m \times n}(\mathbb K)$ uma matriz.
+    O \emph{sistema linear homogêneo associado a $A$} é o sistema linear dado por:
+    \begin{equation}\label{eq:sistemaMatricial}
+        \begin{cases}
+            a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n = 0 \\
+            a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n = 0 \\
+            \vdots \\
+            a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n = 0
+        \end{cases}
+    \end{equation}
+
+    Tal sistema linear é denotado por $AX=0$.
+    O \emph{conjunto solução do sistema linear homogêneo de $A$} é o conjunto de todas as $n$-uplas $(x_1, x_2, \ldots, x_n)\in \mathbb K^n$ que satisfazem o sistema linear da Equação~\eqref{eq:sistemaMatricial}.
+
+    Se, adicionalmente, $b=(b_1, b_2, \ldots, b_m)\in \mathbb K^m$, o \emph{sistema linear associado a $A$ e $b$} é o sistema linear dado por:
+    \begin{equation}\label{eq:sistemaMatricial2}
+        \begin{cases}
+            a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n = b_1 \\
+            a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n = b_2 \\
+            \vdots \\
+            a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n = b_m
+        \end{cases}
+    \end{equation}
+
+    Tal sistema linear é denotado por $AX=b$.
+
+    O \emph{conjunto solução do sistema linear de $A$ com coeficientes independentes $b$} é o conjunto de todas as $n$-uplas $(x_1, x_2, \ldots, x_n)\in \mathbb K^n$ que satisfazem o sistema linear da Equação~\eqref{eq:sistemaMatricial2}.
+\end{definition}
+
+É imediato que todo sistema linear pode ser expresso na forma matricial, como acima.
+Assim, o estudo de matrizes pode ser uma ferramenta poderosa no estudo de sistemas lineares.
+\begin{example}
+    Seja $(a_{ij})_{i, j}\in M_{2}(\mathbb R)$ a matriz dada por:
+    \begin{equation*}
+        A = \begin{pmatrix}
+            2 & 3 \\
+            1 & -1
+        \end{pmatrix}
+    \end{equation*}
+
+    O sistema linear homogêneo associado a $A$ é o sistema linear dado por:
+    \begin{equation*}
+        \begin{cases}
+            2x_1 + 3x_2 = 0 \\
+            x_1 - x_2 = 0
+        \end{cases}
+    \end{equation*}
+\end{example}
+Conforme vimos, o produto matricial é uma operação que nasce naturalmente do estudo de sistemas lineares.
+
+Outra operação pertinente é a soma de matrizes, motivada pelo seguinte fato:
+
+Se $A, B \in M_{m \times n}(\mathbb K)$ são matrizes e $x\in \mathbb K^n$ é solução dos sistemas lineares homogêneos $AX=0$ e $BX=0$, então, somando as equações linha-a-linha, $x$ será solução do sistema linear resultante.
+Os coeficientes desse sistema são dados pela soma dos coeficientes de $A$ e $B$.
+
+\begin{definition}
+    Sejam $A=(a_{ij})_{i, j}\in M_{m \times n}(\mathbb K)$ e $B=(b_{ij})_{i, j}\in M_{m \times n}(\mathbb K)$ matrizes.
+    A \emph{soma de matrizes} $A+B$ é a matriz dada como a seguir.
+
+    \begin{equation*}
+        A+B = (a_{ij}+b_{ij})_{i, j}\in M_{m \times n}(\mathbb K)
+    \end{equation*}
+
+    Ou seja:
+    
+    \begin{equation*}
+    \begin{pmatrix}
+        a_{11}& \cdots & a_{1n} \\
+        \vdots & \ddots & \vdots \\
+        a_{m1} & \cdots & a_{mn}
+    \end{pmatrix}
+    +
+    \begin{pmatrix}
+        b_{11}& \cdots & b_{1n} \\
+        \vdots & \ddots & \vdots \\
+        b_{m1} & \cdots & b_{mn}
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        a_{11}+b_{11}& \cdots & a_{1n}+b_{1n} \\
+        \vdots & \ddots & \vdots \\
+        a_{m1}+b_{m1} & \cdots & a_{mn}+b_{mn}
+    \end{pmatrix}
+    \end{equation*}
+\end{definition}

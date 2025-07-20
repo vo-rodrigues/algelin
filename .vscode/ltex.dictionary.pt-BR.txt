@@ -3,3 +3,6 @@ Kuratowski
 ZFC
 simplesmnete
 excessão
+NT
+uplas
+upla

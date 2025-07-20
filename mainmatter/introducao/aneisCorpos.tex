@@ -2,25 +2,25 @@
 
 Anéis e corpos possuem como objetivo generalizar estruturas numéricas conhecidas que possuem uma soma e um produto, como os números inteiros, racionais, reais e complexos.
 
-Se $A$ é um conjunto, uma \textbf{operação binária} em $A$ é uma função $*: A \times A \to A$ 
+Se $R$ é um conjunto, uma \textbf{operação binária} em $R$ é uma função $*: R \times R \to R$ 
 \begin{definition}
-Um \emph{anel} \index{anel} é um conjunto $A$ munido de duas operações binárias, geralmente denotadas por $+$ e $\cdot$, e por dois elementos destacados, geralmente denotados por $0$ e $1$, tais que, para todos $a, b, c \in A$, valem:
+Um \emph{anel} \index{anel} é um conjunto $R$ munido de duas operações binárias, geralmente denotadas por $+$ e $\cdot$, e por dois elementos destacados, geralmente denotados por $0$ e $1$, tais que, para todos $a, b, c \in R$, valem:
 \begin{itemize}
     \item[(A1)] $(a+b)+c = a+(b+c)$ (associatividade da soma),
     \item[(A2)] $a+b = b+a$ (comutatividade da soma),
     \item[(A3)] $a+0=a$ (elemento neutro),
-    \item[(A4)] existe $x \in A$ tal que $a+x=0$ (elemento oposto),
+    \item[(A4)] existe $x \in R$ tal que $a+x=0$ (elemento oposto),
     \item[(M1)] $(a\cdot b)\cdot c = a\cdot(b\cdot c)$ (associatividade do produto),
     \item[(M2)] $a\cdot 1=1\cdot a=a$ (elemento neutro do produto),
     \item[(D1)] $a\cdot(b+c)=a\cdot b+a\cdot c$ (distributiva à esquerda),
     \item[(D2)] $(a+b)\cdot c=a\cdot c+b\cdot c$ (distributiva à direita).
 \end{itemize}
 
-Se, além disso, para todos $a, b \in A$ vale que:
+Se, além disso, para todos $a, b \in R$ vale que:
 \begin{itemize}
     \item[(M3)] $a\cdot b = b\cdot a$ (comutatividade do produto),
 \end{itemize}
-então dizemos que $A$ é um \emph{anel comutativo}\index{anel!comutativo}.
+então dizemos que $R$ é um \emph{anel comutativo}\index{anel!comutativo}.
 \end{definition}
 
 No contexto de anéis, quando não há confusão, é usual denotar $a\cdot b$ simplesmnete por $ab$.
@@ -36,8 +36,8 @@ Os números naturais $\mathbb{N}$ não formam um anel, pois não possuem element
 Vejamos algumas propriedades básicas.
 
 \begin{proposition}[Unicidade do elemento neutro da soma]
-    Seja $A$ um anel. Então só existe um elemento neutro para a soma.
-    Ou seja, se $x \in A$ é tal que para todos $a \in A$ vale $a+x=a$, então $x=0$.
+    Seja $R$ um anel. Então só existe um elemento neutro para a soma.
+    Ou seja, se $x \in R$ é tal que para todos $a \in R$ vale $a+x=a$, então $x=0$.
 \end{proposition}
 \begin{proof}
     Como $0$ é elemento neutro da soma, temos que $0+x=x$.
@@ -49,9 +49,9 @@ Do mesmo modo, prova-se a unicidade do elemento neutro do produto.
 Deixamos a redação da demonstração como exercício de fixação ao leitor. 
 
 \begin{proposition}[Unicidade do elemento neutro do produto]\label{proposition:unicidadeNeutroProduto}
-    Seja $A$ um anel.
+    Seja $R$ um anel.
     Então só existe um elemento neutro para o produto.
-    Ou seja, se $x \in A$ é tal que para todos $a \in A$ vale $a\cdot x=x\cdot a=a$, então $x=1$.
+    Ou seja, se $x \in R$ é tal que para todos $a \in R$ vale $a\cdot x=x\cdot a=a$, então $x=1$.
 \end{proposition}
 \begin{proof}
     Exercício.
@@ -62,23 +62,23 @@ Deixamos a redação da demonstração como exercício de fixação ao leitor.
 Da mesma forma, os \emph{opostos aditivos} são únicos.
 
 \begin{proposition}[Unicidade dos opostos aditivos]
-    Seja $A$ um anel.
-    Então, para cada $a \in A$, existe um \emph{único} elemento $x \in A$ tal que $a+x=0$.
+    Seja $R$ um anel.
+    Então, para cada $a \in R$, existe um \emph{único} elemento $x \in R$ tal que $a+x=0$.
 \end{proposition}
 \begin{proof}
     A existência de um tal $x$ é garantida pela propriedade A4.
-    Para a unicidade, suponha que $x$ e $y$ são elementos de $A$ tais que $a+x=0$ e $a+y=0$.
+    Para a unicidade, suponha que $x$ e $y$ são elementos de $R$ tais que $a+x=0$ e $a+y=0$.
     Segue que:
     \begin{equation*}
         x=x+0=x+(a+y)=(x+a)+y=0+y=y.
     \end{equation*}
 \end{proof}
 
-Assim, podemos dar um nome especial para o oposto aditivo de um elemento $a \in A$:
+Assim, podemos dar um nome especial para o oposto aditivo de um elemento $a \in R$:
 
 \begin{definition}[Opostos aditivos]\index{oposto aditivo!em um anel}
-    Seja $A$ um anel.
-    Então, para cada $a \in A$ o \emph{oposto aditivo} de $a$, denotado por $-a$, é o único elemento de $A$ que satisfaz $a+(-a)=0$.
+    Seja $R$ um anel.
+    Então, para cada $a \in R$ o \emph{oposto aditivo} de $a$, denotado por $-a$, é o único elemento de $R$ que satisfaz $a+(-a)=0$.
 
     Em particular, veja que $-0=0$, pois $0+0=0$.
 \end{definition}
@@ -89,12 +89,12 @@ Uma propriedade particular interessante do elemento nulo é que ele anula, via m
 Notacionalmente, é útil definir uma notação binária para a \emph{diferença} de dois elementos.
 
 \begin{definition}[Diferença]
-    Seja $A$ um anel e $a, b \in A$.
+    Seja $R$ um anel e $a, b \in R$.
     A \emph{diferença} de $a$ e $b$, denotada por $a-b$, é definida como $a+(-b)$.
 \end{definition}
 Algumas propriedades dos elementos opostos são:
 \begin{proposition}
-    Seja $A$ um anel e $a, b \in A$.
+    Seja $R$ um anel e $a, b \in R$.
     Então:
     \begin{enumerate}[label=(\roman*)]
         \item $-(-a)=a$.
@@ -129,8 +129,8 @@ Nesse contexto, como podemos encarar a divisão?
 Para isso, precisamos da noção de \emph{inverso multiplicativo}.
 
 \begin{definition}\index{elemento!invertível}
-    Seja $A$ um anel e $a \in A$.
-    Dizemos que $a$ é \emph{invertível} se existe $b \in A$ tal que $a\cdot b=b\cdot a=1$.
+    Seja $R$ um anel e $a \in R$.
+    Dizemos que $a$ é \emph{invertível} se existe $b \in R$ tal que $a\cdot b=b\cdot a=1$.
 \end{definition}
 
 É de conhecimento do leitor que não existe um elemento $b \in \mathbb{Z}$ tal que $2\cdot b=1$.
@@ -140,26 +140,26 @@ Por outro lado, $2$ é invertível em $\mathbb{Q}$, pois $2\cdot \frac{1}{2}=\fr
 Similarmente ao que ocorre com opostos aditivos, os inversos multiplicativos, caso existam, são únicos.
 
 \begin{proposition}
-    Seja $A$ um anel e $a \in A$ um elemento invertível.
-    Então existe um \emph{único} elemento $b \in A$ tal que $a\cdot b=b\cdot a=1$.
+    Seja $R$ um anel e $a \in R$ um elemento invertível.
+    Então existe um \emph{único} elemento $b \in R$ tal que $a\cdot b=b\cdot a=1$.
 \end{proposition}
 \begin{proof}
     A existência de $b$ é garantida pela definição de elemento invertível.
-    Para a unicidade, suponha que $b$ e $c$ são elementos de $A$ tais que $a\cdot b=b\cdot a=1$ e $a\cdot c=c\cdot a=1$.
+    Para a unicidade, suponha que $b$ e $c$ são elementos de $R$ tais que $a\cdot b=b\cdot a=1$ e $a\cdot c=c\cdot a=1$.
 
     Segue que $b=b.1=b(ac)=(ba)c=1\cdot c=c$.
 \end{proof}
 
 \begin{definition}
 \index{inverso multiplicativo}
-    Seja $A$ um anel e $a \in A$ um elemento invertível.
-    O \emph{inverso multiplicativo} de $a$, denotado por $a^{-1}$, é o único elemento de $A$ tal que $a\cdot a^{-1}=a^{-1}\cdot a=1$.
+    Seja $R$ um anel e $a \in R$ um elemento invertível.
+    O \emph{inverso multiplicativo} de $a$, denotado por $a^{-1}$, é o único elemento de $R$ tal que $a\cdot a^{-1}=a^{-1}\cdot a=1$.
 \end{definition}
 
 Algumas propriedades dos inversos multiplicativos são:
 
 \begin{proposition}
-    Seja $A$ um anel e $a, b \in A$ elementos invertíveis. Então:
+    Seja $R$ um anel e $a, b \in R$ elementos invertíveis. Então:
     \begin{enumerate}[label=(\roman*)]
         \item $ab$ é invertível e $(ab)^{-1}=b^{-1}a^{-1}$.
         \item $a^{-1}$ é invertível e $(a^{-1})^{-1}=a$.
