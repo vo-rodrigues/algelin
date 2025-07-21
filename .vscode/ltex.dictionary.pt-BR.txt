@@ -6,3 +6,4 @@ excessão
 NT
 uplas
 upla
+Kronecker

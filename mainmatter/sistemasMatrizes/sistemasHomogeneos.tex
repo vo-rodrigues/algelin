@@ -1,0 +1,311 @@
+\section{Resolução de Sistemas Homogêneos}
+Com já o básico operacional de matrizes desenvolvido, ganhamos algumas ferramentas para estudar sistemas lineares.
+
+\begin{proposition}
+    Seja $\mathbb K$ um corpo e $A\in M_{m \times n}(\mathbb K)$ uma matriz. Se $B \in M_{m}(\mathbb K)$ é uma matriz invertível, então o sistema linear homogêneo $AX=0$ é equivalente ao sistema linear homogêneo $BAX=0$.
+\end{proposition}
+\begin{proof}
+    Já vimos que toda solução do sistema linear homogêneo $AX=0$ é também solução do sistema linear homogêneo $BAX=0$.
+    
+    Sendo $B^{-1}$ a inversa de $B$, segue que toda solução do sistema linear homogêneo $BAX=0$ é também solução do sistema linear homogêneo $B^{-1}BAX=0$.
+    Como $B^{-1}BA=A$, temos que $B^{-1}BAX=0$ é equivalente a $AX=0$.
+\end{proof}
+
+Agora iniciaremos o estudo direto da resolução de sistemas lineares homogêneos.
+Mais tarde, veremos como resolver sistemas lineares não homogêneos a partir das técnicas que desenvolveremos aqui.
+
+Voltemos a nossa discussão intuitiva.
+Considere o seguinte sistema linear homogêneo:
+\begin{equation*}
+    \begin{cases}
+        2x_1 + 3x_2 = 0 \\
+        x_1 - x_2 = 0
+    \end{cases}
+\end{equation*}
+
+Sistemas homogêneos sempre tem a chamada \emph{solução trivial}: a atribuição do valor $0$ a cada variável. Será que o sistema acima possui outras soluções? 
+
+Vamos considerar três operações que podemos realizar nesse sistema:
+
+A primeira: multiplicar alguma das linhas por um número não nulo.
+É imediato que, por exemplo, ao multiplicar a primeira linha por $\frac{1}{2}$, obtemos um sistema equivalente.
+\begin{equation*}
+    \begin{cases}
+        x_1 + \frac{3}{2}x_2 = 0 \\
+        x_1 - x_2 = 0
+    \end{cases}
+\end{equation*}
+A segunda: trocar linhas de posição. É imediato que o sistema acima é equivalente ao seguinte:
+\begin{equation*}
+    \begin{cases}
+        x_1 - x_2 = 0 \\
+        x_1 + \frac{3}{2}x_2 = 0
+    \end{cases}
+\end{equation*}
+
+E a terceira: trocar uma linha por ela própria, mais um múltiplo de outra.
+Por exemplo, o sistema acima é equivalente ao seguinte:
+
+\begin{equation*}
+    \begin{cases}
+        3x_1 + 2x_2 = 0 \\
+        x_1 + \frac{3}{2}x_2 = 0
+    \end{cases}
+\end{equation*}
+
+Para se obter esse sistema, somamos, na primeira linha, o dobro da segunda.
+Para obter novamente a primeira linha original a partir do novo sistema, basta subtrair, da nova primeira linha, o dobro da segunda.
+Logo, os sistemas são equivalentes.
+
+Nossa afirmação é que, utilizando sistematicamente essas três operações, que chamaremos de \emph{operações elementares nas linhas de um sistema linear}, podemos resolver completamente qualquer sistema linear.
+No nosso exemplo, olhando novamente para o sistema original, e somando na primeira linha o oposto da segunda (o produto da segunda por $-1$), obtemos o seguinte sistema:
+
+\begin{equation*}
+    \begin{cases}
+        0x_1 + \frac{5}{2}x_2 = 0 \\
+        x_1 - x_2 = 0
+    \end{cases}
+\end{equation*}
+Multiplicando a primeira linha por $\frac{2}{5}$ e trocando as linhas de posição, obtemos o seguinte sistema:
+\begin{equation*}
+    \begin{cases}
+        x_1 - x_2 = 0 \\
+        0x_1 + x_2 = 0
+    \end{cases}
+\end{equation*}
+Finalmente, somando na primeira linha, a segunda, obtemos o seguinte sistema:
+\begin{equation*}
+    \begin{cases}
+        x_1 = 0 \\
+        x_2 = 0
+    \end{cases}
+\end{equation*}
+
+O que mostra que a única solução do sistema original é a solução trivial.
+
+Vamos, nesta seção, sistematizar e formalizar este raciocínio a partir da linguagem de matrizes.
+
+\begin{definition}
+    Sejam $m, n$ inteiros positivos.
+    Chamamos de \emph{operações elementares em linhas} em $M_{m \times n}(\mathbb K)$ as seguintes operações.
+        \begin{enumerate}
+            \item Para algum $l\in \{1, \ldots, m\}$ e $\lambda \in \mathbb K$ não nulo, $e_{l\lambda}^1((a_{ij})_{i, j})=(b_{ij})_{i, j}$ onde:
+            \begin{equation*}
+                b_{ij} = \begin{cases}
+                    \lambda a_{ij} & \text{se } i=l \\
+                    a_{ij} & \text{caso contrário.}
+                \end{cases}
+            \end{equation*}
+            \item Para $l, l'\in \{1, \ldots, m\}$, $e_{l l'}^2((a_{ij})_{i, j})=(b_{ij})_{i, j}$ onde:
+            \begin{equation*}
+                b_{ij} = \begin{cases}
+                    a_{l'j} & \text{se } i=l \\
+                    a_{lj} & \text{se } i=l' \\
+                    a_{ij} & \text{caso contrário.}
+                \end{cases}
+            \end{equation*}
+            \item Para $l, l'\in \{1, \ldots, m\}$ e $\lambda \in \mathbb K$, $e_{l l'\lambda}^3((a_{ij})_{i, j})=(b_{ij})_{i, j}$ onde:
+            \item \begin{equation*}
+                b_{ij} = \begin{cases}
+                    a_{lj} + \lambda a_{l'j} & \text{se } i=l \\
+                    a_{ij} & \text{caso contrário.}
+                \end{cases}
+            \end{equation*}
+        \end{enumerate}
+\end{definition}
+
+Tais operações elementares correspondem a produtos por certas matrizes.
+
+\begin{definition}
+    Sejam $m, n$ inteiros positivos.
+    Chamamos de \emph{matrizes elementares} de $A M_{m \times n}(\mathbb K)$ as seguintes matrizes.
+        \begin{enumerate}
+            \item Para algum $l\in \{1, \ldots, m\}$ e $\lambda \in \mathbb K$ não nulo, $E_{l\lambda}^1=(b_{ij})_{i, j}$, onde:
+            \begin{equation*}
+                b_{ij} = \begin{cases}
+                    \lambda \lambda & \text{se } i=j=l \\
+                    1 & \text{se } i=j\neq l \\
+                    0 & \text{caso contrário.}
+            \end{cases}
+            \end{equation*}
+            \item Para $l, l'\in \{1, \ldots, m\}$, $E_{l l'}^2=(b_{ij})_{i, j}$, onde:
+            \begin{equation*}
+                b_{ij} = \begin{cases}
+                    1 & \text{se } i=j\notin\{l, l'\} \\
+                    1 & \text{se } i=l, j=l' \\
+                    1 & \text{se } i=l', j=l \\
+                    0 & \text{caso contrário.}
+                \end{cases}
+            \end{equation*}
+            \item Para $l, l'\in \{1, \ldots, m\}$ e $\lambda \in \mathbb K$, $E_{l l'\lambda}^3=(b_{ij})_{i, j}$, onde:
+            \begin{equation*}
+                b_{ij} = \begin{cases}
+                    1 & \text{se } i=j \\
+                    \lambda & \text{se } i=l, j=l' \\
+                    0 & \text{caso contrário.}
+                \end{cases}
+            \end{equation*}
+        \end{enumerate}
+
+        \begin{lemma}
+            Sejam $m, n$ inteiros positivos e $A\in M_{m \times n}(\mathbb K)$.
+            Então:
+            \begin{enumerate}
+                \item Dado $l\in \{1, \ldots, m\}$ e $\lambda \in \mathbb K$ não nulo, $E_{l\lambda}^1 A = e_{l\lambda}^1(A)$.
+                \item Dado $l, l'\in \{1, \ldots, m\}$, $E_{l l'}^2 A = e_{l l'}^2(A)$.
+                \item Dado $l, l'\in \{1, \ldots, m\}$ e $\lambda \in \mathbb K$, $E_{l l'\lambda}^3 A = e_{l l'\lambda}^3(A)$.
+            \end{enumerate}
+        \end{lemma}
+
+        \begin{proof}
+            Sejam $i, j$ tais que $1\leq i \leq m$ e $1\leq j \leq n$.
+            Escreva $A=(a_{ij})_{i, j}$ e, em cada caso, seja $(b_{ij})_{i, j}$ a matriz elementar em questão.
+            \begin{enumerate}
+                \item Se $i\neq l$, o elemento $ij$ de $E_{l\lambda}^1 A$ é dado por $\sum_{k=1}^n b_{ik}a_{kj}=a_{ij}$.
+                Já se $i=l$, o elemento $ij$ de $E_{l\lambda}^1 A$ é dado por $\sum_{k=1}^n b_{ik}a_{kj}=\lambda \lambda a_{lj}$.
+                Assim, $E_{l\lambda}^1 A = e_{l\lambda}^1(A)$.
+                \item Se $i\notin\{l, l'\}$, o elemento $ij$ de $E_{l l'}^2 A$ é dado por $\sum_{k=1}^n b_{ik}a_{kj}=a_{ij}$.
+                Se $i=l$, o elemento $ij$ de $E_{l l'}^2 A$ é dado por $\sum_{k=1}^n b_{lk}a_{kj}=a_{l'j}$.
+                Finalmente, se $i=l'$, o elemento $ij$ de $E_{l l'}^2 A$ é dado por $\sum_{k=1}^n b_{l'k}a_{kj}=a_{lj}$.
+                Assim, $E_{l l'}^2 A = e_{l l'}^2(A)$.
+                \item Se $i\neq l$, o elemento $ij$ de $E_{l l'\lambda}^3 A$ é dado por $\sum_{k=1}^n b_{ik}a_{kj}=a_{ij}$.
+                Se $i=l$, o elemento $ij$ de $E_{l l'\lambda}^3 A$ é dado por $\sum_{k=1}^n b_{lk}a_{kj}=a_{ij}+\lambda a_{l'j}$.
+                Assim, $E_{l l'\lambda}^3 A = e_{l l'\lambda}^3(A)$.
+            \end{enumerate}
+        \end{proof}
+\end{definition}
+
+\begin{lemma}
+    Sejam $m, n$ inteiros positivos e $\mathbb K$ um corpo. As matrizes elementares de $M_{m \times n}(\mathbb K)$ são invertíveis.
+\end{lemma}
+\begin{proof}
+    Consideremos $E_{l\lambda}^1$, onde $l\in \{1, \ldots, m\}$ e $\lambda \in \mathbb K$ não nulo. É imediato que $I_n=e_{l\lambda^{-1}}^1(E_{l\lambda}^1)$, de modo que $I_n=E_{l\lambda^{-1}}^1 E_{l\lambda}^1$.
+    Da mesma forma, $I_n=E_{l\lambda}^1 E_{l\lambda^{-1}}^1$
+
+    Agora consideremos $E_{l l'}^2$, onde $l, l'\in \{1, \ldots, m\}$. É imediato que $I_n=e_{l l'}^2(E_{l l'}^2)$, de modo que $I_n=E_{l l'}^2 E_{l l'}^2$.
+
+    Finalmente, consideremos $E_{l l'\lambda}^3$, onde $l, l'\in \{1, \ldots, m\}$ e $\lambda \in \mathbb K$. É imediato que $I_n=e_{l l'(-\lambda)}^3(E_{l l'\lambda}^3)$, de modo que $I_n=E_{l l'(-\lambda)}^3 E_{l l'\lambda}^3$.
+    Da mesma forma, $I_n=E_{l l'\lambda}^3 E_{l l'(-\lambda)}^3$.
+\end{proof}
+
+\begin{corollary}
+    Sejam $A, B \in M_{m \times n}(\mathbb K)$ matrizes tais que $A$ é obtida a partir de $B$ aplicando-se sucessivas operações elementares em linhas.
+    Então os sistemas lineares homogêneos $AX=0$ e $BX=0$ são equivalentes.
+\end{corollary}
+
+Estudemos agora o seguinte sistema:
+
+\begin{equation}\label{eqn:sistemaExemplo1}
+    \begin{cases}
+        2x_1 + 6x_2 + 4x_3 + x_4 = 0 \\
+        3x_1 - 3x_2 - 4x_3 + x_4 = 0
+    \end{cases}
+\end{equation}
+
+Vamos resolvê-lo utilizando operações elementares em linhas.
+A matriz associada a esse sistema é:
+\begin{equation*}
+    A = \begin{pmatrix}
+        2 & 6 & 4 & 1 \\
+        3 & -3 & -4 & 1
+    \end{pmatrix}
+\end{equation*}
+Multiplicando a primeira linha por $\frac{1}{2}$, obtemos:
+\begin{equation*}
+    A_1 = \begin{pmatrix}
+        1 & 3 & 2 & \frac{1}{2} \\
+        3 & -3 & -4 & 1
+    \end{pmatrix}
+\end{equation*}
+Agora, subtraindo da segunda linha o triplo da primeira, obtemos:
+\begin{equation*}
+    A_2 = \begin{pmatrix}
+        1 & 3 & 2 & \frac{1}{2} \\
+        0 & -15 & -12 & -\frac{3}{2}
+    \end{pmatrix}
+\end{equation*}
+Multiplicando a segunda linha por $-\frac{1}{15}$, obtemos:
+\begin{equation*}
+    A_3 = \begin{pmatrix}
+        1 & 3 & 2 & \frac{1}{2} \\
+        0 & 1 & \frac{4}{5} & \frac{1}{10}
+    \end{pmatrix}
+\end{equation*}
+Finalmente, subtraindo da primeira linha o triplo da segunda, obtemos:
+\begin{equation*}
+    A_4 = \begin{pmatrix}
+        1 & 0 & -\frac{2}{5} & \frac{1}{5} \\
+        0 & 1 & \frac{4}{5} & \frac{1}{10}
+    \end{pmatrix}
+\end{equation*}
+Assim, o sistema da Equação~\eqref{eqn:sistemaExemplo1} é equivalente ao seguinte sistema:
+\begin{equation}\label{eqn:sistemaExemplo2}
+    \begin{cases}
+        x_1 - \frac{2}{5}x_3 + \frac{1}{5}x_4 = 0 \\
+        x_2 + \frac{4}{5}x_3 + \frac{1}{10}x_4 = 0
+    \end{cases}
+\end{equation}
+Ou, de forma mais simples:
+\begin{equation*}
+    \begin{cases}
+        x_1 = \frac{2}{5}x_3 - \frac{1}{5}x_4 \\
+        x_2 = -\frac{4}{5}x_3 - \frac{1}{10}x_4
+    \end{cases}
+\end{equation*}
+Escolhidos quaisquer valores reais de $x_3$ e $x_4$, e utilizando-se as expressões acima para $x_1, x_2$, obtemos uma solução do sistema original, e todas as soluções do sistema original são obtidas dessa forma.
+Em outras palavras, o conjunto solução do sistema da Equação~\eqref{eqn:sistemaExemplo1} é dado por:
+\begin{equation*}
+    \left\{\left(\frac{2}{5}x_3 - \frac{1}{5}x_4, -\frac{4}{5}x_3 - \frac{1}{10}x_4, x_3, x_4\right) \mid x_3, x_4 \in \mathbb R\right\}
+\end{equation*}
+
+Nosso objetivo é mostrar que esse método é geral.
+Notemos que o sistema da Equação~\eqref{eqn:sistemaExemplo2} é notável: basta observá-lo para, de imediato, escrever seu conjunto solução.
+
+Definiremos, abaixo, uma classe de matrizes semelhantes a essa, e, a seguir, mostraremos que para qualquer matriz, existe uma sequência finita de operações elementares em linhas que a transforma em uma matriz dessa classe.
+A demonstração desse teorema será construtiva, de modo que ela nos dará o algoritmo necessário para resolver qualquer sistema linear homogêneo.
+
+\begin{definition}
+    Seja $m, n$ inteiros positivos e $\mathbb K$ um corpo.
+    Dizemos que uma matriz $A\in M_{m \times n}(\mathbb K)$ está na \emph{forma escalonada} se.
+    \begin{enumerate}
+        \item Existe $S \subseteq \{0, 1, \ldots, m\}$ tal que se $i \in \{1, \ldots, m\}$ e $i>S$, então a $i$-ésima linha de $A$ é nula, e, se $i\leq s$, então a $i$-ésima linha de $A$ não é nula.
+        \item Se $i\leq S$, $i \in \{1, \ldots, m\}$, chamemos o primeiro $j$ tal que $a_{ij}\neq 0$ de $j^*_i$. Devemos ter $a_{ij^*_i}=1$.
+        \item Se $i<i'\leq S$, com $i\in \{1, \ldots, m\}$, então $j^*_i < j^*_{i'}$ e $a_{ii'}=0$.
+    \end{enumerate}
+
+    Para $i \in \{1, \ldots, m\}$ com $i\leq S$, a posição $(i, j^*_i)$ é dita ser um \emph{pivô} de $A$.
+\end{definition}
+Observe que a matriz identidade $I_n$ e a matriz nula estão ambas na forma escalonada.
+
+Como ocorre na discussão, acima, temos:
+
+\begin{theorem}
+    Seja $m, n$ inteiros positivos e $\mathbb K$ um corpo.
+    Então, para toda matriz $A\in M_{m \times n}(\mathbb K)$ na forma escalonada as soluções do sistema $AX=0$ são dadas, segundo a notação acima, pelas $n$-uplas
+    $(x_j: 1\leq j\leq n)$, onde $x_j$ é qualquer se para nenhum $i$, $(i, j)$ é um pivô de $A$. Já se $(i, j)$ é um pivô de $A$, então $x_j=\sum\left(-a_{ij'}x_{j'}: j<j',\, j' \text{ não é pivô de } A\right)$.
+\end{theorem}
+
+\begin{theorem}
+    Seja $m, n$ inteiros positivos e $\mathbb K$ um corpo.
+    Então, para toda matriz $A\in M_{m \times n}(\mathbb K)$, existe uma sequência finita de operações elementares em linhas que transforma $A$ em uma matriz na forma escalonada.
+\end{theorem}
+\begin{proof}
+    Provaremos por indução que para $i' \in \{1, \ldots, m\}$, existe uma sequência de operações elementares em linhas que transforma $A$ em uma matriz $A'$ cujas $i'$ primeiras linhas estão na forma escalonada.
+
+    Para $i'=1$, caso a primeira linha de $A$ seja nula, não há nada para fazer.
+    Caso contrário, podemos multiplicar a primeira linha pelo inverso do primeiro elemento não nulo desta, de modo a obter uma matriz cuja primeira linha está na forma escalonada.
+
+    Suponha que o resultado é verdadeiro para $i'$, e seja $A'$ a matriz obtida a partir de $A$ por uma sequência de operações elementares em linhas, de modo que as $i'$ primeiras linhas de $A'$ estão na forma escalonada.
+
+    Se $i'=n$, terminamos a indução. Se não, mostraremos que existe uma sequência de operações elementares em linhas que transforma $A'$ em uma matriz $A''$ cujas $i'+1$ primeiras linhas estão na forma escalonada.
+
+    Caso a $i'+1$-ésima linha de $A'$ é nula, então $A''=A'$ e terminamos o passo.
+    Caso contrário, para cada $k \in \{1, \ldots, i'\}$, cuja $k$-ésima linha de $A'$ não é nula, seja $j_k$ o primeiro elemento não nulo desta linha, de modo que $a_{kj_k}=1$.
+    Somamos na linha $i'+1$ a linha $k$ multiplicada pelo oposto de $a_{i'+1, j_k}$, de modo que todas as entradas da linha $i'+1$ que estão na mesma coluna de um pivô das $i'$ primeiras linhas de $A'$ se anulem.
+
+    Se a nova linha $i'+1$ é nula, então $A''=A'$ e terminamos o passo.
+    Caso contrário, seja $j'$ a coordenada do primeiro elemento não nulo da nova linha $i'+1$.
+    Temos que $j'$ não é a posição de nenhum pivô das $i'$ primeiras linhas de $A'$, uma vez que todas tais posições da linha $i'+1$ foram zeradas.
+    Multiplicamos a linha $i'+1$ pelo inverso de $a_{i'+1, j'}$, de modo que a nova linha $i'+1$ tem o primeiro elemento não nulo igual a $1$.
+    Reordenando as linhas dessa matriz por um número finito de trocas sucessivas, obtemos uma matriz $A''$ cujas $i'+1$ primeiras linhas estão na forma escalonada.
+\end{proof}
