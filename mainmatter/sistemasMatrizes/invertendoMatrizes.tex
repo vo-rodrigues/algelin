@@ -1,0 +1,11 @@
+\section{Invertendo matrizes}
+\begin{lemma}
+    Seja $A\in M_{m\times n}(\mathbb K)$ uma matriz e $k\geq 1$ um inteiro.
+
+    Se $A$  possui uma linha nula, então não existe uma matriz $B\in M_{n\times m}(\mathbb K)$ tal que $AB=I_m$.
+\end{lemma}
+
+\begin{proof}
+    Suponha que a $i$-ésima linha de $A$ seja nula.
+    Dada qualquer matriz $B\in M_{n\times m}(\mathbb K)$, elemento na posição $ii$ de $AB$ é dado por $\sum_{j=1}^n a_{ij}b_{ji}=\sum_{j=1}^n 0\cdot b_{ji}=0\neq 1$.
+\end{proof}
