@@ -19,7 +19,7 @@ jobs:
       - name: Move pdf
         run: |
           mkdir ./output
-          mv main.pdf ./output/main.pdf
+          mv algebraLinear.pdf ./output/algebraLinear.pdf
       - name: Publish to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
