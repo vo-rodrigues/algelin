@@ -59,11 +59,51 @@ Tais operações consistem em obter o que chamamos de \emph{combinações linear
 Para melhor expressar tais operações, definamos o seguinte:
 
 \begin{definition}
-    Seja $R$ um anel e $n$ um inteiro positivo. Sejam $v=(a_1, \dots, a_n)\in R^n$ e $u=(c_1, \dots, c_n)\in R^n$.
-    Define-se a \emph{soma} de $v$ com $u$ como $v+u=(a_1+c_1, \dots, a_n+c_n)$.
-    Define-se o \emph{produto por escalar} de $v$ por um elemento $b\in R$ como $b\cdot v=(ba_1, \dots, ba_n)$.
+    Seja $\mathbb K$ um corpo e $n$ um inteiro positivo. Sejam $v=(a_1, \dots, a_n)\in \mathbb K^n$ e $u=(c_1, \dots, c_n)\in \mathbb K^n$.
 
-    Se $v_1, \dots, v_n\in R^n$, uma \emph{combinação linear de $v_1, \dots, v_n$} é uma $n$-upla da forma $\sum_{i=1}^n c_i v_i$, com $c_i\in R$.
+    Define-se a \emph{soma} de $v$ com $u$ como $v+u=(a_1+c_1, \dots, a_n+c_n)$.
+
+    Define-se o \emph{produto por escalar} de $v$ por um elemento $b\in \mathbb K$ como $b\cdot v=(ba_1, \dots, ba_n)$.
+
+    O elemento nulo de $\mathbb K^n$ é o elemento $0=(0, 0, \dots, 0)$.
+
+    Se $v=(a_1, \dots, a_n)\in \mathbb K^n$, o \emph{oposto} de $v$ é o elemento $-v=(-a_1, -a_2, \dots, -a_n)$.
+
+    Se $v, w \in \mathbb K^n$, a \emph{diferença} de $v$ com $w$ é o elemento $v-w=v+(-w)$.
+
+    Elementos de $\mathbb K^n$ são chamados de \emph{vetores}.
+\end{definition}
+
+\begin{proposition}
+    Sejam, $u, v, w \in \mathbb K^n$ e $\alpha, \beta \in \mathbb K$. Então:
+    \begin{enumerate}[label=(\roman*)]
+        \item $u + (v + w) = (u + v) + w$;
+        \item $u + v = v + u$;
+        \item $u + 0 = u$;
+        \item $u + (-u) = 0$;
+        \item $\alpha \cdot (\beta \cdot u) = (\alpha \beta) \cdot u$;
+        \item $1 \cdot u = u$;
+        \item $\alpha \cdot (u + v) = \alpha \cdot u + \alpha \cdot v$;
+        \item $(\alpha + \beta) \cdot u = \alpha \cdot u + \beta \cdot u$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    Escreva $u=(u_1, \dots, u_n)$, $v=(v_1, \dots, v_n)$ e $w=(w_1, \dots, w_n)$.
+    Então:
+    \begin{enumerate}[label=(\roman*)]
+        \item $u + (v + w) = (u_i)_{i=1}^n + (v_i + w_i)_{i=1}^n = (u_i + (v_i + w_i))_{i=1}^n = ((u_i + v_i) + w_i)_{i=1}^n = (u_i + v_i)_{i=1}^n + (w_i)_{i=1}^n = (u + v) + w$;
+        \item $u + v = (u_i)_{i=1}^n + (v_i)_{i=1}^n = (u_i + v_i)_{i=1}^n = (v_i + u_i)_{i=1}^n = (v_i)_{i=1}^n + (u_i)_{i=1}^n = v + u$;
+        \item $u + 0 = (u_i)_{i=1}^n + (0, \dots, 0) = (u_i + 0)_{i=1}^n = (u_i)_{i=1}^n = u$;
+        \item $u + (-u) = (u_i)_{i=1}^n + (-u_i)_{i=1}^n = (u_i + (-u_i))_{i=1}^n = (0, \dots, 0) = 0$;
+        \item $\alpha \cdot (\beta \cdot u) = \alpha \cdot (\beta u_i)_{i=1}^n = (\alpha (\beta u_i))_{i=1}^n = ((\alpha \beta) u_i)_{i=1}^n = (\alpha \beta) \cdot (u_i)_{i=1}^n = (\alpha \beta) \cdot u$;
+        \item $1 \cdot u = (1 u_i)_{i=1}^n = (u_i)_{i=1}^n = u$;
+        \item $\alpha \cdot (u + v) = \alpha \cdot (u_i + v_i)_{i=1}^n = (\alpha (u_i + v_i))_{i=1}^n = (\alpha u_i + \alpha v_i)_{i=1}^n = (\alpha u_i)_{i=1}^n + (\alpha v_i)_{i=1}^n = \alpha \cdot u + \alpha \cdot v$;
+        \item $(\alpha + \beta) \cdot u = ((\alpha + \beta) u_i)_{i=1}^n = (\alpha u_i + \beta u_i)_{i=1}^n = (\alpha u_i)_{i=1}^n + (\beta u_i)_{i=1}^n = \alpha \cdot u + \beta \cdot u$.
+    \end{enumerate}
+\end{proof}
+
+\begin{definition}
+    Se $v_1, \dots, v_n\in \mathbb K^n$, uma \emph{combinação linear de $v_1, \dots, v_n$} é uma $n$-upla da forma $\sum_{i=1}^n c_i v_i$, com $c_i\in \mathbb K$.
 \end{definition}
 
 Com essa notação, qual a forma geral para se obter, a partir de uma matriz $A$ uma nova matriz $C$ formada de combinações lineares de linhas de $A$?
