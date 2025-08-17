@@ -228,3 +228,66 @@ Note, ainda, que a notação $AX=b$ não é por acaso.
 
     Logo, $AX=B$ se, e somente se para cada $i$ tal que $1\leq i \leq m$, temos $\sum_{j=1}^n a_{ij} x_j = b_i$, ou seja, se, e somente se $x$ é solução do sistema linear $AX=b$.
 \end{proof}
+
+A operação de produto de matrizes é, de fato, uma operação de recombinação de linhas, conforme ilustrado a seguir:
+
+\begin{proposition}
+    Sejam $A=(a_{i, j})_{i, j}\in M_{m \times n}(\mathbb K)$ e $B=(b_{k, i})_{k, i}\in M_{p \times m}(\mathbb K)$.
+    Seja $C=BA=(c_{kj})_{k,j}\in M_{p \times n}(\mathbb K)$ o produto matricial de $B$ por $A$.
+    Então cada linha de $C$ é uma combinação linear das linhas de $A$.
+
+    Mais especificamente, sendo $L_1, \dots, L_m$ as linhas de $A$, e $K_1, \dots, K_p$ as linhas de $B$, temos que cada linha $C_k$ de $C$ pode ser escrita como:
+
+    \begin{equation*}
+        C_k = \sum_{i=1}^m b_{ki} L_i.
+    \end{equation*}
+
+    Reciprocamente, se $C \in M_{p \times m}(\mathbb K)$ é uma matriz tal que cada linha de $C$ é uma combinação linear das linhas de $A$, então existe uma matriz $B\in M_{p \times m}(\mathbb K)$ tal que $C=BA$.
+\end{proposition}
+\begin{proof}
+    Utilizando a notação do enunciado, dados $k, j$ tais que $1\leq k \leq p$ e $1\leq j \leq n$, temos que o elemento $c_{kj}$ de $C$ é dado por:
+
+    \begin{equation*}
+        c_{kj} = \sum_{i=1}^m b_{ki} a_{ij}.
+    \end{equation*}
+
+    Tal elemento é o $j$-ésimo elemento de $C_k$ e de $\sum_{i=1}^m b_{ki} L_i$, logo, $C_k = \sum_{i=1}^m b_{ki} L_i$.
+
+    Reciprocamente, suponha que $C$ é uma matriz tal que cada linha de $C$ é uma combinação linear das linhas de $A$. Então, para cada $k$ tal que $1\leq k \leq p$, existem $b_{k1}, b_{k2}, \ldots, b_{km}\in \mathbb K$ tais que $C_k = \sum_{i=1}^m b_{ki} L_i$.
+
+    Sendo $B=(b_{ki})_{k,i}\in M_{p \times m}(\mathbb K)$, temos que $C=BA$.
+\end{proof}
+
+\begin{example}
+    Seja $\mathbb R$ o corpo dos números reais, $A=\begin{pmatrix}
+        2 & 3 & 5 \\
+        4 & 6 & -1
+    \end{pmatrix}\in M_{2 \times 3}(\mathbb R)$ e $B=\begin{pmatrix}
+        1 & 1 \\
+        2 & 0 \\
+        -1 & -3
+    \end{pmatrix}\in M_{3 \times 2}(\mathbb R)$.
+
+    Então:
+
+    \begin{equation*}
+        BA = \begin{pmatrix}
+            1 & 1 \\
+            2 & 0 \\
+            -1 & -3
+        \end{pmatrix}
+        \begin{pmatrix}
+            2 & 3 & 5 \\
+            4 & 6 & -1
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            6 & 9 & 4 \\
+            4 & 6 & 10 \\
+            -10 & -21 & -2
+        \end{pmatrix}
+    \end{equation*}
+
+    Sendo $L_1=(2, 3, 5)$ e $L_2=(4, 6, -1)$ as linhas de $A$, temos que as linhas de $BA$ são dadas por $1L_1+1L_2$, $2L_1+0L_2$ e $-1L_1-3L_2$.
+
+\end{example}
