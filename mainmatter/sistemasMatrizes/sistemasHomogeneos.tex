@@ -117,13 +117,13 @@ Vamos, nesta seção, sistematizar e formalizar este raciocínio a partir da lin
 Tais operações elementares correspondem a produtos por certas matrizes.
 
 \begin{definition}
-    Sejam $m, n$ inteiros positivos.
-    Chamamos de \emph{matrizes elementares} de $A M_{m \times n}(\mathbb K)$ as seguintes matrizes.
+    Seja $m$ um inteiro positivo.
+    Chamamos de \emph{matrizes elementares} de $M_{m}(\mathbb K)$ as seguintes matrizes.
         \begin{enumerate}
             \item Para algum $l\in \{1, \ldots, m\}$ e $\lambda \in \mathbb K$ não nulo, $E_{l\lambda}^1=(b_{ij})_{i, j}$, onde:
             \begin{equation*}
                 b_{ij} = \begin{cases}
-                    \lambda \lambda & \text{se } i=j=l \\
+                    \lambda & \text{se } i=j=l \\
                     1 & \text{se } i=j\neq l \\
                     0 & \text{caso contrário.}
             \end{cases}
@@ -176,7 +176,7 @@ Tais operações elementares correspondem a produtos por certas matrizes.
 \end{definition}
 
 \begin{lemma}
-    Sejam $m, n$ inteiros positivos e $\mathbb K$ um corpo. As matrizes elementares de $M_{m \times n}(\mathbb K)$ são invertíveis.
+    Seja $m$ um inteiro positivo e $\mathbb K$ um corpo. As matrizes elementares de $M_{m}(\mathbb K)$ são invertíveis.
 \end{lemma}
 \begin{proof}
     Consideremos $E_{l\lambda}^1$, onde $l\in \{1, \ldots, m\}$ e $\lambda \in \mathbb K$ não nulo. É imediato que $I_n=e_{l\lambda^{-1}}^1(E_{l\lambda}^1)$, de modo que $I_n=E_{l\lambda^{-1}}^1 E_{l\lambda}^1$.
