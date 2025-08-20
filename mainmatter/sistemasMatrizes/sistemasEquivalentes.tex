@@ -129,17 +129,17 @@ Seria útil formalizar tal operação.
 Tal operação é muito conhecida e chamada de \emph{produto matricial}.
 
 \begin{definition}
-    Sejam $m, n, p$ inteiros positivos e $A=(a_{ij})_{i, j}\in M_{m \times n}(R)$ e $B=(b_{jk})_{j, k}\in M_{p \times m}(R)$ matrizes.
+    Sejam $m, n, p$ inteiros positivos e $A=(a_{ij})_{i, j}\in M_{m \times n}(R)$ e $B=(b_{ki})_{k, i}\in M_{p \times m}(R)$ matrizes.
     O \emph{produto matricial} de $B$ por $A$, denotado por $BA$, é a matriz $C\in M_{p \times n}(R)$ dada por:
     \begin{equation*}
         C = BA = \begin{pmatrix}
-            \sum_{i=1}^m b_{i1} a_{i1} & \cdots & \sum_{i=1}^m b_{i1} a_{in} \\
+            \sum_{i=1}^m b_{1i} a_{i1} & \cdots & \sum_{i=1}^m b_{1i} a_{in} \\
             \vdots & \ddots & \vdots \\
-            \sum_{i=1}^m b_{ip} a_{i1} & \cdots & \sum_{i=1}^m b_{ip} a_{in}
+            \sum_{i=1}^m b_{pi} a_{i1} & \cdots & \sum_{i=1}^m b_{pi} a_{in}
         \end{pmatrix}
     \end{equation*}
 
-    Ou seja, $C=(\sum_{i=1}^m b_{ik} a_{ij})_{k, j}\in M_{p \times n}(R)$.
+    Ou seja, $C=(\sum_{i=1}^m b_{ki} a_{ij})_{k, j}\in M_{p \times n}(R)$.
 \end{definition}
 
 Conforme esperado, o seguinte resultado é, então, verdadeiro:
