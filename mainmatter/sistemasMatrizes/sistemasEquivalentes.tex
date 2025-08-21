@@ -16,7 +16,7 @@ Nesta seção, estudaremos este tema.
 O primeiro passo nesta direção é, dentro do nosso formalismo, definir a equivalência entre dois sistemas lineares.
 
 \begin{definition}
-    Seja $\mathbb K$ um corpo, $A, B\in M_{m \times n}(\mathbb K)$ matrizes e $b, c \in \mathbb K^m$.
+    Seja $R$ um corpo, $A, B\in M_{m \times n}(\mathbb K)$ matrizes e $b, c \in \mathbb K^m$.
     Dizemos que os sistemas lineares $AX=b$ e $BX=c$ são \emph{equivalentes} se o conjunto solução da equação $AX=b$ é igual ao conjunto solução da equação $BX=c$.
 \end{definition}
 
@@ -111,25 +111,25 @@ Tal matriz $C$, como $A$, deve possuir $n$ colunas. Porém, o número de linhas 
 
 Ora, sendo $A=(a_{ij})_{i, j}\in M_{m \times n}(A)$, cada linha de $A$ pode ser encarada como uma $n$-upla $a_i=(a_{i1}, a_{i2}, \ldots, a_{in})\in A^n$.
 
-Se $1\leq k \leq p$, a $k$-ésima linha de $C$ é uma combinação linear de $a_1, \dots, a_n$, ou seja, é da forma $\sum_{i=1}^m b_{ik} a_i$, com $b_{ik}\in A$.
-A $i$-ésima linha de $C$, é, então, $(\sum_{i=1}^m b_{ik} a_{i1}, \dots, \sum_{i=1}^m b_{ik} a_{in})$.
+Se $1\leq k \leq p$, a $k$-ésima linha de $C$ é uma combinação linear de $a_1, \dots, a_n$, ou seja, é da forma $\sum_{i=1}^m b_{ki} a_i$, com $b_{ki}\in \mathbb K$.
+A $i$-ésima linha de $C$, é, então, $(\sum_{i=1}^m b_{ki} a_{i1}, \dots, \sum_{i=1}^m b_{ki} a_{in})$.
 Explicitamente:
 
 \begin{equation*}
     C = \begin{pmatrix}
-        \sum_{i=1}^m b_{i1} a_{i1} & \cdots & \sum_{i=1}^m b_{i1} a_{in} \\
+        \sum_{i=1}^m b_{1i} a_{i1} & \cdots & \sum_{i=1}^m b_{1i} a_{in} \\
         \vdots & \ddots & \vdots \\
-        \sum_{i=1}^m b_{ip} a_{i1} & \cdots & \sum_{i=1}^m b_{ip} a_{in}
+        \sum_{i=1}^m b_{pi} a_{i1} & \cdots & \sum_{i=1}^m b_{pi} a_{in}
     \end{pmatrix}
 \end{equation*}
 
-Ou seja, escolhendo-se uma matriz $B=(b_{ik})_{i,k}\in M_{p \times m}(A)$ e operando os elementos $b_{ik}$ como acima, obtemos uma matriz $C$ de ordem $p \times n$ cujas linhas são combinações lineares das linhas de $A$, e todas tais matrizes $C$ são equivalentes a $A$.
+Ou seja, escolhendo-se uma matriz $B=(b_{ki})_{k,i}\in M_{p \times m}(A)$ e operando os elementos $b_{ik}$ como acima, obtemos uma matriz $C$ de ordem $p \times n$ cujas linhas são combinações lineares das linhas de $A$, e todas tais matrizes $C$ são equivalentes a $A$.
 
 Seria útil formalizar tal operação.
 Tal operação é muito conhecida e chamada de \emph{produto matricial}.
 
 \begin{definition}
-    Sejam $m, n, p$ inteiros positivos e $A=(a_{ij})_{i, j}\in M_{m \times n}(R)$ e $B=(b_{ki})_{k, i}\in M_{p \times m}(R)$ matrizes.
+    Sejam $m, n, p$ inteiros positivos, $R$ um anel, e $A=(a_{ij})_{i, j}\in M_{m \times n}(R)$ e $B=(b_{ki})_{k, i}\in M_{p \times m}(R)$ matrizes.
     O \emph{produto matricial} de $B$ por $A$, denotado por $BA$, é a matriz $C\in M_{p \times n}(R)$ dada por:
     \begin{equation*}
         C = BA = \begin{pmatrix}
@@ -149,16 +149,16 @@ Conforme esperado, o seguinte resultado é, então, verdadeiro:
     Então toda solução do sistema linear homogêneo $AX=0$ é também solução do sistema linear homogêneo $BAX=0$.
 \end{proposition}
 \begin{proof}
-    Escreva $A=(a_{ij})_{i, j}\in M_{m \times n}(\mathbb K)$ e $B=(b_{jk})_{j, k}\in M_{p \times m}(\mathbb K)$.
+    Escreva $A=(a_{ij})_{i, j}\in M_{m \times n}(\mathbb K)$ e $B=(b_{ki})_{k, i}\in M_{p \times m}(\mathbb K)$.
     Seja $(x_1, x_2, \ldots, x_n)\in \mathbb K^n$ uma solução do sistema linear homogêneo $AX=0$.
 
-    Devemos ver que para todo $k$ tal que $1\leq k \leq p$, vale $\sum_{j=1}^n\left(\sum_{i=1}^m b_{ik} a_{ij} \right)x_j=0$.
+    Devemos ver que para todo $k$ tal que $1\leq k \leq p$, vale $\sum_{j=1}^n\left(\sum_{i=1}^m b_{ki} a_{ij} \right)x_j=0$.
 
     Ora, dado $i$ tal que $1\leq i \leq m$, temos que $\sum_{j=1}^n a_{ij} x_j=0$.
     Daí, temos:
     
     \begin{equation*}
-    \sum_{j=1}^n\left(\sum_{i=1}^m b_{ik} a_{ij} \right)x_j=\sum_{j=1}^n\left(\sum_{i=1}^m b_{ik} a_{ij}x_j \right)=\sum_{i=1}^m\left(\sum_{j=1}^n b_{ik} a_{ij}x_j \right)=\sum_{i=1}^m b_{ik}\left(\sum_{j=1}^n a_{ij}x_j \right)=\sum_{i=1}^m b_{ik}0=0.
+    \sum_{j=1}^n\left(\sum_{i=1}^m b_{ki} a_{ij} \right)x_j=\sum_{j=1}^n\left(\sum_{i=1}^m b_{ki} a_{ij}x_j \right)=\sum_{i=1}^m\left(\sum_{j=1}^n b_{ki} a_{ij}x_j \right)=\sum_{i=1}^m b_{ki}\left(\sum_{j=1}^n a_{ij}x_j \right)=\sum_{i=1}^m b_{ki}0=0.
     \end{equation*}
 \end{proof}
 
@@ -232,7 +232,7 @@ Note, ainda, que a notação $AX=b$ não é por acaso.
 A operação de produto de matrizes é, de fato, uma operação de recombinação de linhas, conforme ilustrado a seguir:
 
 \begin{proposition}
-    Sejam $A=(a_{i, j})_{i, j}\in M_{m \times n}(\mathbb K)$ e $B=(b_{k, i})_{k, i}\in M_{p \times m}(\mathbb K)$.
+    Sejam $A=(a_{ij})_{i, j}\in M_{m \times n}(\mathbb K)$ e $B=(b_{ki})_{k, i}\in M_{p \times m}(\mathbb K)$.
     Seja $C=BA=(c_{kj})_{k,j}\in M_{p \times n}(\mathbb K)$ o produto matricial de $B$ por $A$.
     Então cada linha de $C$ é uma combinação linear das linhas de $A$.
 
