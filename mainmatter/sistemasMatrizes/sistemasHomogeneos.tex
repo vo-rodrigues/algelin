@@ -266,14 +266,21 @@ A demonstração desse teorema será construtiva, de modo que ela nos dará o al
 
 \begin{definition}
     Seja $m, n$ inteiros positivos e $\mathbb K$ um corpo.
-    Dizemos que uma matriz $A\in M_{m \times n}(\mathbb K)$ está na \emph{forma escalonada} se.
-    \begin{enumerate}
-        \item Existe $S \subseteq \{0, 1, \ldots, m\}$ tal que se $i \in \{1, \ldots, m\}$ e $i>S$, então a $i$-ésima linha de $A$ é nula, e, se $i\leq s$, então a $i$-ésima linha de $A$ não é nula.
-        \item Se $i\leq S$, $i \in \{1, \ldots, m\}$, chamemos o primeiro $j$ tal que $a_{ij}\neq 0$ de $j^*_i$. Devemos ter $a_{ij^*_i}=1$.
-        \item Se $i<i'\leq S$, com $i\in \{1, \ldots, m\}$, então $j^*_i < j^*_{i'}$ e $a_{ii'}=0$.
+
+    Seja $A \in M_{m \times n}(\mathbb K)$ e $i$ entre $1$ e $m$.
+
+    Dizemos que a $i$-ésima linha de $A$ possui pivô se ela é não nula e $j \in \{1, \ldots, n\}$ tal que $a_{ij}=1$ e $a_{i'j}=0$ para todo $i'\neq i$, e, além disso, $a_{ij}$ é o primeiro elemento não nulo da linha.
+    Nesse caso, o elemento $a_{ij}$ é chamado de \emph{pivô} da $i$-ésima linha de $A$, e $j$ é a \emph{posição do pivô} da $i$-ésima linha de $A$.
+    
+
+    Dizemos que uma matriz $A\in M_{m \times n}(\mathbb K)$ está na \emph{forma escalonada} se, para todo $i, i' \in \{1, \ldots, m\}$ com $i<i'$, valem as seguintes condições.
+    \begin{enumerate}[label=\alph*)]
+        \item Se a $i$-ésima linha de $A$ é nula, então a $i'$-ésima linha de $A$ também é nula.
+        \item Se a $i$-ésima linha de $A$ não é nula, então ela possui um pivô.
+        \item Caso as linhas $i, i'$ de $A$ não são nulas, e $j_i, j_{i'}$ são as posições dos pivôs dessas linhas, então $j_i < j_{i'}$.
     \end{enumerate}
 
-    Para $i \in \{1, \ldots, m\}$ com $i\leq S$, a posição $(i, j^*_i)$ é dita ser um \emph{pivô} de $A$.
+    Para $i \in \{1, \ldots, m\}$ com $i\leq S$, a posição $(i, j_i)$ é dita ser um \emph{pivô} de $A$.
 \end{definition}
 Observe que a matriz identidade $I_n$ e a matriz nula estão ambas na forma escalonada.
 
@@ -282,7 +289,8 @@ Como ocorre na discussão, acima, temos:
 \begin{theorem}
     Seja $m, n$ inteiros positivos e $\mathbb K$ um corpo.
     Então, para toda matriz $A\in M_{m \times n}(\mathbb K)$ na forma escalonada as soluções do sistema $AX=0$ são dadas, segundo a notação acima, pelas $n$-uplas
-    $(x_j: 1\leq j\leq n)$, onde $x_j$ é qualquer se para nenhum $i$, $(i, j)$ é um pivô de $A$. Já se $(i, j)$ é um pivô de $A$, então $x_j=\sum\left(-a_{ij'}x_{j'}: j<j',\, j' \text{ não é pivô de } A\right)$.
+    $(x_j: 1\leq j\leq n)$, onde $x_j$ é qualquer se para nenhum $i$, $(i, j)$ é um pivô de $A$.
+    Já se $(i, j)$ é um pivô de $A$, então $x_j=\sum\left(-a_{ij'}x_{j'}: j<j',\, j' \text{ não é pivô de } A\right)$.
 \end{theorem}
 
 \begin{theorem}
@@ -290,28 +298,49 @@ Como ocorre na discussão, acima, temos:
     Então, para toda matriz $A\in M_{m \times n}(\mathbb K)$, existe uma sequência finita de operações elementares em linhas que transforma $A$ em uma matriz na forma escalonada.
 \end{theorem}
 \begin{proof}
-    Provaremos por indução que para $i' \in \{1, \ldots, m\}$, existe uma sequência de operações elementares em linhas que transforma $A$ em uma matriz $A'$ cujas $i'$ primeiras linhas estão na forma escalonada.
+    Provaremos por indução em $n$.
 
-    Para $i'=1$, caso a primeira linha de $A$ seja nula, não há nada para fazer.
-    Caso contrário, podemos multiplicar a primeira linha pelo inverso do primeiro elemento não nulo desta, de modo a obter uma matriz cuja primeira linha está na forma escalonada.
+    Se $n=1$, então $A$ é uma matriz coluna.
+    Se $A$ é nula, então $A$ já está na forma escalonada.
 
-    Suponha que o resultado é verdadeiro para $i'$, e seja $A'$ a matriz obtida a partir de $A$ por uma sequência de operações elementares em linhas, de modo que as $i'$ primeiras linhas de $A'$ estão na forma escalonada.
+    Caso contrário, trocando duas linhas de posição, obtemos uma matriz coluna cujo primeiro elemento é não nulo.
+    Multiplicando a primeira linha pelo inverso de seu novo elemento, obtemos uma matriz coluna cujo primeiro elemento é $1$.
+    Finalmente, somando em cada outra linha $i$ não nula o múltiplo da primeira linha pelo oposto do elemento na posição $i1$, obtemos a matriz escalonada abaixo:
 
-    Se $i'=n$, terminamos a indução. Se não, mostraremos que existe uma sequência de operações elementares em linhas que transforma $A'$ em uma matriz $A''$ cujas $i'+1$ primeiras linhas estão na forma escalonada.
+    \begin{equation*}
+        \begin{pmatrix}
+            1 \\
+            0 \\
+            0 \\
+            \vdots \\
+            0
+        \end{pmatrix}
+    \end{equation*}
 
-    Caso a $i'+1$-ésima linha de $A'$ é nula, então $A''=A'$ e terminamos o passo.
-    Caso contrário, para cada $k \in \{1, \ldots, i'\}$, cuja $k$-ésima linha de $A'$ não é nula, seja $j_k$ o primeiro elemento não nulo desta linha, de modo que $a_{kj_k}=1$.
-    Somamos na linha $i'+1$ a linha $k$ multiplicada pelo oposto de $a_{i'+1, j_k}$, de modo que todas as entradas da linha $i'+1$ que estão na mesma coluna de um pivô das $i'$ primeiras linhas de $A'$ se anulem.
+Para a hipótese de indução, suponha que toda matriz $A \in M_{m \times n}(\mathbb K)$ pode ser escalonada por uma sequência finita de operações elementares em linhas.
 
-    Se a nova linha $i'+1$ é nula, então $A''=A'$ e terminamos o passo.
-    Caso contrário, seja $j'$ a coordenada do primeiro elemento não nulo da nova linha $i'+1$.
-    Temos que $j'$ não é a posição de nenhum pivô das $i'$ primeiras linhas de $A'$, uma vez que todas tais posições da linha $i'+1$ foram zeradas.
-    Multiplicamos a linha $i'+1$ pelo inverso de $a_{i'+1, j'}$, de modo que a nova linha $i'+1$ tem o primeiro elemento não nulo igual a $1$.
-    Reordenando as linhas dessa matriz por um número finito de trocas sucessivas, obtemos uma matriz $A''$ cujas $i'+1$ primeiras linhas estão na forma escalonada.
-\end{proof}
+Se $A \in M_{m \times (n+1)}(\mathbb K)$ e $B \in M_{m \times n}(\mathbb K)$ é a matriz obtida a partir de $A$ eliminando-se a última coluna, então, por hipótese de indução, existe uma sequência finita de operações elementares em linhas que transforma $B$ em uma matriz na forma escalonada.
+Perceba que se $e$ é uma operação elementar em linhas e $\pi$ é a operação que elimina de uma matriz sua última coluna, então $e\circ \pi(A)=\pi\circ e(A)$.
+Logo, sendo $e_1, \dots e_l$ operações elementares em linhas tais que $e_1\circ \cdots \circ e_l(B)$ é a matriz na forma escalonada, temos que $\pi\circ e_1\circ \cdots \circ e_l(A)=e_1\circ \cdots \circ e_l\circ \pi(A)=e_1\circ \cdots \circ e_l(B)$ está na forma escalonada.
 
-Assim, os dois últimos teoremas mostram como resolver qualquer sistema linear homogêneo.
-Observe que:
+Ou seja, aplicando-se em $A$ a sequência de operações elementares em linhas $e_1, \dots e_l$ que escalona $B$, obtemos uma matriz $C$ que, a menos de sua última coluna, está na forma escalonada, $S$.
+
+Se $A'$ está já na forma escalonada, não há nada para fazer. Caso contrário:
+
+\begin{itemize}
+    \item Caso 1: existem linhas $i<i'$ de $C$ tais que $C_{i'}$ não é nula e $C_i$ é nula. Como $S$ está na forma escalonada, o único elemento não nulo de $C_{i'}$ está na última coluna.
+    Podemos multiplicá-lo pelo seu inverso e, como no caso base, utilizar esta linha para zerar as outras entradas da última coluna da matriz, e, em seguida, reordená-la para transformá-la em uma matriz na forma escalonada.
+    \item Caso 2: alguma linha não nula não possui pivô. Notemos que cada pivô de $S$ é um pivô de $C$.
+    Seja $c_{ij}$ o primeiro elemento não nulo de $C$ que não é pivô.
+
+    Se, por absurdo $j\leq n$, $c_{ij}$ não é pivô de $S$, logo, existe $j'<j$ tal que $c_{ij'}$ é pivô de $S$.
+    Assim, a $i$-ésima linha de $S$ possui pivô, e, portanto, a $i$-ésima linha de $C$ também possui pivô, o que é um absurdo.
+    Logo, o único elemento não nulo de $C_i$ está na última coluna e agimos como no caso anterior.
+    \item Caso 3: existem linhas $i<i'$ de $C$ tais que ambas são não nulas e, sendo $a_{ij}, a_{i'j'}$ os pivôs dessas linhas, $j>j'$.
+    
+    Ora, como $S$ está na forma escalonada, isso só é possível se $j=n+1$.
+    Logo, a $i$-ésima linha de $C$ é nula, o que implica que a $i'$-ésima linha de $S$ é nula, mas $a_{i'j'}$ é pivô de $S$, o que é um absurdo.
+\end{itemize}
 
 \begin{proposition}
     Seja $A \in M_{m \times n}(\mathbb K)$ uma matriz e $B \in M_{m \times n}(\mathbb K)$ uma matriz na forma escalonada equivalente a $B$.
