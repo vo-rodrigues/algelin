@@ -1,11 +1,207 @@
 \section{Invertendo matrizes}
-\begin{lemma}
-    Seja $A\in M_{m\times n}(\mathbb K)$ uma matriz e $k\geq 1$ um inteiro.
 
-    Se $A$  possui uma linha nula, então não existe uma matriz $B\in M_{n\times m}(\mathbb K)$ tal que $AB=I_m$.
+O processo de escalonamento é uma ferramenta que é útil, também, para inverter matrizes.
+
+Primeiro, definiremos invertibilidades laterais.
+
+\begin{definition}
+    Seja $R$ um anel e $a\in M_{n}(R)$.
+    Dizemos que $a$ é \textbf{invertível à esquerda} se existe $b\in M_{n}(R)$ tal que $ba=I_n$.
+    Nesse caso, $b$ é chamado de um \textbf{inverso à esquerda} de $a$.
+
+    Dizemos que $a$ é \textbf{invertível à direita} se existe $c\in M_{n}(R)$ tal que $ac=I_n$.
+    Nesse caso, $c$ é chamado de um \textbf{inverso à direita} de $a$.
+\end{definition}
+
+Quando inversos laterais de ambos os lados existem, eles coincidem, e, portanto, o elemento é invertível.
+
+\begin{proposition}
+    Seja $R$ um anel e $a\in M_{n}(R)$.
+    Se $a$ é invertível à esquerda e à direita, então $a$ é invertível e os inversos laterais coincidem.
+\end{proposition}
+\begin{proof}
+    Suponha que $b$ é um inverso à esquerda de $a$ e que $c$ é um inverso à direita de $a$.
+    Então, temos
+   \begin{equation*}
+        b = b1 = b(ac) = (ba)c = 1c = c.
+   \end{equation*}
+    Portanto, $b=c$, e assim $a$ é invertível com (único) inverso $b=c$.
+\end{proof}
+
+Veremos mais adiante neste texto que há anéis para os quais existem elementos invertíveis apenas de um lado.
+Porém, conforme veremos a seguir, isso não ocorre para matrizes quadradas sobre corpos.
+
+\begin{lemma}
+    Seja $A\in M_{n}(\mathbb K)$.
+    São equivalentes:
+    \begin{enumerate}[label=(\roman*)]
+        \item $A$ é invertível.
+        \item $A$ é invertível à esquerda.
+        \item O sistema linear homogêneo $AX=0$ possui apenas a solução trivial.
+        \item Existe uma sequência finita de operações elementares nas linhas de $M_{n}(\mathbb K)$ que transforma $A$ na matriz identidade $I_n$.
+        \item $A$ pode ser escrita como um produto de matrizes elementares.
+    \end{enumerate}
 \end{lemma}
 
 \begin{proof}
-    Suponha que a $i$-ésima linha de $A$ seja nula.
-    Dada qualquer matriz $B\in M_{n\times m}(\mathbb K)$, elemento na posição $ii$ de $AB$ é dado por $\sum_{j=1}^n a_{ij}b_{ji}=\sum_{j=1}^n 0\cdot b_{ji}=0\neq 1$.
+    \begin{itemize}
+        \item[(i)$\Rightarrow$(ii)] Imediato.
+
+        \item[(ii)$\Rightarrow$(iii)] Suponha que $A$ é invertível à esquerda.
+            Então, existe $B\in M_{n}(\mathbb K)$ tal que $BA=I_n$.
+
+            Seja $\alpha=(\alpha_1, \dots, \alpha_n)\in \mathbb K^n$ uma solução do sistema linear homogêneo $AX=0$.
+            Segue que:
+            \begin{equation*}
+                A\begin{pmatrix} \alpha_1 \\ \vdots \\ \alpha_n \end{pmatrix} = 0.
+            \end{equation*}
+            Multiplicando ambos os lados da equação por $B$ à esquerda, obtemos \begin{equation*}
+                BA\begin{pmatrix} \alpha_1 \\ \vdots \\ \alpha_n \end{pmatrix} = B0=0.
+            \end{equation*}
+            Ou seja, $\alpha_1=\alpha_2=\cdots=\alpha_n=0$.
+            Portanto, o sistema linear homogêneo $AX=0$ possui apenas a solução trivial.
+
+        \item[(iii)$\Rightarrow$(iv)] Suponha que o sistema linear homogêneo $AX=0$ possui apenas a solução trivial.
+        Existem operações elementares nas linhas que transformam $A$ em uma matriz escalonada $S$.
+
+        Como o sistema linear homogêneo $AX=0$ possui apenas a solução trivial, todas as colunas de $S$ possuem pivôs.
+        
+        Como o número de linhas de $S$ é igual ao número de colunas de $S$, segue que toda linha $i$ de $S$ possui pivô.
+
+        Sejam $j_1, j_2, \dots, j_n$ as posições dos pivôs de $S$ das linhas $1, 2, \dots, n$, respectivamente.
+        Temos que $1\leq j_1 < j_2 < \cdots < j_n \leq n$.
+        Portanto, $j_k=k$ para todo $k=1, 2, \dots, n$.
+        Assim, $S$ é uma matriz cuja diagonal é composta de pivôs, e, os elementos fora da diagonal, por estarem em uma coluna com pivô, são nulos.
+        Ou seja, $S$ é a matriz identidade.
+
+        \item[(iv)$\Rightarrow$(v)] Por hipótese, existem operações elementares $e_1, \dots, e_k$ tais que $e_k\circ \dots e_1(A)=I_n$.
+        
+        Sendo $E_1, \dots, E_k$ as matrizes elementares correspondentes às operações elementares $e_1, \dots, e_k$, respectivamente, temos que:
+        \begin{equation*}
+            E_k \cdots E_1 A = I_n.
+        \end{equation*}
+
+        Como as matrizes elementares são invertíveis, segue que $A = E_1^{-1} \cdots E_k^{-1}$.
+
+        Como o inverso de uma matriz elementar é uma matriz elementar, segue que $A$ pode ser escrita como um produto de matrizes elementares.
+
+        \item[(v)$\Rightarrow$(i)] Suponha que $A$ pode ser escrita como um produto de matrizes elementares.
+        Como as matrizes elementares são invertíveis, segue que $A$ é um produto de matrizes invertíveis, e, portanto, $A$ é invertível.
+    \end{itemize}
 \end{proof}
+
+Notemos um fato interessante: na demonstração anterior, a implicação (iv)$\Rightarrow$(v) nos dá um algoritmo sobre como escrever uma matriz invertível como um produto de matrizes elementares.
+
+Vejamos um exemplo de seu funcionamento.
+
+\begin{example}
+    Seja 
+    \begin{equation*}
+        A = \begin{pmatrix}
+            2 & 1 & 1 \\
+            1 & 3 & 2 \\
+            1 & 0 & 0
+        \end{pmatrix}.
+    \end{equation*}
+    Queremos escrever $A$ como um produto de matrizes elementares.
+    
+    Para isso, aplicamos operações elementares nas linhas de $A$ até que ela se transforme na matriz identidade:
+    \begin{align*}
+        A
+        &\xrightarrow{L_1\leftrightarrow L_3}
+        \begin{pmatrix}
+            1 & 0 & 0 \\
+            1 & 3 & 2 \\
+            2 & 1 & 1
+        \end{pmatrix}
+        \xrightarrow{L_2\leftarrow L_2 - L_1}
+        \begin{pmatrix}
+            1 & 0 & 0 \\
+            0 & 3 & 2 \\
+            2 & 1 & 1
+        \end{pmatrix}
+        \xrightarrow{L_3\leftarrow L_3 - 2L_1}
+        \begin{pmatrix}
+            1 & 0 & 0 \\
+            0 & 3 & 2 \\
+            0 & 1 & 1
+        \end{pmatrix} \\
+        &\xrightarrow{L_2\leftarrow \frac{1}{3}L_2}
+        \begin{pmatrix}
+            1 & 0 & 0 \\
+            0 & 1 & \frac{2}{3} \\
+            0 & 1 & 1
+        \end{pmatrix}
+        \xrightarrow{L_3\leftarrow L_3 - L_2}
+        \begin{pmatrix}
+            1 & 0 & 0 \\
+            0 & 1 & \frac{2}{3} \\
+            0 & 0 & \frac{1}{3}
+        \end{pmatrix}
+        \xrightarrow{L_3\leftarrow 3L_3}
+        \begin{pmatrix}
+            1 & 0 & 0 \\
+            0 & 1 & \frac{2}{3} \\
+            0 & 0 & 1
+        \end{pmatrix} \\
+        &\xrightarrow{L_2\leftarrow L_2 - \frac{2}{3}L_3}
+        \begin{pmatrix}
+            1 & 0 & 0 \\
+            0 & 1 & 0 \\
+            0 & 0 & 1
+        \end{pmatrix}
+        = I_3.
+    \end{align*}
+    Portanto, $A$ pode ser escrita como um produto de matrizes elementares.
+    
+    Temos que:
+    \begin{equation*}
+        A = E_1^{-1} E_2^{-1} E_3^{-1} E_4^{-1} E_5^{-1} E_6^{-1} E_7^{-1}.
+    \end{equation*}
+
+    Na expressão acima, $E_i^{-1}$ é a inversa da matriz elementar correspondente à $i$-ésima operação $e_i$ elementar aplicada.
+
+    Se $e_i$ for uma troca de linhas, $E_i^{-1}=E_i$ é a matriz identidade com estas mesmas linhas trocadas.
+
+    Se $e_i$ for uma multiplicação de uma linha por um escalar não nulo, $E_i^{-1}$ é a matriz identidade com a mesma linha multiplicada pelo inverso do escalar.
+    
+    Se $e_i$ for a adição de um múltiplo de uma linha a outra, $E_i^{-1}$ é a matriz identidade com o mesmo múltiplo da mesma linha subtraída da outra.
+    Portanto,
+    \begin{equation*}
+        A = \begin{pmatrix}
+            0 & 1 & 0 \\
+            0 & 0 & 1 \\
+            1 & 0 & 0
+        \end{pmatrix}
+        \begin{pmatrix}
+            1 & 0 & 0 \\
+            1 & 1 & 0 \\
+            0 & 0 & 1
+        \end{pmatrix}
+        \begin{pmatrix}
+            1 & 0 & 0 \\
+            0 & 1 & 0 \\
+            2 & 0 & 1
+        \end{pmatrix}
+        \begin{pmatrix}
+            1 & 0 & 0 \\
+            0 & 3 & 0 \\
+            0 & 0 & 1
+        \end{pmatrix}
+        \begin{pmatrix}
+            1 & 0 & 0 \\
+            0 & 1 & 0 \\
+            0 & 1 & 1
+        \end{pmatrix}
+        \begin{pmatrix}
+            1 & 0 & 0 \\
+            0 & 1 & 0 \\
+            0 & 0 & \frac{1}{3}
+        \end{pmatrix}
+        \begin{pmatrix}
+            1 & 0 & 0 \\
+            0 & 1 & \frac{2}{3} \\
+            0 & 0 & 1
+        \end{pmatrix}.
+    \end{equation*}
+\end{example}
