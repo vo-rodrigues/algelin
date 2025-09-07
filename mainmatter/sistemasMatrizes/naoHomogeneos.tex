@@ -1,0 +1,42 @@
+\section{Sistemas lineares não homogêneos}
+
+Já possuímos todas as ferramentas teóricas para tratar de sistemas não homogêneos.
+O último ingrediente se traduz na seguinte afirmação:
+
+\begin{lemma}
+Seja $A\in M_{m\times (n+1)}(\mathbb K)$.
+Escreva $A=(a_{ij})_{i, j}$.
+Os seguintes sistemas lineares são equivalentes:
+
+\begin{align*}
+        \begin{cases}
+            a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n = a_{1(n+1)} \\
+            a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n = a_{2(n+1)} \\
+            \vdots \\
+            a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n = a_{m(n+1)}.
+        \end{cases}
+\end{align*}
+
+e:
+
+\begin{align*}
+        \begin{cases}
+            a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n +a_{1(n+1)}x_{n+1}=0 \\
+            a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n +a_{2(n+1)}x_{n+1}=0 \\
+            \vdots \\
+            a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n +a_{m(n+1)}x_{n+1}=0 \\
+            x_{n+1}=-1.
+        \end{cases}
+\end{align*}
+\end{lemma}
+
+Isso nos dá um método prático para resolver sistemas lineares não homogêneos.
+
+\begin{itemize}
+    \item Dado um sistema linear não homogêneo $AX=b$, podemos formar a matriz aumentada $(A|b)$, em que é adicionada à $A$ uma coluna extra dada pelos elementos de $b$.
+    \item O sistema $AX=b$ é, então, equivalente ao sistema homogêneo associado à matriz aumentada $(A|b)X=0$ juntado com a equação extra $x_{n+1}=-1$.
+    \item Escalonando-se $(A|b)$ encontramos uma matriz da forma $(S|c)$, onde $S$ está na forma escalonada.
+    \item O sistema original é, então, equivalente ao sistema $(S|c)X=c$ junto com a equação extra $x_{n+1}=-1$, que é equivalente ao sistema $SX=c$.
+    \item Como acontece com os sistemas homogêneos, as soluções de $SX=c$ são notáveis. Porém, há um caso adicional: se temos uma linha correspondente a uma equação do tipo $0=1$, o sistema não possui solução. Nesse caso, dizemos que o sistema é \emph{impossível}, ou \emph{inconsistente}.
+    \item Caso contrário, dizemos que o sistema é \emph{possível}, ou \emph{consistente}, e, como acontece no caso homogêneo, ou teremos infinitas soluções (no caso de alguma coluna de $S$ não possuir pivô, caso no qual dizemos que o sistema é \emph{indeterminado}), ou uma solução única (no caso de todas as colunas de $S$ possuírem pivô, e nesse caso, dizemos que o sistema é \emph{determinado}).
+\end{itemize}
