@@ -1,0 +1,133 @@
+\section{Subespaços}
+Notemos que nos exemplos anteriores, a verificação de que cada um dos exemplos é um espaço vetorial é simples, porém longa, uma vez que todas as oito propriedades devem ser verificadas.
+Neste processo, foi necessário utilizar propriedades algébricas já conhecidas de outros conjuntos, como os do próprio corpo $\mathbb K$.
+
+Porém, em muitos casos, é possível verificar que um subconjunto de um espaço vetorial é, ele próprio, um espaço vetorial, sem a necessidade de verificar todas as oito propriedades.
+\begin{definition}
+    Seja $V$ um espaço vetorial sobre um corpo $\mathbb K$.
+    Um subconjunto $W \subseteq V$ é um \emph{subespaço} de $V$ se, com as operações herdadas de $V$, $W$ é um espaço vetorial sobre $\mathbb K$.
+    Ou seja, $W$ é um subespaço de $V$ se, para todo $u, v \in W$ e $\alpha \in \mathbb K$, $u+v\in W$, $\alpha u \in W$ e $0 \in W$, onde $0$ é o elemento neutro de $V$, e, com essas operações, $W$ satisfaz as oito propriedades de espaço vetorial.
+\end{definition}
+A verdade é que verificar as oito propriedades de espaço vetorial é desnecessário na definição de subespaço, conforme mostra a proposição a seguir.
+\begin{proposition}\label{prop:subespaco}
+    Seja $V$ um espaço vetorial sobre um corpo $\mathbb K$.
+    Um subconjunto $W \subseteq V$ é um subespaço de $V$ se, e somente se:
+    \begin{enumerate}[label=(\roman*)]
+        \item $0 \in W$, onde $0$ é o elemento neutro de $V$;
+        \item para todo $u, v \in W$, e $\alpha \in \mathbb K$, $\alpha u + v \in W$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    A implicação direta é simples: dados $u, v \in W$ e $\alpha \in \mathbb K$, como $W$ é um subespaço de $V$, temos que $\alpha u \in W$, e, portanto, $\alpha u + v \in W$.
+    Além disso, $0 \in W$.
+
+    Reciprocamente, suponha que $W$ satisfaça (i) e (ii).
+
+    Primeiro dados $u, v \in W$, temos que $1 u + v = u + v \in W$, ou seja, $W$ é fechado para a adição.
+    Além disso, dados $u \in W$ e $\alpha \in \mathbb K$, temos que $\alpha u + 0 = \alpha u \in W$, ou seja, $W$ é fechado para a multiplicação escalar.
+    Note ainda que se $u \in W$, então $(-1)u=-u\in W$.
+
+    Agora notemos que as propriedades de espaço vetorial são automáticas.
+    De fato, dados $u, v, w \in W$ e $\alpha, \beta \in \mathbb K$, temos:
+
+    \begin{itemize}
+        \item[A1.] $(u + v) + w = u+(v+w)$, pois isso vale em $V$.
+        \item[A2.] $u + v = v + u$, pois isso vale em $V$.
+        \item[A3.] $u + 0 = u$, pois $0 \in W$ e isso vale em $V$.
+        \item[A4.] Existe $x \in W$ tal que $u + x = 0$, pois $-u \in W$ e isso vale em $V$.
+        \item[M1.] $\alpha(\beta u) = (\alpha \beta)u$, pois isso vale em $V$.
+        \item[M2.] $1 u = u$, pois isso vale em $V$.
+        \item[D1.] $\alpha(u + v) = \alpha u + \alpha v$, pois isso vale em $V$.
+        \item[D2.] $(\alpha + \beta)u = \alpha u + \beta u$, pois isso vale em $V$. 
+    \end{itemize}
+\end{proof}
+
+Alguns exemplos:
+
+\begin{example}[O subespaço trivial]
+    Seja $V$ um espaço vetorial sobre um corpo $\mathbb K$.
+    Então $W=\{0\}$ é um subespaço de $V$.
+    Com efeito, $\alpha0+0=0\in W$ para todo $\alpha \in \mathbb K$.
+
+    Tal espaço é denotado por $(0)$ ou $\{0\}$, e é chamado de \emph{subespaço trivial} de $V$.
+\end{example}
+
+\begin{example}[O próprio espaço vetorial]
+    Seja $V$ um espaço vetorial sobre um corpo $\mathbb K$.
+    Então $W=V$ é um subespaço de $V$.
+\end{example}
+
+\begin{example}
+    $\{(x, 0): x \in \mathbb R\}$ é um subespaço de $\mathbb R^2$.
+    Com efeito, $(0, 0) \in W$ e, dados $(x, 0), (y, 0) \in W$ e $\alpha \in \mathbb R$, temos que $\alpha(x, 0) + (y, 0) = (\alpha x + y, 0) \in W$.
+
+    Analogamente, $\{(0, y): y \in \mathbb R\}$ é um subespaço de $\mathbb R^2$.
+\end{example}
+
+\begin{example}[O espaço solução]
+    Seja $\mathbb K$ um corpo e $A \in M_{m \times n}(\mathbb K)$.
+    O conjunto solução de $AX=0$, ou seja, o conjunto $\{(x_1, \dots, x_n) \in \mathbb K^n : A(x_1, \dots, x_n)^T = 0\}$ é um subespaço de $\mathbb K^n$.
+    Com efeito, $(0, \dots, 0) \in W$ e, dados $u=(u_1, \dots, u_m), v=(v_1, \dots, v_m) \in W$ e $\alpha \in \mathbb K$, temos que
+    \begin{equation}
+        A\begin{pmatrix}
+            \alpha u_1 + v_1 \\
+            \vdots \\
+            \alpha u_m + v_m   
+        \end{pmatrix}
+        = \alpha A\begin{pmatrix}
+            u_1 \\
+            \vdots \\
+            u_m
+        \end{pmatrix}
+        + A\begin{pmatrix}
+            v_1 \\
+            \vdots \\
+            v_m
+        \end{pmatrix}
+        = \alpha 0 + 0 = 0,
+    \end{equation}
+    ou seja, $\alpha u + v \in W$.
+\end{example}
+
+\begin{example}[Polinômios de grau $\leq n$]
+    Seja $\mathbb K$ um corpo.
+    O conjunto $\mathbb P_n(\mathbb K)$ dos polinômios com coeficientes em $\mathbb K$ e grau menor ou igual a $n$ (ou $0$) é um subespaço de $\mathbb K[x]$.
+
+    Com efeito, o polinômio nulo está em $\mathbb P_n(\mathbb K)$ e, dados $p(x), q(x) \in \mathbb P_n(\mathbb K)$ e $\alpha \in \mathbb K$, temos que $\alpha p(x) + q(x) \in \mathbb P_n(\mathbb K)$.
+\end{example}
+
+\begin{example}
+    O conjunto $\{(1, 2, 3)\}$ não é um subespaço de $\mathbb R^3$, pois não contém o vetor nulo.
+\end{example}
+\begin{example}
+    O conjunto $\mathbb Z^2\subseteq \mathbb R^2$ não é um subespaço de $\mathbb R^2$, pois não é fechado para a multiplicação escalar.
+\end{example}
+\begin{example}
+    $\{(x, 0): x \geq 0\}\cup\{(0, y): y \geq 0\}$ não é um subespaço de $\mathbb R^2$, pois não é fechado para a adição.
+\end{example}
+Assim, a união de dois subespaços não é um subespaço.
+Apesar disso, qualquer interseção de subespaços é um subespaço.
+\begin{proposition}
+    Seja $V$ um espaço vetorial sobre um corpo $\mathbb K$ e $\mathcal S$ uma coleção qualquer de subespaços de $V$.
+    Então $\bigcap \mathcal S=\bigcap_{W \in \mathcal S} W$ é um subespaço de $V$.
+    Além disso, este é o maior subespaço de $V$ contido em cada subespaço de $\mathcal S$ no sentido da inclusão $\subseteq$.
+\end{proposition}
+\begin{proof}
+    Seja $U=\bigcap \mathcal S$.
+    Note que $0 \in U$, pois $0$ pertence a todo subespaço de $V$.
+    Além disso, dados $u, v \in U$ e $\alpha \in \mathbb K$, temos que $u, v \in W$ para todo $W \in \mathcal S$, e, portanto, $\alpha u + v \in W$ para todo $W \in \mathcal S$, ou seja, $\alpha u + v \in U$.
+    Assim, $U$ é um subespaço de $V$.
+
+    Para a última afirmação, seja $U$ um subespaço de $V$ tal que $U \subseteq W'$ para todo $W' \in \mathcal S$.
+    Então $U \subseteq \bigcap_{W \in \mathcal S} W = U$.
+\end{proof}
+
+Associado a esse conceito, temos o seguinte:
+\begin{definition}
+    Seja $V$ um espaço vetorial sobre um corpo $\mathbb K$ e $X \subseteq V$.
+    O \emph{subespaço gerado} por $X$, denotado por $\langle X \rangle$, é o menor subespaço de $V$ que contém $X$.
+\end{definition}
+\begin{lemma}
+    Sejam $V$ um espaço vetorial sobre um corpo $\mathbb K$ e $A \subseteq V$.
+    Então $\langle A \rangle = \bigcap \{W \subseteq V : W \text{ é um subespaço de } V \text{ e } A \subseteq W\}$.
+\end{lemma}

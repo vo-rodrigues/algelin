@@ -1,0 +1,127 @@
+\section{Espaços Vetoriais}
+
+Um espaço vetorial é uma estrutura algébrica definida sobre um corpo fixado que generaliza as propriedades dos vetores em um espaço euclidiano. Ele é composto por um conjunto de elementos chamados vetores, juntamente com duas operações: a adição de vetores e a multiplicação por escalares.
+
+\begin{definition}
+    Seja $\mathbb K$ um corpo.
+    Um \emph{espaço vetorial} sobre $\mathbb K$, também chamado de $\mathbb K$-espaço vetorial, é um conjunto $V$ munido de operações $+: V \times V \to V$ e $\cdot: \mathbb K \times V \to V$, além de um elemento distinguido $0$, tais que, para todos $u, v, w \in V$ e $\alpha, \beta \in \mathbb K$, as seguintes propriedades são satisfeitas:
+    \begin{itemize}
+        \item[A1.] (Associatividade da adição) $(u + v) + w = u + (v + w)$.
+        \item[A2.] (Comutatividade da adição) $u + v = v + u$.
+        \item[A3.] (Elemento neutro da adição) $u + 0 = u$.
+        \item[A4.] (Elemento oposto da adição) Existe $x \in V$ tal que $u + x=0$.
+        \item[M1.] (Compatibilidade do produto) $\alpha(\beta u) = (\alpha \beta)u$.
+        \item[M2.] (Elemento neutro do produto) $1u = u$, onde $1$ é o elemento neutro de $\mathbb K$.
+        \item[D1.] (Distributividade de vetores) $\alpha(u + v) = \alpha u + \alpha v$.
+        \item[D2.] (Distributividade de escalares) $(\alpha + \beta)u = \alpha u + \beta u$.
+    \end{itemize}
+\end{definition}
+Notemos que as quatro primeiras propriedades nos dizem que $(V, +, 0)$ é um grupo abeliano.
+Deste modo, conforme visto na introdução, o elemento $x$ da propriedade A4 é único e é denotado por $-u$.
+
+Vejamos alguns exemplos.
+\begin{example}[Espaço Vetorial $\mathbb K^n$]
+    Dado um corpo $\mathbb K$, o conjunto $\mathbb K^n$ (o espaço das $n$-tuplas de elementos de $\mathbb K$) é um espaço vetorial sobre $\mathbb K$.
+    Tal fato foi provado implicitamente em \ref{prop:propriedadesKn}.
+\end{example}
+\begin{example}[O espaço de polinômios]
+    Seja $\mathbb K$ um corpo.
+    O conjunto $\mathbb K[x]$ dos polinômios com coeficientes em $\mathbb K$, denotado por $\mathbb K[x]$, é o espaço das expressões formais da forma
+    \begin{equation*}
+        a_0 + a_1 x + a_2 x^2 + \dots + a_n x^n,
+    \end{equation*}
+    onde $n \in \mathbb N$ e $a_0, a_1, \dots, a_n \in \mathbb K$.
+    Vale que se $a_0, \dots, a_n, b_0, \dots, b_m \in \mathbb K$, então:
+    \begin{equation*}
+        a_0 + a_1 x + \dots + a_n x^n = b_0 + b_1 x + \dots + b_n x^n \Leftrightarrow \forall i\leq n \, a_i = b_i.
+    \end{equation*}
+
+    O conjunto $\mathbb K[x]$ pode ser construído formalmente como sendo o conjunto de todas as sequências $(a_0, a_1, a_2, \dots)$ de elementos de $\mathbb K$ tais que existe $n \in \mathbb N$ com $a_i = 0$ para todo $i > n$.
+    O polinômio nulo $0$ é dado pela sequência nula, ou seja, $0 = (0, 0, 0, \dots)$.
+
+    As operações de adição e multiplicação por escalar são definidas da maneira usual.
+    Ou seja, dados $p(x) = a_0 + a_1 x + \dots + a_n x^n$ e $q(x) = b_0 + b_1 x + \dots + b_m x^m$ em $\mathbb K[x]$, define-se
+    \begin{align*}
+        p(x) + q(x) &= (a_0 + b_0) + (a_1 + b_1)x + \dots + (a_k + b_k)x^k, \text{ onde } k = \max\{n, m\},\\
+        \alpha p(x) &= (\alpha a_0) + (\alpha a_1)x + \dots + (\alpha a_n)x^n, \text{ para todo } \alpha \in \mathbb K.\\
+    \end{align*}
+    Com tais operações, $\mathbb K[x]$ é um espaço vetorial sobre $\mathbb K$.
+    Com efeito, dados $p(x), q(x), r(x) \in \mathbb K[x]$ e $\alpha, \beta \in \mathbb K$, e escrevendo $p(x)= \sum_{i=0}^n a_i x^i$, $q(x)= \sum_{i=0}^n b_i x^i$ e $r(x)= \sum_{i=0}^n c_i x^i$ (é possível utilizarmos o mesmo $n$, pois podemos completar com coeficientes nulos), temos:
+    \begin{itemize}
+        \item[A1.] $(p(x) + q(x)) + r(x) = \sum_{i=0}^n (a_i + b_i) + \sum_{i=0}^n c_i x^i = \sum_{i=0}^n a_i + \sum_{i=0}^n (b_i + c_i)x^i = p(x) + (q(x) + r(x))$.
+        \item[A2.] $p(x) + q(x) = \sum_{i=0}^n (a_i + b_i)x^i = \sum_{i=0}^n (b_i + a_i)x^i = q(x) + p(x)$.
+        \item[A3.] $p(x) + 0 = \sum_{i=0}^n a_i x^i + \sum_{i=0}^n 0 x^i = \sum_{i=0}^n a_i x^i = p(x)$.
+        \item[A4.] $p(x) + (-p(x)) = \sum_{i=0}^n a_i x^i + \sum_{i=0}^n (-a_i)x^i = \sum_{i=0}^n 0 x^i = 0$.
+        \item[M1.] $\alpha(\beta p(x)) = \alpha \sum_{i=0}^n (\beta a_i)x^i = \sum_{i=0}^n (\alpha \beta a_i)x^i = (\alpha \beta)p(x)$.
+        \item[M2.] $1 p(x) = \sum_{i=0}^n (1 a_i)x^i = \sum_{i=0}^n a_i x^i = p(x)$.
+        \item[D1.] $\alpha(p(x) + q(x)) = \alpha \sum_{i=0}^n (a_i + b_i)x^i = \sum_{i=0}^n (\alpha a_i + \alpha b_i)x^i = \alpha p(x) + \alpha q(x)$.
+        \item[D2.] $(\alpha + \beta)p(x) = \sum_{i=0}^n ((\alpha + \beta)a_i)x^i = \sum_{i=0}^n (\alpha a_i + \beta a_i)x^i = \alpha p(x) + \beta p(x)$.
+    \end{itemize}
+
+    Existe também o produto de polinômios.
+    Porém, abordaremos tal operação apenas quando necessário, uma vez que espaços vetoriais, no geral, não são munidos de produtos, e introduzi-los agora pode causar confusão.
+\end{example}
+
+\begin{example}[Matrizes]
+    Fixados inteiros $m, n \geq 1$ e um corpo $\mathbb K$, o conjunto $\mathbb M_{m \times n}(\mathbb K)$ das matrizes $m \times n$ com entradas em $\mathbb K$ é um $\mathbb K$-espaço vetorial, conforme já visto.
+\end{example}
+
+\begin{example}[Espaços de funções]
+    Seja $\mathbb K$ um corpo e $I$ um conjunto qualquer.
+    O conjunto de todas as funções $f: I \to \mathbb K$, denotado por $\mathbb K^I$, é um espaço vetorial sobre $\mathbb K$ com as operações definidas por
+    \begin{align*}
+        (f + g)(x) &= f(x) + g(x), \text{ para todo } x \in I,\\
+        (\alpha f)(x) &= \alpha (f(x)), \text{ para todo } x \in I \text{ e } \alpha \in \mathbb K.
+        0(x) &= 0, \text{ para todo } x \in I.
+    \end{align*}
+
+    O oposto $-f$ de uma função $f \in \mathbb K^I$ é a função definida por $(-f)(x) = - (f(x))$, para todo $x \in I$.
+
+    De fato, dados $f, g, h \in \mathbb K^I$ e $\alpha, \beta \in \mathbb K$, temos:
+    \begin{itemize}
+        \item[A1.] $(f+g)+h=f+(g+h)$.
+        De fato, dado $x \in I$, temos $((f + g) + h)(x) = (f + g)(x) + h(x) = (f(x) + g(x)) + h(x) = f(x) + (g(x) + h(x)) = f(x) + (g + h)(x) = (f + (g + h))(x)$.
+        \item[A2.] $f + g = g + f$.
+        De fato, dado $x \in I$, temos $(f + g)(x) = f(x) + g(x) = g(x) + f(x) = (g + f)(x)$.
+        \item[A3.] $f + 0 = f$.
+        De fato, dado $x \in I$, temos $(f + 0)(x) = f(x) + 0(x) = f(x) + 0 = f(x)$.
+        \item[A4.] $f + (-f) = 0$.
+        De fato, dado $x \in I$, temos $(f + (-f))(x) = f(x) + (-f)(x) = f(x) - f(x) = 0$.
+        \item[M1.] $\alpha(\beta f) = (\alpha \beta)f$.
+        De fato, dado $x \in I$, temos $(\alpha(\beta f))(x) = \alpha((\beta f)(x)) = \alpha(\beta (f(x))) = (\alpha \beta)(f(x)) = ((\alpha \beta)f)(x)$.
+        \item[M2.] $1 f = f$.
+        De fato, dado $x \in I$, temos $(1 f)(x) = 1 (f(x)) = f(x) = (f)(x)$.
+        \item[D1.] $\alpha(f + g) = \alpha f + \alpha g$.
+        De fato, dado $x \in I$, temos $(\alpha(f + g))(x) = \alpha((f + g)(x)) = \alpha(f(x) + g(x)) = \alpha(f(x)) + \alpha(g(x)) = (\alpha f)(x) + (\alpha g)(x) = (\alpha f + \alpha g)(x)$.
+        \item[D2.] $(\alpha + \beta)f = \alpha f + \beta f$.
+        De fato, dado $x \in I$, temos $((\alpha + \beta)f)(x) = (\alpha + \beta)(f(x)) = \alpha(f(x)) + \beta(f(x)) = (\alpha f)(x) + (\beta f)(x) = (\alpha f + \beta f)(x)$.
+    \end{itemize}
+\end{example}
+
+Vejamos algumas propriedades elementares de espaços vetoriais.
+
+\begin{proposition}
+    Seja $V$ um espaço vetorial sobre um corpo $\mathbb K$.
+    Sejam $u, v \in V$ e $\alpha, \beta \in \mathbb K$. Então:
+    \begin{enumerate}[label=(\roman*)]
+        \item $0 u = 0$.
+        \item $\alpha 0 = 0$.
+        \item Se $\alpha u = 0$, então $\alpha = 0$ ou $u = 0$.
+        \item $(-1)u = -u$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    (i) Temos que $0 u = (0 + 0)u = 0 u + 0 u$.
+    Somando o oposto de $0 u$ em ambos os lados, obtemos $0 = 0 u$.
+
+    (ii) Temos que $\alpha 0 = \alpha(0 + 0) = \alpha 0 + \alpha 0$.
+    Somando o oposto de $\alpha 0$ em ambos os lados, obtemos $0 = \alpha 0$.
+
+    (iii) Se $\alpha = 0$, a afirmação é verdadeira.
+    Suponhamos então que $\alpha \neq 0$.
+    Neste caso, existe $\alpha^{-1} \in \mathbb K$ tal que $\alpha \alpha^{-1} = 1$.
+    Multiplicando ambos os lados da igualdade $\alpha u = 0$ por $\alpha^{-1}$, obtemos $1 u = \alpha^{-1} 0$, ou seja, $u = 0$.
+
+    (iv) Temos que $(-1)u + u = (-1 + 1)u = 0 u = 0$.
+    Portanto, $(-1)u$ é o oposto de $u$, ou seja, $(-1)u = -u$.
+\end{proof}
