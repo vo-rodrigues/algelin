@@ -39,3 +39,49 @@
 
     Portanto, $W_1 = W_2$.
 \end{proof}
+
+Convém darmos uma descrição mais construtiva e visualizável do subespaço gerado por um conjunto $A \subseteq V$.
+Para isso, introduziremos o conceito de combinação linear.
+
+\begin{definition}
+    Seja $V$ um espaço vetorial sobre um corpo $\mathbb K$ e $A \subseteq V$.
+    Uma \emph{combinação linear} de elementos de $A$ é um vetor da forma
+    \begin{equation*}
+        \sum_{i<n} \alpha_i v_i
+    \end{equation*}
+    onde $(\alpha_n)_{i<n}$ é uma sequência finita de escalares em $\mathbb K$ e $(v_i)_{i<n}$ é uma sequência finita de vetores em $A$ dois-a-dois distintos.
+\end{definition}
+
+Na notação acima, adotamos a convenção de que, se $n=0$, a soma vazia é igual ao vetor nulo, $0$.
+Dessa forma, $0$ é uma combinação linear de elementos de $A$ qualquer que seja $A$, mesmo que $A$ seja o conjunto vazio.
+
+\begin{proposition}
+    Seja $V$ um espaço vetorial sobre um corpo $\mathbb K$ e $A \subseteq V$.
+    Então $\langle A\rangle$ é o conjunto de todas as combinações lineares de elementos de $A$.
+    Ou seja:
+
+    \begin{equation*}
+        \langle A \rangle = \left\{\sum_{i<n} \alpha_i v_i : n \in \mathbb N, (\alpha_i)_{i<n} \text{ é uma sequência finita em } \mathbb K, (v_i)_{i<n} \text{ é uma sequência finita em } A\right\}.
+    \end{equation*}
+\end{proposition}
+\begin{proof}
+    Seja $W=\{\sum_{i<n} \alpha_i v_i : n \in \mathbb N, (\alpha_i)_{i<n}$ é uma sequência finita em $\mathbb K$, $(v_i)_{i<n}$ é uma sequência finita injetora em $A\}.$
+
+    Vejamos primeiro que $W\subseteq \langle A\rangle$.
+    Procedemos por indução em $n$ para mostrar que dada uma sequência finita injetora $(v_i)_{i<n}$ em $A$ e uma sequência finita $(\alpha_i)_{i<n}$ em $\mathbb K$, $\sum_{i<n} \alpha_i v_i \in \langle A\rangle$.
+    \begin{itemize} 
+    \item Se $n=0$ temos que $\sum_{i<n} \alpha_i v_i = 0 \in \langle A\rangle$.
+    \item Para o passo indutivo, temos que $\sum_{i<n+1} \alpha_i v_i = \alpha_n v_n + \sum_{i<n} \alpha_i v_i$.
+    Como $v_n \in \langle A\rangle$, $\alpha_n \in \mathbb K$ e $\sum_{i<n} \alpha_i v_i \in \langle A\rangle$ pela hipótese indutiva, segue que $\sum_{i<n+1} \alpha_i v_i \in \langle A\rangle$.
+    \end{itemize}
+
+    Reciprocamente, para ver que $\langle A\rangle \subseteq W$, veremos que $W$ é um subespaço de $V$ que contém $A$.
+    De fato, $0 \in W$.
+    Dados $u, v \in W$, completando a sequência de escalares com $0$ quando necessário, podemos escrever $u = \sum_{i<n} \alpha_i v_i$ e $v = \sum_{i<n} \beta_i v_i$, onde $(v_i)_{i<n}$ é uma sequência finita injetora em $A$ e $(\alpha_i)_{i<n}$, $(\beta_i)_{i<n}$ são sequências finitas em $\mathbb K$.
+    Assim, para $\gamma \in \mathbb K$, temos que
+    \begin{equation*}
+        \gamma u + v = \sum_{i<n} \gamma \alpha_i v_i + \sum_{i<n} \beta_i v_i = \sum_{i<n} (\gamma \alpha_i + \beta_i) v_i \in W.
+    \end{equation*}
+
+    Para ver que $A \subseteq W$, note que, para $v \in A$, temos que $v = 1 \cdot v \in W$.
+\end{proof}
