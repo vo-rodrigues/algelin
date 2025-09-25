@@ -107,7 +107,7 @@ Alguns exemplos:
 \end{example}
 Assim, a união de dois subespaços não é um subespaço.
 Apesar disso, qualquer interseção de subespaços é um subespaço.
-\begin{proposition}
+\begin{proposition}\label{prop:intersecaoSubespacos}
     Seja $V$ um espaço vetorial sobre um corpo $\mathbb K$ e $\mathcal S$ uma coleção qualquer de subespaços de $V$.
     Então $\bigcap \mathcal S=\bigcap_{W \in \mathcal S} W$ é um subespaço de $V$.
     Além disso, este é o maior subespaço de $V$ contido em cada subespaço de $\mathcal S$ no sentido da inclusão $\subseteq$.
@@ -121,13 +121,3 @@ Apesar disso, qualquer interseção de subespaços é um subespaço.
     Para a última afirmação, seja $U$ um subespaço de $V$ tal que $U \subseteq W'$ para todo $W' \in \mathcal S$.
     Então $U \subseteq \bigcap_{W \in \mathcal S} W = U$.
 \end{proof}
-
-Associado a esse conceito, temos o seguinte:
-\begin{definition}
-    Seja $V$ um espaço vetorial sobre um corpo $\mathbb K$ e $X \subseteq V$.
-    O \emph{subespaço gerado} por $X$, denotado por $\langle X \rangle$, é o menor subespaço de $V$ que contém $X$.
-\end{definition}
-\begin{lemma}
-    Sejam $V$ um espaço vetorial sobre um corpo $\mathbb K$ e $A \subseteq V$.
-    Então $\langle A \rangle = \bigcap \{W \subseteq V : W \text{ é um subespaço de } V \text{ e } A \subseteq W\}$.
-\end{lemma}

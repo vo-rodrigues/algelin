@@ -1,0 +1,41 @@
+\section{Subespaços gerados e combinações lineares}
+
+\begin{definition}
+    Seja $V$ um espaço vetorial sobre um corpo $\mathbb K$ e $A \subseteq V$.
+    O \emph{subespaço gerado} por $A$, denotado por $\langle A \rangle$, é o menor subespaço de $V$ que contém $A$.
+    Mais precisamente, $\langle A\rangle$ é o único subespaço $W$ de $V$ que satisfaz:
+    \begin{enumerate}[label=(\roman*)]
+        \item $A \subseteq W$;
+        \item se $U$ é um subespaço de $V$ tal que $A \subseteq U$, então $W \subseteq U$.
+    \end{enumerate}
+\end{definition}
+É claro que devemos ver que o subespaço gerado por $A$ está bem definido, ou seja, que tal subespaço existe e é único.
+\begin{lemma}
+    Seja $V$ um espaço vetorial sobre um corpo $\mathbb K$ e $A \subseteq V$.
+    Então existe um único subespaço de $V$ que satisfaz (i) e (ii) da definição anterior.
+\end{lemma}
+\begin{proof}
+    Começaremos provando a existência.
+    Seja $\mathcal S$ a coleção de todos os subespaços de $V$ que contêm $A$, ou seja:
+    \begin{equation*}
+        \mathcal S = \{W \subseteq V : W \text{ é um subespaço de } V \text{ e } A \subseteq W\}.
+    \end{equation*}
+    Note que $\mathcal S$ é não vazia, pois $V \in \mathcal S$.
+    Seja $W = \bigcap_{U \in \mathcal S} U$.
+    Pela Proposição~\ref{prop:intersecaoSubespacos}, $W$ é um subespaço de $V$.
+    Além disso, $A \subseteq W=\bigcap_{U \in \mathcal S} U$, pois $A \subseteq U$ para todo $U \in \mathcal S$.
+    Assim, (i) é satisfeita.
+
+    Para (ii), seja $U'$ um subespaço de $V$ tal que $A \subseteq U'$.
+    Então $U' \in \mathcal S$ e, portanto, $W = \bigcap_{U \in \mathcal S} U \subseteq U'$.
+
+    Agora provaremos a unicidade.
+    Suponha que $W_1$ e $W_2$ são subespaços de $V$ que satisfazem (i) e (ii).
+
+    Por (i) aplicado à $W_1$, temos que $A \subseteq W_1$.
+    Assim, por (ii) aplicado à $W_2$, com $U=W_1$, temos que $W_2 \subseteq W_1$.
+    Analogamente, por (i) aplicado à $W_2$, temos que $A \subseteq W_2$.
+    Assim, por (ii) aplicado à $W_1$, com $U=W_2$, temos que $W_1 \subseteq W_2$.
+
+    Portanto, $W_1 = W_2$.
+\end{proof}
