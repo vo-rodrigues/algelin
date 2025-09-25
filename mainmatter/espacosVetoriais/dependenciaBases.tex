@@ -1,0 +1,44 @@
+\section{Dependência linear e Bases}
+
+\begin{definition}[Dependência linear]
+    Seja $V$ um espaço vetorial sobre um corpo $\mathbb K$ e $A \subseteq V$.
+    Dizemos que $A$ é \emph{linearmente independente} se, para toda sequência finita injetora $(v_i)_{i<n}$ em $A$ e toda sequência finita $(\alpha_i)_{i<n}$ em $\mathbb K$, a seguinte implicação é verdadeira:
+    \begin{equation*}
+        \sum_{i<n} \alpha_i v_i = 0 \implies \alpha_i = 0 \text{ para todo } i<n.
+    \end{equation*}
+    Caso contrário, dizemos que $A$ é \emph{linearmente dependente}.
+\end{definition}
+
+\begin{definition}[Base]
+    Seja $V$ um espaço vetorial sobre um corpo $\mathbb K$.
+    Uma \emph{base} de $V$ é um conjunto $B \subseteq V$ que é linearmente independente e gera $V$, ou seja, $\langle B \rangle = V$.
+\end{definition}
+
+\begin{lemma}
+    Seja $V$ um espaço vetorial sobre um corpo $\mathbb K$ e $A \subseteq V$.
+    Se $v \in V$ é tal que $v \in \langle A\rangle\setminus A$, então $A\cup \{v\}$ é linearmente dependente.
+\end{lemma}
+\begin{proof}
+    Seja $v \in \langle A\rangle\setminus A$.
+    Então existem $n \in \mathbb N$, uma sequência finita $(\alpha_i)_{i<n}$ em $\mathbb K$ e uma sequência finita injetora $(v_i)_{i<n}$ em $A$ tais que $v = \sum_{i<n} \alpha_i v_i$.
+    Assim, $0 = v - v = \sum_{i<n} \alpha_i v_i + (-1)v$.
+    Note que $-1 \neq 0$ e $v \notin A$, logo $A \cup \{v\}$ é linearmente dependente.
+\end{proof}
+
+\begin{lemma}
+    Seja $V$ um espaço vetorial sobre um corpo $\mathbb K$ e $A \subseteq V$.
+    Se $A$ é linearmente independente e $v \in V\setminus A$, então $A \cup \{v\}$ é linearmente independente se, e somente se, $v \notin \langle A \rangle$.
+\end{lemma}
+\begin{proof}
+    Seja $v \in V\setminus A$.
+    
+    Pelo lema anterior, se $v \in \langle A \rangle$, então $A \cup \{v\}$ é linearmente dependente.
+
+    Reciprocamente, se $A\cup\{v\}$ é linearmente dependente, existem $n \in \mathbb N$, uma sequência finita $(\alpha_i)_{i<n}$ em $\mathbb K$, não toda nula, e uma sequência finita injetora $(u_i)_{i<n}$ em $A \cup \{v\}$ tais que $\sum_{i<n} \alpha_i u_i = 0$.
+
+    Como $A$ é linearmente independente, $v$ deve aparecer em $(u_i)_{i<n}$.
+    Assim, em realidade, existem $m \in \mathbb N$, uma sequência finita $(\beta_i)_{i<m}$ em $\mathbb K$, não toda nula, e uma sequência finita injetora $(w_i)_{i<m}$ em $A$ tais que $\sum_{i<m} \beta_i w_i + \gamma v = 0$, com $\gamma \neq 0$.
+
+    Novamente, como $A$ é linearmente independente, $\gamma \neq 0$.
+    Assim, $v = -\frac{1}{\gamma} \sum_{i<m} \beta_i w_i \in \langle A \rangle$.
+\end{proof}
