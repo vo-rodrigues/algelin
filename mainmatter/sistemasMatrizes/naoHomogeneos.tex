@@ -17,7 +17,7 @@ Os seguintes sistemas lineares são equivalentes:
         \end{cases}
 \end{align*}
 
-e:
+E:
 
 \begin{align*}
         \begin{cases}
@@ -36,7 +36,7 @@ Isso nos dá um método prático para resolver sistemas lineares não homogêneo
     \item Dado um sistema linear não homogêneo $AX=b$, podemos formar a matriz aumentada $(A|b)$, em que é adicionada à $A$ uma coluna extra dada pelos elementos de $b$.
     \item O sistema $AX=b$ é, então, equivalente ao sistema homogêneo associado à matriz aumentada $(A|b)X=0$ juntado com a equação extra $x_{n+1}=-1$.
     \item Escalonando-se $(A|b)$ encontramos uma matriz da forma $(S|c)$, onde $S$ está na forma escalonada.
-    \item O sistema original é, então, equivalente ao sistema $(S|c)X=c$ junto com a equação extra $x_{n+1}=-1$, que é equivalente ao sistema $SX=c$.
+    \item O sistema original é, então, equivalente ao sistema $(S|c)X=c$ junto da a equação extra $x_{n+1}=-1$, que é equivalente ao sistema $SX=c$.
     \item Como acontece com os sistemas homogêneos, as soluções de $SX=c$ são notáveis. Porém, há um caso adicional: se temos uma linha correspondente a uma equação do tipo $0=1$, o sistema não possui solução. Nesse caso, dizemos que o sistema é \emph{impossível}, ou \emph{inconsistente}.
     \item Caso contrário, dizemos que o sistema é \emph{possível}, ou \emph{consistente}, e, como acontece no caso homogêneo, ou teremos infinitas soluções (no caso de alguma coluna de $S$ não possuir pivô, caso no qual dizemos que o sistema é \emph{indeterminado}), ou uma solução única (no caso de todas as colunas de $S$ possuírem pivô, e nesse caso, dizemos que o sistema é \emph{determinado}).
 \end{itemize}

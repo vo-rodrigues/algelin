@@ -42,3 +42,149 @@
     Novamente, como $A$ é linearmente independente, $\gamma \neq 0$.
     Assim, $v = -\frac{1}{\gamma} \sum_{i<m} \beta_i w_i \in \langle A \rangle$.
 \end{proof}
+
+\begin{definition}
+    Seja $V$ um espaço vetorial sobre um corpo $\mathbb K$.
+    Dizemos que $V$ é \emph{finitamente gerado} se existe um conjunto finito $A \subseteq V$ tal que $\langle A \rangle = V$.
+\end{definition}
+
+
+\begin{proposition}
+    Seja $V$ um espaço vetorial sobre um corpo $\mathbb K$ e $G$ um gerador finito de $V$.
+    Então existe $B \subseteq G$ que é uma base de $V$.
+\end{proposition}
+\begin{proof}
+    Provaremos por indução no tamanho de $G$.
+
+    Se $|G|=0$, então $G=\emptyset$.
+    Tome $B=\emptyset$. Então $B$ é uma base de $V$.
+
+    Suponha que o resultado seja verdadeiro para todo gerador finito de tamanho $n$, independentemente do espaço vetorial.
+
+    Seja $G$ um gerador finito de tamanho $n+1$.
+    Seja $v \in G$ qualquer e seja $G' = G \setminus \{v\}$ e $W=\langle G'\rangle$.
+    Por hipótese de indução, existe $B' \subseteq G'$ que é uma base de $W$.
+
+    \textbf{Caso 1:} se $B'\cup \{v\}$ é linearmente independente, então $G=G'\cup\{v\}\subseteq \langle B'\cup\{v\}\rangle$, o que implica que $V=\langle G\rangle\subseteq \langle B'\cup\{v\}\rangle$.
+    Assim, $B=B'\cup\{v\}$ é um conjunto LI gerador de $V$, ou seja, uma base de $V$.
+
+    \textbf{Caso 2:} se $B'\cup \{v\}$ é linearmente dependente.
+    Nesse caso, como $B'$ é LI, temos que $v \in \langle B'\rangle \subseteq W = \langle G'\rangle$.
+    Assim, $G\subseteq \langle B'\rangle$, e, portanto, $V=\langle G\rangle \subseteq \langle B'\rangle$.
+    Logo, $B=B'$ é uma base de $V$.
+\end{proof}
+
+Note que a demonstração acima nos dá um algoritmo para encontrar uma base a partir de um gerador finito.
+Façamos um exemplo prático disso.
+
+\begin{example}
+Seja $V=\mathbb R[x]$ o espaço vetorial dos polinômios com coeficientes reais.
+Considere $W=\langle 0, 1, x^2+1, x^2-1, x^3+3x+2\rangle$.
+Vamos encontrar uma base de $W$.
+
+Para tanto, vamos, recursivamente, construir bases para $\langle\emptyset\rangle, \langle 0\rangle, \langle 0, 1\rangle, \langle 0, 1, x^2+1\rangle, \langle 0, 1, x^2+1, x^2-1\rangle$ e $\langle 0, 1, x^2+1, x^2-1, x^3+3x+2\rangle$.
+
+
+\begin{itemize}
+\item Temos que $B_0=\emptyset$ é uma base de $\langle\emptyset\rangle$.
+\item Para obter uma base de $\langle 0\rangle$, basta ver se $B_0\cup\{0\}$ é ou não LI.
+Como $\{0\}$ é LD, temos que $B_1=B_0=\emptyset$ é uma base de $\langle 0\rangle$.
+\item Para obter uma base de $\langle 0, 1\rangle$, vejamos se $B_1\cup\{1\}$ é ou não LI.
+Como $\{1\}$ é LI, temos que $B_2=B_1\cup\{1\}=\{1\}$ é uma base de $\langle 0, 1\rangle$.
+\item Para obter uma base de $\langle 0, 1, x^2+1\rangle$, vejamos se $B_2\cup\{x^2+1\}$ é ou não LI.
+Como $x^2+1 \notin \langle B_2\rangle =\{\alpha: \alpha \in \mathbb R\}$, temos que $B_3=B_2\cup\{x^2+1\}=\{1, x^2+1\}$ é uma base de $\langle 0, 1, x^2+1\rangle$.
+\item Para obter uma base de $\langle 0, 1, x^2+1, x^2-1\rangle$, vejamos se $B_3\cup\{x^2-1\}$ é ou não LI.
+Como $x^2-1 = (x^2+1) - 2\cdot 1 \in \langle B_3\rangle$, temos que $B_4=B_3=\{1, x^2+1\}$ é uma base de $\langle 0, 1, x^2+1, x^2-1\rangle$.
+\item Finalmente, para obter uma base de $\langle 0, 1, x^2+1, x^2-1, x^3+3x+2\rangle$, vejamos se $B_4\cup\{x^3+3x+2\}$ é ou não LI.
+Como $x^3+3x+2 \notin \langle B_4\rangle = \{\alpha + \beta (x^2+1) : \alpha, \beta \in \mathbb R\}$, temos que $B_5=B_4\cup\{x^3+3x+2\}=\{1, x^2+1, x^3+3x+2\}$ é uma base de $\langle 0, 1, x^2+1, x^2-1, x^3+3x+2\rangle$.
+\end{itemize}
+\end{example}
+\begin{corollary}
+Todo espaço finitamente gerado possui uma base finita.
+\end{corollary}
+Em geral, vale que todo espaço vetorial tem base.
+Porém, a prova deste fato não é elementar, e depende de um uso não trivial do Axioma da Escolha, sendo, portanto, um resultado de existência não construtivo: há espaços vetoriais não finitamente gerados cujas bases não são descritíveis por um algoritmo concreto, como o que vimos em ação acima.
+
+O nosso próximo objetivo é mostrar que, em um espaço vetorial finitamente gerado, todas as bases possuem o mesmo tamanho.
+\begin{proposition}
+    Seja $V$ um espaço vetorial sobre um corpo $\mathbb K$.
+    Se $G$ é um gerador finito de $V$ e $L$ é um conjunto linearmente independente de $V$, então $|L| \leq |G|$.
+\end{proposition}
+\begin{proof}
+    Suponha que $|L| > |G|$.
+    Veremos que $L$ é linearmente dependente.
+    Sem perda de generalidade, $|L|=n+1>n=|G|$.
+
+    Enumeremos $G=\{u_i : 1\leq i \leq n\}$ e $L=\{v_{j+1} : 1\leq j \leq n+1\}$.
+
+    Como $G$ gera $V$, para cada $j\in\{1, \dots, n+1\}$ existem $a_{1j}, \ldots, a_{nj} \in \mathbb K$ tais que $u_i = \sum_{j=1}^n a_{ij} v_j$.
+    
+
+    Vejamos que $L$ é linearmente dependente.
+    Basta ver que existem $\beta_1, \ldots, \beta_{n+1} \in \mathbb K$, não todos nulos tais que $\sum_{j=1}^{n+1} \beta_j v_j = 0$, ou seja, tais que:
+
+    \begin{align*}
+        0=\sum_{j=1}^{n+1} \beta_j v_j =\sum_{j=1}^{n+1}\beta_j \sum_{i=1}^{n} a_{ij}u_i =\sum_{i=1}^{n}\sum_{j=1}^{n+1} a_{ij}\beta_j u_i
+    \end{align*}
+
+    É suficiente ver que o seguinte sistema tenha solução não trivial:
+    \begin{align*}
+        \begin{cases}
+            a_{11}\beta_1 + a_{12}\beta_2 + \cdots + a_{1(n+1)}\beta_{n+1} = 0 \\
+            a_{21}\beta_1 + a_{22}\beta_2 + \cdots + a_{2(n+1)}\beta_{n+1} = 0 \\
+            \vdots \\
+            a_{n1}\beta_1 + a_{n2}\beta_2 + \cdots + a_{n(n+1)}\beta_{n+1} = 0.
+        \end{cases}
+    \end{align*}
+
+    Sendo este um sistema de $n$ equações e $n+1$ incógnitas, como ao escaloná-lo obtemos no máximo $n$ pivôs, existe ao menos uma coluna sem pivô.
+    Assim, existe uma solução não trivial.
+\end{proof}
+
+\begin{corollary}
+    Seja $V$ um espaço vetorial sobre um corpo $\mathbb K$.
+    Se $V$ é finitamente gerado, então todas as bases de $V$ possuem o mesmo tamanho.
+\end{corollary}
+\begin{proof}
+    Como $V$ é finitamente gerado, existe uma base finita $B$ de $V$.
+    Seja $n=|B|$.
+    Veremos que toda base de $V$ possui tamanho $n$.
+
+    Seja $C$ uma base qualquer de $V$.
+    Em particular, $C$ é um gerador de $V$. Como $B$ é um gerador finito de $V$, pelo resultado anterior, temos que $|C| \leq |B|$.
+
+    Assim, $C$ é um gerador finito de $V$.
+    Como $B$ é linearmente independente, pelo resultado anterior, temos que $|B| \leq |C|$.
+
+    Assim, $|C|=|B|=n$.
+\end{proof}
+
+Novamente, é um resultado verdadeiro que todas as bases de um espaço vetorial possuem o mesmo tamanho, mesmo que o espaço não seja finitamente gerado.
+Porém, há de se definir o que significa dizer que dois conjuntos infinitos possuem o mesmo tamanho.
+Em geral, dizemos que dois conjuntos possuem a mesma cardinalidade (tamanho, ou número de elementos) se existe uma bijeção entre eles.
+Porém, o \emph{número de elementos} de um conjunto infinito é um tema da combinatória infinita e da teoria dos conjuntos que foge do escopo deste texto, e não será tratado aqui.
+
+\begin{definition}
+    Seja $V$ um espaço vetorial.
+    A dimensão de $V$, denotada por $\dim V$, é a cardinalidade de uma (toda) base de $V$.
+    Se a dimensão de $V$ é finita, dizemos que $V$ é de \emph{dimensão finita}.
+    Caso contrário, dizemos que $V$ é de \emph{dimensão infinita}.
+\end{definition}
+
+\begin{corollary}
+    Um espaço vetorial possui dimensão finita se, e somente se, é finitamente gerado.
+\end{corollary}
+\begin{example}[A base canônica de $\mathbb K^n$]
+    O conjunto $B=\{e_1, e_2, \ldots, e_n\} \subseteq \mathbb K^n$, onde $e_i$ é o vetor cujas coordenadas são todas nulas, exceto a $i$-ésima, que é igual a $1$, é uma base de $\mathbb K^n$.
+
+    Assim, $\dim \mathbb K^n = n$.
+\end{example}
+
+\begin{example}
+    O conjunto $B=\{1, x, x^2, x^3, \ldots\} \subseteq \mathbb K[x]$ é uma base de $\mathbb K[x]$.
+
+    Assim, $\mathbb K[x]$ é de dimensão infinita.
+
+    Por outro lado, $P_n(\mathbb K)$, o espaço dos polinômios de grau no máximo $n$, é gerado pelo conjunto LI $B_n=\{1, x, x^2, \ldots, x^n\}$.
+    Assim, $\dim P_n(\mathbb K) = n+1$.
+\end{example}

@@ -94,3 +94,19 @@ Um caso particular importante é o seguinte:
         \langle A \rangle = \left\{\sum_{i=1}^n \alpha_i v_i : (\alpha_i)_{i=1}^n \text{ é uma sequência finita em } \mathbb K\right\}.
     \end{equation*}
 \end{corollary}
+
+\begin{proposition}
+    Seja $V$ um espaço vetorial e $A, B\subseteq V$.
+
+    Então $A\subseteq \langle B\rangle$ se, e somente se $\langle A\rangle \subseteq \langle B\rangle$.
+
+    Em particular, se $A\subseteq B$, então $\langle A\rangle \subseteq \langle B\rangle$.
+\end{proposition}
+\begin{proof}
+    Suponha que $A \subseteq \langle B\rangle$.
+    Como $\langle A\rangle$ é o menor subespaço de $V$ que contém $A$, e $\langle B\rangle$ é um subespaço de $V$ que contém $A$, segue que $\langle A\rangle \subseteq \langle B\rangle$.
+
+    Reciprocamente, se $\langle A\rangle \subseteq \langle B\rangle$, como $A \subseteq \langle A\rangle \subseteq \langle B\rangle$, segue que $A \subseteq \langle B\rangle$.
+
+    Para a última afirmação, note que se $A \subseteq B$, como $B\subseteq \langle B\rangle$, segue que $A \subseteq \langle B\rangle$.
+\end{proof}

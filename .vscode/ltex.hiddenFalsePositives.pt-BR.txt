@@ -1,1 +1,4 @@
 {"rule":"MORFOLOGIK_RULE_PT_BR","sentence":"^\\Q[NT] \\E(?:Dummy|Ina|Jimmy-|Dummy-|Maniquí-|Maniquíes-)[0-9]+\\Q (não trivialidade).\\E$"}
+{"rule":"TODOS_FOLLOWED_BY_NOUN_PLURAL","sentence":"^\\QBasta ver que existem \\E(?:Dummy|Ina|Jimmy-|Dummy-|Maniquí-|Maniquíes-)[0-9]+\\Q, não todos nulos tais que \\E(?:Dummy|Ina|Jimmy-|Dummy-|Maniquí-|Maniquíes-)[0-9]+\\Q, ou seja, tais que:\\E$"}
+{"rule":"PT_WORDINESS_REPLACE_NÚMERO_DE_ELEMENTOS","sentence":"^\\QEm geral, dizemos que dois conjuntos possuem a mesma cardinalidade (tamanho, ou número de elementos) se existe uma bijeção entre eles.\\E$"}
+{"rule":"PT_WORDINESS_REPLACE_NÚMERO_DE_ELEMENTOS","sentence":"^\\QPorém, o número de elementos de um conjunto infinito é um tema da combinatória infinita e da teoria dos conjuntos que foge do escopo deste texto, e não será tratado aqui.\\E$"}
