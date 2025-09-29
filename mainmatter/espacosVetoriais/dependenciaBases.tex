@@ -188,3 +188,93 @@ Porém, o \emph{número de elementos} de um conjunto infinito é um tema da comb
     Por outro lado, $P_n(\mathbb K)$, o espaço dos polinômios de grau no máximo $n$, é gerado pelo conjunto LI $B_n=\{1, x, x^2, \ldots, x^n\}$.
     Assim, $\dim P_n(\mathbb K) = n+1$.
 \end{example}
+
+\begin{proposition}
+Seja $V$ um espaço vetorial de dimensão finita, $n$.
+Então todo conjunto LI de tamanho $n$ é uma base de $V$, e todo conjunto gerador de tamanho $n$ é uma base de $V$.
+\end{proposition}
+\begin{proof}
+    Seja $L \subseteq V$ um conjunto LI de tamanho $n$.
+    Se $L$ não gera $V$, temos que existe $v \in V$ tal que $v \notin \langle L \rangle$.
+    Assim, $L \cup \{v\}$ é LI, o que é um absurdo, pois $|L \cup \{v\}| = n+1 > n = \dim V$.
+
+    Agora seja $G\subseteq V$ um conjunto gerador de tamanho $n$.
+    Se $G$ não é LI, existem $\alpha_1, \ldots, \alpha_n \in \mathbb K$, não todos nulos, e $v_1, \ldots, v_n \in G$ tais que $\sum_{i=1}^n \alpha_i v_i = 0$.
+    Sem perda de generalidade, suponha que $\alpha_1 \neq 0$.
+    Assim, $v_1 = -\frac{1}{\alpha_1} \sum_{i=2}^n \alpha_i v_i \in \langle G\setminus\{v_1\}\rangle$.
+    Logo, $G \subseteq \langle v_2, \ldots, v_n \rangle$, o que implica que $V = \langle G \rangle \subseteq \langle v_2, \ldots, v_n \rangle$.
+    Assim, $v_2, \ldots, v_n$ é um conjunto gerador de $V$ com $n-1 < n = \dim V$ elementos, o que é um absurdo.
+\end{proof}
+
+A hipótese de dimensão finita é essencial no resultado acima.
+\begin{example}
+    Considere o espaço vetorial $\mathbb K[x]$.
+    O conjunto $L=\{1, x, x^2, \ldots\}$ é uma base de $\mathbb K[x]$.
+
+    O conjunto $\{x, x^2, x^3, \ldots\}$ é LI, mas não é uma base de $\mathbb K[x]$, pois não gera $1$.
+
+    Finalmente, note que $\{0, 1, x, x^2, \ldots\}$ é um gerador de $\mathbb K[x]$, mas não é uma base de $\mathbb K[x]$, pois é linearmente dependente.
+
+    Note que esses três conjuntos bijetam entre si (são enumeráveis)
+\end{example}
+
+\begin{proposition}
+    Seja $V$ um espaço vetorial de dimensão finita sobre um corpo $\mathbb K$ e $W\subseteq V$ um subespaço vetorial.
+    Então $\dim W\leq \dim V$ e $\dim W=\dim V$ se, e somente se $W=V$.
+\end{proposition}
+\begin{proof}
+    Seja $n=\dim V$ e $m=\dim W$.
+    Toda base de $\mathcal W$ é um conjunto LI de $V$, logo, $m \leq n$.
+    
+    Se $\dim W=\dim V$, toda base de $W$ é uma base de $V$, logo, $W=V$.
+
+    Reciprocamente, se $W=V$, então $\dim W=\dim V$.
+\end{proof}
+
+Podemos ainda estender conjuntos L.I. a bases, o que sempre é possível em geral.
+Para dimensão finita, também podemos fazer isso de forma concreta.
+
+\begin{proposition}
+    Seja $V$ um espaço vetorial de dimensão finita sobre um corpo $\mathbb K$ e $L \subseteq V$ linearmente independente.
+    Seja $G$ um conjunto gerador de $V$.
+
+    Então existe $G'\subseteq G$ tal que $G'\cup L$ é uma base de $V$.
+\end{proposition}
+\begin{proof}
+    Seja $n=\dim V$ e $m=|L|$. Se $m=n$, então $L$ é uma base de $V$ e podemos tomar $G'=\emptyset$.
+    
+    Suponha que $m<n$ e seja $k=n-m$.
+    Recursivamente, construiremos $G'=\{v_1, \ldots, v_k\} \subseteq G$ tal que $L_i = L \cup \{v_1, \ldots, v_i\}$ é LI para todo $i \in \{1, \ldots, k\}$.
+
+    Como $G$ é um gerador de $V$ e $L$ não gera $V$, existe $v_1 \in G$ tal que $v_1 \notin \langle L \rangle$.
+    Assim, $L_1 = L \cup \{v_1\}$ é LI.
+    Suponha que $v_1, \ldots, v_i$ já foram construídos, com $i<k$, tais que $L_i = L \cup \{v_1, \ldots, v_i\}$ é LI.
+    Como $G$ é um gerador de $V$ e $L_i$ não gera $V$, existe $v_{i+1} \in G$ tal que $v_{i+1} \notin \langle L_i \rangle$.
+    Assim, $L_{i+1} = L \cup \{v_1, \ldots, v_{i+1}\}$ é LI.
+
+    Ao final, $L\cup G'$ é um conjunto LI com $m+k=n$ elementos, logo, é uma base de $V$.
+\end{proof}
+
+Façamos outro exemplo prático.
+
+\begin{example}
+    Considere o espaço vetorial $\mathbb R^4$.
+    Seja $L=\{(1,0,0,0), (1,1,0,0)\}$.
+    Note que $L$ é LI, mas não é uma base de $\mathbb R^4$, pois não gera $\mathbb R^4$.
+
+    Considere $G=\{(1, 1, 0, 0), (0, 1, 0, 0), (1, 3, 2, 4), (1, 2, 2, 4)\}$ e seja $W=\langle G \rangle$.
+
+    Temos que $L\subseteq W$, pois $(1, 0, 0, 0) = (1, 1, 0, 0) - (0, 1, 0, 0)$.
+    Vamos encontrar $G' \subseteq G$ tal que $L \cup G'$ é uma base de $W$.
+
+    Note que $|L|=2$ e $\dim W \leq  \dim \mathbb R^4 = 4$.
+    Assim, estenderemos $L$ a uma base de $W$ com no máximo $2$ vetores de $G$.
+
+    Será que $G\subseteq \langle L \rangle$? Sim:
+    $(1, 1, 0, 0) \in \langle L \rangle$ e $(0, 1, 0, 0) \in \langle L \rangle$, pois $(0, 1, 0, 0) = (1, 1, 0, 0) - (1, 0, 0, 0)$.
+
+    Porém, $(1, 3, 2, 4) \notin \langle L \rangle$, logo, seja $\mathcal B'= L \cup \{(1, 3, 2, 4)\}$.
+
+    Será que $\mathcal B'$ é uma base de $W$? Isso ocorre se, e somente se $(0, 2, 2, 4) \in \langle \mathcal B' \rangle$.
+    A resposta é positiva: resolvendo-se um sistema, vemos que $(0, 2, 2, 4) = (1, 3, 2, 4) -(1, 1, 0, 0) + 1(1, 0, 0, 0)$.
+\end{example}
