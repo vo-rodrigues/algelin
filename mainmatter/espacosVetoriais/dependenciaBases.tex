@@ -278,3 +278,14 @@ Façamos outro exemplo prático.
     Será que $\mathcal B'$ é uma base de $W$? Isso ocorre se, e somente se $(0, 2, 2, 4) \in \langle \mathcal B' \rangle$.
     A resposta é positiva: resolvendo-se um sistema, vemos que $(0, 2, 2, 4) = (1, 3, 2, 4) -(1, 1, 0, 0) + 1(1, 0, 0, 0)$.
 \end{example}
+
+\begin{example}
+    Seja $V=M_{m\times n}(\mathbb K)$ o espaço vetorial das matrizes $m\times n$ com entradas em um corpo $\mathbb K$.
+    Considere o conjunto $E_{ij} \in V$, $1\leq i \leq m$, $1\leq j \leq n$, onde $E_{ij}$ é a matriz cujas entradas são todas nulas, exceto a entrada na $i$-ésima linha e $j$-ésima coluna, que é igual a $1$.
+
+    Temos que $B=\{E_{ij} : 1\leq i \leq m, 1\leq j \leq n\}$ é uma base de $V$.
+    De fato, note que para todo $A \in V$, $A = \sum_{i=1}^m \sum_{j=1}^n a_{ij} E_{ij}$, onde $a_{ij}$ é a entrada de $A$ na $i$-ésima linha e $j$-ésima coluna.
+    Assim, $B$ gera $V$.
+    Além disso, $B$ é LI, pois se $A=\sum_{i=1}^m \sum_{j=1}^n \alpha_{ij} E_{ij} = 0$, então todas as entradas da matriz nula são nulas, o que implica que $\alpha_{ij}=0$ para todo $i,j$.
+    Logo, $\dim V = |B| = mn$.
+\end{example}
