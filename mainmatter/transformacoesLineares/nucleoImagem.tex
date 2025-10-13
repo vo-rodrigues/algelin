@@ -1,0 +1,37 @@
+\section{O núcleo e a imagem de uma transformação linear}
+
+\begin{definition}
+    Seja $T: V \to W$ uma transformação linear.
+    O \emph{núcleo} de $T$ é o conjunto $\ker(T) = \{v \in V : T(v) = 0_W\}$.
+    A \emph{imagem} de $T$ é o conjunto $\Img(T) = \{T(v) : v \in V\}$.
+\end{definition}
+\begin{proposition}
+    Seja $T: V \to W$ uma transformação linear.
+    Então, $\ker(T)$ é um subespaço de $V$ e $\Img(T)$ é um subespaço de $W$.
+\end{proposition}
+
+\begin{lemma}
+    Seja $T: V \to W$ uma transformação linear.
+    Então, $\ker(T)$ é um subespaço de $V$ e $\Img(T)$ é um subespaço de $W$.
+\end{lemma}
+\begin{proof}
+    Vejamos que $\ker(T)$ é um subespaço de $V$.
+    \begin{itemize}
+        \item $0_V \in \ker(T)$, pois $T(0_V) = 0_W$.
+        \item Se $u, v \in \ker(T)$ e $\alpha \in \mathbb K$, então $T(u) = 0_W$ e $T(v) = 0_W$.
+        Temos o seguinte:
+        \begin{equation*}
+            T(u + \alpha v) = T(u) + \alpha T(v) = 0_W + \alpha 0_W = 0_W.
+        \end{equation*}
+    \end{itemize}
+    Portanto, $\ker(T)$ é um subespaço de $V$.
+    Vejamos que $\Img(T)$ é um subespaço de $W$.
+    \begin{itemize}
+        \item $0_W \in \Img(T)$, pois $T(0_V) = 0_W$.
+        \item Se $x, y \in \Img(T)$ e $\alpha \in \mathbb K$, então existem $u, v \in V$ tais que $x = T(u)$ e $y = T(v)$.
+        Temos o seguinte:
+        \begin{equation*}
+            x + \alpha y = T(u) + \alpha T(v) = T(u + \alpha v) \in \Img(T),
+        \end{equation*}
+    \end{itemize}
+\end{proof}
