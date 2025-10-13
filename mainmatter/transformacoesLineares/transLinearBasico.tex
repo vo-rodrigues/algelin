@@ -1,0 +1,27 @@
+\section{Transformações lineares}
+
+\begin{definition}
+    Seja $V$ e $W$ espaços vetoriais sobre um mesmo corpo $\mathbb K$.
+    Uma função $T: V \to W$ é uma \textbf{transformação linear} se, para quaisquer $u, v \in V$ e $\alpha \in \mathbb K$, tivermos:
+    \begin{itemize}
+        \item $T(u + v) = T(u) + T(v)$
+        \item $T(\alpha u) = \alpha T(u)$
+    \end{itemize}
+\end{definition}
+
+\begin{example}
+    A função $T: \mathbb R^2 \to \mathbb R^2$ dada por $T(x, y) = (2x, 3y)$ é uma transformação linear.
+\end{example}
+
+\begin{proposition}
+    Se $T: V \to W$ é uma transformação linear, então $T(0_V) = 0_W$ e $T(-v) = -T(v)$ para todo $v \in V$.
+\end{proposition}
+\begin{proof}
+    Temos que $T(0_V) = T(0_V + 0_V) = T(0_V) + T(0_V)$, logo $T(0_V) = 0_W$.
+    Além disso, $T(-v)= T(-1 \cdot v) = -1 \cdot T(v) = -T(v)$.
+\end{proof}
+
+\begin{definition}
+    O \emph{núcleo} de uma transformação linear $T: V \to W$ é o conjunto $\ker(T) = \{v \in V : T(v) = 0_W\}$.
+    A \emph{imagem} de $T$ é o conjunto $\operatorname{Im}(T) = \{T(v) : v \in V\}$.
+\end{definition}

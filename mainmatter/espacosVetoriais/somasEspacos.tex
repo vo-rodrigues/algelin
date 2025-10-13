@@ -1,0 +1,93 @@
+\section{Somas de espaços}
+Vimos que se $U$ e $W$ são subespaços de um espaço vetorial $V$, então $U \cap W$ também é um subespaço de $V$, e este é o maior subespaço de $V$ contido em ambos $U$ e $W$.
+Será que existe o menor subespaço de $V$ que contém ambos $U$ e $W$?
+A resposta é positiva, e este subespaço é chamado de soma de $U$ e $W$.
+
+\begin{definition}
+    Seja $V$ um espaço vetorial sobre um corpo $\mathbb K$ e $U, W$ subespaços de $V$.
+    A \emph{soma} de $U$ e $W$, denotada por $U + W$, é o conjunto
+    \begin{equation*}
+        U + W = \{u + w : u \in U, w \in W\}.
+    \end{equation*}
+\end{definition}
+
+\begin{proposition}
+    Seja $V$ um espaço vetorial sobre um corpo $\mathbb K$ e $U, W$ subespaços de $V$.
+    Então $U + W$ é um subespaço de $V$.
+    Além disso, se $U, W$ possuem dimensão finita, então $\dim(U + W) = \dim(U) + \dim(W) - \dim(U \cap W)$.
+\end{proposition}
+\begin{proof}
+    Vejamos que $U + W$ é um subespaço de $V$.
+    \begin{itemize}
+        \item $0_V \in U + W$, pois $0=0+0\in U+W$.
+        \item Se $x, y \in U + W$ e $\alpha \in \mathbb K$, então existem $u_1, u_2 \in U$ e $w_1, w_2 \in W$ tais que $x = u_1 + w_1$ e $y = u_2 + w_2$.
+        Então:
+        \begin{equation*}
+            x + \alpha y = (u_1 + w_1) + \alpha(u_2 + w_2) = (u_1 + \alpha u_2) + (w_1 + \alpha w_2) \in U + W,
+        \end{equation*}
+    \end{itemize}
+
+    Logo, $U + W$ é um subespaço de $V$.
+    É imediato que $U, W$ estão contidos em $V$.
+    Se $X$ é um subespaço de $V$ que contém ambos $U$ e $W$, então, para quaisquer $u \in U$ e $w \in W$, temos $u + w \in X$, logo $U + W \subseteq X$.
+    Assim, $U + W$ é o menor subespaço de $V$ que contém ambos $U$ e $W$.
+
+    Agora suponha que $U$ e $W$ possuem dimensão finita.
+    Então $U+W$ é finitamente gerado: sejam $\mathcal B_U$ e $\mathcal B_W$ bases de $U$ e $W$, respectivamente.
+    Então $U, W\subseteq \langle\mathcal B_U \cup \mathcal B_W\rangle$, logo, $U+W\subseteq \langle\mathcal B_U \cup \mathcal B_W\rangle$.
+    Assim, $U+W$ é finitamente gerado.
+    
+    Como $U\cap W$ é um subespaço de $U$, existe $\mathcal D$ base de $U\cap W$.
+
+    Temos que $\mathcal D$ é um subconjunto LI de $U$, logo, existe $\mathcal D_U'\subseteq U$ disjunto de $\mathcal D$ tal que $\mathcal D_U = \mathcal D \cup \mathcal D_U'$ é uma base de $U$.
+
+    Analogamente, existe $\mathcal D_W'\subseteq W$ disjunto de $\mathcal D$ tal que $\mathcal D_W = \mathcal D \cup \mathcal D_W'$ é uma base de $W$.
+
+    Afirmamos que $\mathcal D_W'\cap \mathcal D_U=\emptyset$, e que $\mathcal C=\mathcal D_U \cup \mathcal D_W'=\mathcal D\cup \mathcal D_U' \cup \mathcal D_W'$ é uma base de $U+W$.
+    \begin{itemize}
+        \item $\mathcal D_W'\cap \mathcal D_U=\emptyset$: de fato, se $x\in \mathcal D_W'\cap \mathcal D_U$, então $x\in W$ e $x\in U$, logo, $x\in U\cap W$.
+        Assim, $x\in \langle \mathcal D\rangle$ e $x \notin \mathcal D$ (pois $x \in \mathcal D_W'$, que é disjunto de $\mathcal D$), logo, $\mathcal D\cup\{x\}\subseteq \mathcal D_W$ é linearmente dependente, o que é um absurdo.
+        \item $\mathcal C$ é LI: seja $(\alpha_v: v \in \mathcal C)$ uma família de escalares tal que $\sum_{v\in \mathcal C} \alpha_v v = 0$.
+        Então:
+        \begin{equation}\label{eq:somaEspacos}
+            \begin{aligned}
+                0 &= \sum_{v\in \mathcal C} \alpha_v v\\
+                &= \sum_{v\in \mathcal D} \alpha_v v + \sum_{v\in \mathcal D_U'} \alpha_v v + \sum_{v\in \mathcal D_W'} \alpha_v v\\
+            \end{aligned}
+        \end{equation}
+
+        Assim:
+        \begin{equation*}
+            \sum_{v\in \mathcal D} \alpha_v v + \sum_{v\in \mathcal D_U'} \alpha_v v = - \sum_{v\in \mathcal D_W'} \alpha_v v\in U\cap W.
+        \end{equation*}
+        Logo, existem $(\beta_v: v \in \mathcal D)$ tais que
+        \begin{equation*}
+            \sum_{v\in \mathcal D_W'}-\alpha_v = \sum_{v\in \mathcal D} \beta_v v.
+        \end{equation*}
+        Assim:
+        \begin{equation}\label{eq:somaEspacos2}
+            0 = \sum_{v\in \mathcal D_W'} \alpha_v+\sum_{v\in \mathcal D} \beta_v v.
+        \end{equation}
+        Como $\mathcal D$ é LD, temos que $\beta_v=0$ para todo $v\in \mathcal D$ e $\alpha_v=0$ para todo $v\in \mathcal D_W'$.
+        Substituindo na Equação~\ref{eq:somaEspacos}, temos que $\alpha_v=0$ para todo $v\in \mathcal D_U'\cup \mathcal D=\mathcal D_U$, pois este último é LI.
+        \item $\mathcal C$ é gerador de $U+W$: seja $x\in U+W$.
+        Então existem $u\in U$ e $w\in W$ tais que $x=u+w$.
+        Como $\mathcal D_U$ é base de $U$, existem $(\alpha_v: v \in \mathcal D_U)$ tais que $u=\sum_{v\in \mathcal D_U} \alpha_v v$.
+        Analogamente, existem $(\beta_v: v \in \mathcal D_W)$ tais que $w=\sum_{v\in \mathcal D_W} \beta_v v$.
+        Assim:
+        \begin{equation*}
+            x = u + w = \sum_{v\in \mathcal D_U} \alpha_v v + \sum_{v\in \mathcal D_W} \beta_v v = \sum_{v\in \mathcal D_U} \alpha_v v + \sum_{v\in \mathcal D_W'} \beta_v v + \sum_{v\in \mathcal D} (\alpha_v+\beta_v) v.
+        \end{equation*}
+    \end{itemize}
+
+    Agora verifiquemos que vale a fórmula para a dimensão.
+    Temos:
+
+    \begin{equation*}
+        \begin{aligned}
+            \dim(U+W) &= |\mathcal C| = |\mathcal D_U| + |\mathcal D_W'|\\
+            &= |\mathcal D_U| + (|\mathcal D_W| - |\mathcal D|)\\
+            &= \dim(U) + \dim(W) - \dim(U\cap W).
+        \end{aligned}
+    \end{equation*}
+    \end{proof}
