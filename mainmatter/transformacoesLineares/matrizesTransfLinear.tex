@@ -1,0 +1,41 @@
+\section{Matrizes de transformações lineares}
+
+Quem são as transformações lineares entre espaços vetoriais finitamente gerados?
+
+Primeiro, estudemos uma propriedade relativa à bases.
+
+\begin{theorem}
+    Sejam $V$ e $W$ espaços vetoriais sobre um corpo $\mathbb K$, com $1\leq \dim V=n<\infty$ e $\mathcal B$ uma base de $V$.
+    Então, para toda $f: \mathcal B\rightarrow W$ função, existe uma única transformação linear $T: V \to W$ tal que $T(v) = f(v)$ para todo $v \in \mathcal B$.
+\end{theorem}
+\begin{proof}
+    Ordenemos a base $\mathcal B$ como $\mathcal C=(v_1, \dots, v_n)$.
+
+    Seja $u \in V$ e $(\alpha_1, \dots, \alpha_n)=(u)_{\mathcal C}$.
+    Definimos:
+    \begin{equation*}
+        T(u) = \sum_{i=1}^n \alpha_i f(v_i).
+    \end{equation*}
+
+    $T$ é linear, pois dados $u, w \in V$ e $\beta \in \mathbb K$, com $(\alpha_1, \dots, \alpha_n)=(u)_{\mathcal C}$ e $(\gamma_1, \dots, \gamma_n)=(w)_{\mathcal C}$, temos:
+    \begin{equation*}
+        \begin{aligned}
+            T(u + \beta w) &= T\left(\sum_{i=1}^n (\alpha_i + \beta \gamma_i)v_i\right)\\
+            &= \sum_{i=1}^n (\alpha_i + \beta \gamma_i)f(v_i)\\
+            &= \sum_{i=1}^n \alpha_i f(v_i) + \beta \sum_{i=1}^n \gamma_i f(v_i)\\
+            &= T(u) + \beta T(w).
+        \end{aligned}
+    \end{equation*}
+
+    Temos que $T$ estende $f$ pois as coordenadas de $v_j$ na base $\mathcal C$ são $(0, \dots, 0, 1, 0, \dots, 0)$ (com $1$ na $j$-ésima posição), logo:
+    \begin{equation*}
+        T(v_j) = \sum_{i=1}^n \delta_{ij} f(v_i) = f(v_j).
+    \end{equation*}
+    Finalmente, seja $S: V \to W$ outra transformação linear que estende $f$.
+    Seja $u \in V$ e $(\alpha_1, \dots, \alpha_n)=(u)_{\mathcal C}$.
+    Então:
+    \begin{equation*}
+        S(u) = S\left(\sum_{i=1}^n \alpha_i v_i\right) = \sum_{i=1}^n \alpha_i S(v_i) = \sum_{i=1}^n \alpha_i f(v_i) = T(u).
+    \end{equation*}
+    Assim, $S = T$.
+\end{proof}
