@@ -39,3 +39,44 @@ Primeiro, estudemos uma propriedade relativa à bases.
     \end{equation*}
     Assim, $S = T$.
 \end{proof}
+
+Quem são todas as transformações lineares de $\mathbb K^n$ em $\mathbb K$?
+
+\begin{example}
+    Seja $T: \mathbb K^n \to \mathbb K$ uma transformação linear.
+    Temos que $T(x_1, \dots, x_n)= \sum_{i=1}^n x_i T(e_i)$, onde $e_i$ é o $i$-ésimo vetor da base canônica de $\mathbb K^n$.
+
+    Logo, para qualquer escolha $T(e_i)=a_i \in \mathbb K$, existe uma única transformação linear $T: \mathbb K^n \to \mathbb K$ dada por $T(x_1, \dots, x_n) = \sum_{i=1}^n a_i x_i$.
+
+    Essas são todas as transformações lineares de $\mathbb K^n$ em $\mathbb K$.
+\end{example}
+
+Quem são todas as transformações lineares de $\mathbb K^n$ em $\mathbb K^m$?
+
+\begin{example}
+    Seja $T: \mathbb K^n \to \mathbb K^m$ uma transformação linear.
+    Temos que $T(x_1, \dots, x_n)= \sum_{i=1}^n x_i T(e_j)$, onde $e_i$ é o $i$-ésimo vetor da base canônica de $\mathbb K^n$.
+
+    Logo, para qualquer escolha $T(e_j)=(a_{1j}, a_{2j}, \dots, a_{mj}) \in \mathbb K^m$, existe uma única transformação linear $T: \mathbb K^n \to \mathbb K^m$ dada por
+
+    \begin{equation*}
+        T(x_1, \dots, x_n) = \left(\sum_{j=1}^n a_{1j} x_j, \sum_{j=1}^n a_{2j} x_j, \dots, \sum_{j=1}^n a_{mj} x_j\right).
+    \end{equation*}
+
+    Note que, colocando os vetores em formato de coluna, temos que as coordenadas de $T(x_1, \dots, x_n)$ são dadas pela seguinte coluna:
+
+    \begin{equation*}
+        \begin{pmatrix}
+            a_{11} & a_{12} & \cdots & a_{1n}\\
+            a_{21} & a_{22} & \cdots & a_{2n}\\
+            \vdots & \vdots & \ddots & \vdots\\
+            a_{m1} & a_{m2} & \cdots & a_{mn}
+        \end{pmatrix}
+        \begin{pmatrix}
+            x_1\\
+            x_2\\
+            \vdots\\
+            x_n
+        \end{pmatrix}.
+    \end{equation*}
+\end{example}
