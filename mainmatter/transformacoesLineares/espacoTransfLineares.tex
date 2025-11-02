@@ -1,3 +1,117 @@
 \section{O espaço das Transformações Linares}
 Até então, estudamos transformações lineares individualmente.
 Nesta seção, veremos que elas, por si só, formam um espaço vetorial.
+
+\begin{definition}
+    Sejam $V, W$ espaços vetoriais.
+    O conjunto de todas as transformações lineares de $V$ em $W$ é denotado por $L(V, W)$.
+
+    Dadas $S, T \in L(V, W)$ e $\alpha \in \mathbb K$, definimos:
+    \begin{itemize}
+        \item A soma $S + T \in L(V, W)$ por $(S + T)(v) = S(v) + T(v)$, para todo $v \in V$.
+        \item O produto $\alpha T \in L(V, W)$ por $(\alpha T)(v) = \alpha (T(v))$, para todo $v \in V$.
+        \item A transformação linear nula é dada por $0_{L(V, W)}(v) = 0_W$, para todo $v \in V$.
+    \end{itemize}
+\end{definition}
+
+Note que a noção de soma e produto de função por escalar é coerente com a definição que se dá em outras áreas básicas da matemática, como o cálculo diferencial e integral.
+É imediato verificar que a transformação nula é uma transformação linear.
+Como de costume, quando claro pelo contexto, ela será denotada apenas por $0$.
+
+\begin{example}
+    Seja $T: \mathbb R^2 \to \mathbb R^2$ dada por $T(x, y) = (2x, 3y)$ e $S: \mathbb R^2 \to \mathbb R^2$ dada por $S(x, y) = (x + y, xy)$.
+    Então, a soma $T + S: \mathbb R^2 \to \mathbb R^2$ é dada por:
+    \begin{equation*}
+        (T + S)(x, y) = T(x, y) + S(x, y) = (2x, 3y) + (x + y, xy) = (3x + y, 3y + xy).
+    \end{equation*}
+
+    Além disso, o produto $2T: \mathbb R^2 \to \mathbb R^2$ é dado por:
+    \begin{equation*}
+        (2T)(x, y) = 2(T(x, y)) = 2(2x, 3y) = (4x, 6y).
+    \end{equation*}
+\end{example}
+
+\begin{proposition}
+    O conjunto $L(V, W)$, munido das operações de soma e produto por escalar definidas acima, é um espaço vetorial sobre o corpo $\mathbb K$ com elemento neutro $0$.
+    Em particular, a soma de transformações lineares é uma transformação linear, e o produto de uma transformação linear por um escalar é uma transformação linear.
+
+    Além disso, dada $T \in L(V, W)$, o oposto de $T$ é a transformação linear $-T \in L(V, W)$ definida por $(-T)(v) = - (T(v))$ para todo $v \in V$.
+\end{proposition}
+\begin{proof}
+    Vamos começar verificando a última afirmação.
+    Sejam $S, T \in L(V, W)$ e $\alpha \in \mathbb K$.
+    Para quaisquer $u, v \in V$ e $\beta \in \mathbb K$, temos o seguinte.
+    \begin{itemize}
+        \item Para a soma, temos:
+        \begin{align*}
+            (S + T)(u + \beta v) &= S(u + \beta v) + T(u + \beta v) \\
+            &= S(u) + \beta S(v) + T(u) + \beta T(v) \\
+            &= (S(u) + T(u)) + \beta (S(v) + T(v)) \\
+            &= (S + T)(u) + \beta (S + T)(v).
+        \end{align*}
+        \item Para o produto por escalar, temos:
+        \begin{align*}
+            (\alpha T)(u + \beta v) &= \alpha T(u + \beta v) \\
+            &= \alpha (T(u) + \beta T(v)) \\
+            &= \alpha T(u) + \alpha \beta T(v) \\
+            &= (\alpha T)(u) + \beta (\alpha T)(v).
+        \end{align*}
+    \end{itemize}
+    Agora verificaremos todas as propriedades de espaço vetorial para $L(V, W)$:
+    \begin{itemize}
+        \item (Associatividade da soma) Para quaisquer $R, S, T \in L(V, W)$ e $v \in V$, temos:
+        \begin{equation*}
+            \begin{aligned}
+                ((R + S) + T)(v) &= (R + S)(v) + T(v) \\
+                                 &= (R(v) + S(v)) + T(v) \\
+                                 &= R(v) + (S(v) + T(v)) \\
+                                 &= R(v) + (S + T)(v) \\
+                                 &= (R + (S + T))(v).
+            \end{aligned}
+        \end{equation*}
+        Logo, $(R + S) + T = R + (S + T)$.
+        \item (Comutatividade da soma) Para quaisquer $S, T \in L(V, W)$ e $v \in V$, temos:
+        \begin{equation*}
+            (S + T)(v) = S(v) + T(v) = T(v) + S(v) = (T + S)(v).
+        \end{equation*}
+        Logo, $S + T = T + S$.
+        \item (Elemento neutro da soma) Para qualquer $T \in L(V, W)$ e $v \in V$, temos:
+        \begin{equation*}
+            (T + 0)(v) = T(v) + 0_W = T(v).
+        \end{equation*}
+        Logo, $T + 0 = T$.
+        \item (Elemento oposto da soma) Para qualquer $T \in L(V, W)$, definimos $-T \in L(V, W)$ por $(-T)(v) = - (T(v))$ para todo $v \in V$.
+        Note que $-T$=$(-1)T$, assim, $T$ é linear.
+        Para qualquer $v \in V$, temos:
+        \begin{equation*}
+            (T + (-T))(v) = T(v) + (-T)(v) = T(v) - T(v) = 0_W.
+        \end{equation*}
+        Logo, $T + (-T) = 0$.
+        \item (Neutralidade do produto por escalar) Para qualquer $T \in L(V, W)$ e $v \in V$, temos:
+        \begin{equation*}
+            (1 T)(v) = 1 (T(v)) = T(v).
+        \end{equation*}
+        Logo, $1 T = T$.
+        \item (Associatividade do produto por escalar) Para quaisquer $\alpha, \beta \in \mathbb K$, $T \in L(V, W)$ e $v \in V$, temos:
+        \begin{equation*}
+            ((\alpha \beta) T)(v) = (\alpha \beta) (T(v)) = \alpha (\beta (T(v))) = (\alpha (\beta T))(v).
+        \end{equation*}
+        Logo, $(\alpha \beta) T = \alpha (\beta T)$.
+        \item (Distributividade do produto por escalar em relação à soma de vetores) Para qualquer $\alpha \in \mathbb K$, $S, T \in L(V, W)$ e $v \in V$, temos:
+        \begin{equation*}
+            \begin{aligned}
+                (\alpha (S + T))(v) &= \alpha ((S + T)(v)) \\
+                                     &= \alpha (S(v) + T(v)) \\
+                                     &= \alpha S(v) + \alpha T(v) \\
+                                     &= (\alpha S)(v) + (\alpha T)(v) \\
+                                     &= (\alpha S + \alpha T)(v).
+            \end{aligned}
+        \end{equation*}
+        Logo, $\alpha (S + T) = \alpha S + \alpha T$.
+        \item (Distributividade do produto por escalar em relação à soma de escalares) Para quaisquer $\alpha, \beta \in \mathbb K$, $T \in L(V, W)$ e $v \in V$, temos:
+        \begin{equation*}
+            ((\alpha + \beta) T)(v) = (\alpha + \beta) (T(v)) = \alpha (T(v)) + \beta (T(v)) = (\alpha T)(v) + (\beta T)(v) = (\alpha T + \beta T)(v).
+        \end{equation*}
+        Logo, $(\alpha + \beta) T = \alpha T + \beta T$.
+    \end{itemize}
+\end{proof}
