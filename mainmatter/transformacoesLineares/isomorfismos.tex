@@ -1,0 +1,38 @@
+\section{Isomorfismos}
+Conforme já mencionado, um isomorfismo é uma transformação linear bijetora.
+Se há um isomorfismo entre dois espaços vetoriais, dizemos que eles são isomorfos.
+Nesse caso, no que diz respeito à estrutura de espaço vetorial, eles são essencialmente o mesmo espaço, e a função isomorfismo pode ser vista como um dispositivo de ``tradução'' entre os dois espaços.
+
+A relação de isomorfismo entre espaços vetoriais é uma relação de equivalência na classe dos espaços vetoriais sobre um mesmo corpo.
+
+\begin{proposition}
+    Sejam $U$, $V$ e $W$ espaços vetoriais sobre um corpo $\mathbb K$.
+    Então:
+    \begin{enumerate}[label=(\alph*)]
+        \item $\id_U: U \to U$ é um isomorfismo.
+        Portanto, $U$ é isomorfo a si mesmo.
+        \item Se $T: U \to V$ é um isomorfismo e $S: V \to W$ é um isomorfismo, então $S \circ T: U \to W$ é um isomorfismo.
+        Portanto, se $U$ é isomorfo a $V$ e $V$ é isomorfo a $W$, então $U$ é isomorfo a $W$.
+        \item Se $T: U \to V$ é um isomorfismo, então sua inversa $T^{-1}: V \to U$ é um isomorfismo.
+        Portanto, se $U$ é isomorfo a $V$, então $V$ é isomorfo a $U$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    (a) É claro que $\id_U$ é bijetora é linear.
+    Para (b), é um fato geral que a composição de funções bijetoras é bijetora, e, como já vimos, a composição de funções lineares é linear.
+
+    Para (c), se $T$ é um isomorfismo, então sua inversa $T^{-1}$ também é bijetora.
+    Resta ver que $T^{-1}$ é linear.
+
+    Sejam $u, v \in V$ e $\alpha \in \mathbb K$.
+    Então existem $x, y \in U$ tais que $T(x) = u$ e $T(y) = v$.
+    Assim:
+    \begin{equation*}
+        \begin{aligned}
+            T^{-1}(u + \alpha v) &= T^{-1}(T(x) + \alpha T(y))\\
+            &= T^{-1}(T(x + \alpha y))\\
+            &= x + \alpha y\\
+            &= T^{-1}(u) + \alpha T^{-1}(v).
+        \end{aligned}
+    \end{equation*}
+\end{proof}
