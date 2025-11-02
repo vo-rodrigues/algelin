@@ -83,7 +83,28 @@ Quem são todas as transformações lineares de $\mathbb K^n$ em $\mathbb K^m$?
 
 Abaixo, estenderemos esse raciocínio para transformações lineares entre espaços vetoriais quaisquer de dimensão finita positiva.
 
-\begin{proposition}
+\begin{definition}
 Sejam $V$ e $W$ espaços vetoriais sobre um corpo $\mathbb K$, com $1\leq \dim V=n<\infty$ e $1\leq \dim W=m<\infty$.
-Sejam $\mathcal B = (v_1, \dots, v_n)$ uma base de $V$ e $\mathcal C = (w_1, \dots, w_m)$ uma base de $W$.
-\end{proposition}
+Sejam $\mathcal B = (v_1, \dots, v_n)$ uma base ordenada de $V$ e $\mathcal C = (w_1, \dots, w_m)$ uma base ordenada de $W$.
+A \emph{matriz de $T$ em relação às bases $\mathcal B$ e $\mathcal C$} é a matriz $[T]_{\mathcal B\mathcal C} \in M_{m\times n}(\mathbb K)$ cuja $j$-ésima coluna é dada por $[T(v_j)]_{\mathcal C}$, ou seja:
+\begin{equation*}
+    [T]_{\mathcal B\mathcal C} =
+    \begin{pmatrix}
+        | & | & & |\\
+        [T(v_1)]_{\mathcal C} & [T(v_2)]_{\mathcal C} & \cdots & [T(v_n)]_{\mathcal C}\\
+        | & | & & |
+    \end{pmatrix}.
+\end{equation*}
+
+Formalmente, para cada $j\in\{1, \dots, n\}$, seja $(\alpha_{1j}, \alpha_{2j}, \dots, \alpha_{mj}) = (T(v_j))_{\mathcal C}$.
+Então:
+\begin{equation*}
+    [T]_{\mathcal B\mathcal C} =
+    \begin{pmatrix}
+        \alpha_{11} & \alpha_{12} & \cdots & \alpha_{1n}\\
+        \alpha_{21} & \alpha_{22} & \cdots & \alpha_{2n}\\
+        \vdots & \vdots & \ddots & \vdots\\
+        \alpha_{m1} & \alpha_{m2} & \cdots & \alpha_{mn}
+    \end{pmatrix}.
+\end{equation*}
+\end{definition}
