@@ -115,3 +115,37 @@ Como de costume, quando claro pelo contexto, ela será denotada apenas por $0$.
         Logo, $(\alpha + \beta) T = \alpha T + \beta T$.
     \end{itemize}
 \end{proof}
+
+Assim, o espaço das transformações lineares entre dois espaços vetoriais é, ele próprio, um espaço vetorial.
+Note que, ao olhar para ele, cada transformação linear é vista como um vetor desse espaço.
+Assim, é possível falar de transformações lineares que possuem esse espaço como seu domínio, uma vez que todo espaço vetorial pode ser o domínio de uma transformação linear.
+
+Não vamos lidar com isso nesse momento, e sim estudar outra operação entre funções: a composição.
+
+\begin{proposition}
+    Sejam $U, V, W$ espaços vetoriais e $S \in L(U, V)$ e $T \in L(V, W)$.
+    Então $T \circ S \in L(U, W)$.
+    Ou seja, a composição de transformações lineares é uma transformação linear.
+\end{proposition}
+\begin{proof}
+    Seja $u, v \in U$ e $\alpha \in \mathbb K$.
+    Temos:
+    \begin{equation*}
+        \begin{aligned}
+            (T \circ S)(u + \alpha v) &= T(S(u + \alpha v)) \\
+                                     &= T(S(u) + \alpha S(v)) \\
+                                     &= T(S(u)) + \alpha T(S(v)) \\
+                                     &= (T \circ S)(u) + \alpha (T \circ S)(v).
+        \end{aligned}
+    \end{equation*}
+    Logo, $T \circ S$ é uma transformação linear.
+\end{proof}
+
+\begin{proposition}
+    Sejam $U, V, W, X$ espaços vetoriais, $R \in L(W, X)$, $S \in L(V, W)$ e $T \in L(U, V)$.
+    Então:
+    \begin{itemize}
+        \item (Associatividade da composição) $R \circ (S \circ T) = (R \circ S) \circ T$.
+        \item (Elemento neutro da composição) Se $\id_V: V \to V$ é a transformação identidade em $V$, então, para qualquer $T \in L(U, V)$ e qualquer $S \in L(V, W)$, temos $I_V \circ T = T$ e $S \circ I_V = S$.
+    \end{itemize}
+\end{proposition}
