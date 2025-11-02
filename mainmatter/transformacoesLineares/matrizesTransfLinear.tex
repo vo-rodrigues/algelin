@@ -214,6 +214,89 @@ Em verdade, ela é um isomorfismo entre o espaço vetorial das transformações 
     Logo, $\Phi$ é linear.
 
     Vejamos que $\Phi$ é injetora.
-    Basta ver que $\ker \Phi = \{0\}$.
-    
+    Basta ver que $\ker \Phi = \{0\}$, ou seja, que se $[T]_{\mathcal B\mathcal C} = 0$, então $T = 0$.
+    Se $[T]_{\mathcal B\mathcal C} = 0$, então, para todo $v \in V$, temos $[T(v)]_{\mathcal C} = [T]_{\mathcal B\mathcal C}[v]_{\mathcal B} = 0$.
+    Como o mapa $[\,\cdot\,]_{\mathcal C}$ é um isomorfismo, isso implica que $T(v) = 0$ para todo $v \in V$, ou seja, $T = 0$.
+    Portanto, $\Phi$ é injetora.
+
+    Resta ver que $\Phi$ é sobrejetora.
+    Seja $A \in M_{m\times n}(\mathbb K)$.
+    Definimos $f: \mathcal B \to W$ como a função que associa a cada $v_j \in \mathcal B$ o vetor  cujas coordenadas na base $\mathcal C$ são dadas pela $j$-ésima coluna de $A$, ou seja, $f(v_j) = \sum_{i=1}^m a_{ij} w_i$, onde $a_{ij}$ é o elemento da $i$-ésima linha e $j$-ésima coluna de $A$.
+    Pela caracterização por bases, existe uma única transformação linear $T: V \to W$ que estende $f$.
+    Pela definição de $f$, temos que $[T(v_j)]_{\mathcal C}$ é a $j$-ésima coluna de $A$.
+    Logo, $[T]_{\mathcal B\mathcal C} = A$.
 \end{proof}
+\begin{corollary}
+    Sejam $V$ e $W$ espaços vetoriais sobre um corpo $\mathbb K$, com $1\leq \dim V=n<\infty$ e $1\leq \dim W=m<\infty$.
+    Então $\dim L(V, W) = mn$.
+\end{corollary}
+\begin{proof}
+    Pelo teorema anterior, $\mathcal L(V, W)$ é isomorfo a $M_{m\times n}(\mathbb K)$.
+    Como $\dim M_{m\times n}(\mathbb K) = mn$, temos que $\dim \mathcal L(V, W) = mn$.
+\end{proof}
+
+Tal isomorfismo também respeita composições, transformando-as em multiplicações de matrizes.
+
+\begin{theorem}
+    Sejam $U$, $V$ e $W$ espaços vetoriais sobre um corpo $\mathbb K$, com $1\leq \dim U=p<\infty$, $1\leq \dim V=n<\infty$ e $1\leq \dim W=m<\infty$.
+    Sejam $\mathcal A = (u_1, \dots, u_p)$ uma base ordenada de $U$, $\mathcal B = (v_1, \dots, v_n)$ uma base ordenada de $V$ e $\mathcal C = (w_1, \dots, w_m)$ uma base ordenada de $W$.
+    Sejam $T: U \to V$ e $S: V \to W$ transformações lineares.
+    Então:
+    \begin{equation*}
+        [S \circ T]_{\mathcal A\mathcal C} = [S]_{\mathcal B\mathcal C} [T]_{\mathcal A\mathcal B}.
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+    Seja $u \in U$.
+    Temos:
+    \begin{equation*}
+        \begin{aligned}
+            \left[S\right]_{\mathcal B\mathcal C} [T]_{\mathcal A\mathcal B} [u]_{\mathcal A} &= [S]_{\mathcal B\mathcal C} [T(u)]_{\mathcal B}\\
+            &= [S(T(u))]_{\mathcal C}\\
+        \end{aligned}
+    \end{equation*}
+
+    Pela unicidade da matriz que satisfaz essa propriedade, concluímos que $[S \circ T]_{\mathcal A\mathcal C} = [S]_{\mathcal B\mathcal C} [T]_{\mathcal A\mathcal B}$.
+\end{proof}
+
+Finalmente, a invertibilidade também é respeitada.
+
+\begin{proposition}
+    Sejam $V$ e $W$ espaços vetoriais sobre um corpo $\mathbb K$, com $1\leq \dim V=n<\infty$ e $1\leq \dim W=m<\infty$.
+    Sejam $\mathcal B = (v_1, \dots, v_n)$ uma base ordenada de $V$ e $\mathcal C = (w_1, \dots, w_m)$ uma base ordenada de $W$.
+    Seja $T: V \to W$ uma transformação linear.
+    Então:
+
+    \begin{enumerate}[label=(\alph*)]
+        \item $[\id_V]_{\mathcal B\mathcal B} = I_n$, onde $I_n$ é a matriz identidade de ordem $n$.
+        \item Se $T$ é um isomorfismo se, e somente se $n = m$ e $[T]_{\mathcal B\mathcal C}$ é invertível.
+        Nesse caso, $[T^{-1}]_{\mathcal C\mathcal B} = ([T]_{\mathcal B\mathcal C})^{-1}$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    O primeiro item é imediato, uma vez que $[ \id_V (v_j)]_{\mathcal B} = [v_j]_{\mathcal B}$ é o vetor coluna com $1$ na $j$-ésima posição e $0$ nas demais, ou seja, $[\delta_{ij}]_{i=1}^n$.
+
+    Para o segundo item, suponha que $T$ é um isomorfismo.
+    Então, necessariamente, $n = m$ e $[T]_{\mathcal C\mathcal B}$ está bem definida.
+    Do item anterior, segue que:
+    \begin{equation*}
+        I_n = [\id_V]_{\mathcal B\mathcal B} = [T^{-1} \circ T]_{\mathcal B\mathcal B} = [T^{-1}]_{\mathcal C\mathcal B} [T]_{\mathcal B\mathcal C}.
+    \end{equation*}
+    E que:
+    \begin{equation*}
+        I_n = [\id_W]_{\mathcal C\mathcal C} = [T \circ T^{-1}]_{\mathcal C\mathcal C} = [T]_{\mathcal B\mathcal C} [T^{-1}]_{\mathcal C\mathcal B}.
+    \end{equation*}
+    Logo, $[T]_{\mathcal B\mathcal C}$ é invertível e $[T^{-1}]_{\mathcal C\mathcal B} = ([T]_{\mathcal B\mathcal C})^{-1}$.
+
+    Reciprocamente, suponha que $n = m$ e que $[T]_{\mathcal B\mathcal C}$ é invertível.
+    Seja $A$ a matriz inversa de $[T]_{\mathcal B\mathcal C}$.
+    Seja $S$ uma transformação linear tal que $[S]_{\mathcal C\mathcal B} = A$.
+    Então temos o seguinte:
+    \begin{equation*}
+        [S \circ T]_{\mathcal B\mathcal B} = [S]_{\mathcal C\mathcal B} [T]_{\mathcal B\mathcal C} = A[T]_{\mathcal B\mathcal C} = I_n=[\id_V]_{\mathcal B\mathcal B}.
+    \end{equation*}
+    Logo, $S \circ T = \id_V$.
+    Similarmente, $T \circ S = \id_W$.
+    Portanto, $T$ é um isomorfismo e $S = T^{-1}$.
+\end{proof}
+
