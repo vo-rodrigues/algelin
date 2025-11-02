@@ -179,3 +179,40 @@ O mesmo fenômeno descrito anteriormente ocorre aqui, como expressado formalment
     Assim, a $j$-ésima coluna de $A$ é igual à $j$-ésima coluna de $[T]_{\mathcal B\mathcal C}$.
     Como isso vale para todo $j \in \{1, \dots, n\}$, concluímos que $A = [T]_{\mathcal B\mathcal C}$.
 \end{proof}
+
+Dessa forma, toda transformação linear entre espaços vetoriais finitamente gerados pode ser representada por uma matriz, desde que escolhidas bases adequadas para os espaços envolvidos.
+Isso mostra que é possível estabelecer uma correspondência entre transformações lineares e matrizes, o que é fundamental para o estudo e aplicação de transformações lineares em diversas áreas da matemática e suas aplicações.
+
+Essa correspondência vai além.
+Em verdade, ela é um isomorfismo entre o espaço vetorial das transformações lineares de $V$ em $W$ e o espaço vetorial das matrizes $M_{m\times n}(\mathbb K)$.
+
+\begin{theorem}
+    Sejam $V$ e $W$ espaços vetoriais sobre um corpo $\mathbb K$, com $1\leq \dim V=n<\infty$ e $1\leq \dim W=m<\infty$.
+    Sejam $\mathcal B = (v_1, \dots, v_n)$ uma base ordenada de $V$ e $\mathcal C = (w_1, \dots, w_m)$ uma base ordenada de $W$.
+    A aplicação $\Phi: \mathcal L(V, W) \to M_{m\times n}(\mathbb K)$ dada por $\Phi(T) = [T]_{\mathcal B\mathcal C}$ é um isomorfismo de espaços vetoriais.
+\end{theorem}
+\begin{proof}
+    Verificaremos a linearidade, injetividade e sobrejetividade de $\Phi$.
+
+    Sejam $T, S \in \mathcal L(V, W)$ e $\beta \in \mathbb K$.
+    Veremos que $[T+\beta S]_{\mathcal B\mathcal C} = [T]_{\mathcal B\mathcal C} + \beta [S]_{\mathcal B\mathcal C}$.
+    Para isso, veremos que, sendo $A=[T]_{\mathcal B\mathcal C} + \beta [S]_{\mathcal B\mathcal C}$, temos $A[x]_{\mathcal B} = [(T + \beta S)(x)]_{\mathcal C}$ para todo $x \in V$.
+
+    Com efeito, temos:
+
+    \begin{equation*}
+        \begin{aligned}
+            A[x]_{\mathcal B} &= \left([T]_{\mathcal B\mathcal C} + \beta [S]_{\mathcal B\mathcal C}\right)[x]_{\mathcal B}\\
+            &= [T]_{\mathcal B\mathcal C}[x]_{\mathcal B} + \beta [S]_{\mathcal B\mathcal C}[x]_{\mathcal B}\\
+            &= [T(x)]_{\mathcal C} + \beta [S(x)]_{\mathcal C}\\
+            &= [T(x) + \beta S(x)]_{\mathcal C}\\
+            &= [(T + \beta S)(x)]_{\mathcal C}.
+        \end{aligned}
+    \end{equation*}
+
+    Assim, pela unicidade da matriz que satisfaz essa propriedade, temos que $A = [T + \beta S]_{\mathcal B\mathcal C}$.
+    Logo, $\Phi$ é linear.
+
+    Vejamos que $\Phi$ é injetora.
+    Basta ver que $\Ker \Phi = \{0\}$.
+\end{proof}
