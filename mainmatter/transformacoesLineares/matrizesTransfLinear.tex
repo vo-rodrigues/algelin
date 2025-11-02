@@ -300,3 +300,56 @@ Finalmente, a invertibilidade também é respeitada.
     Portanto, $T$ é um isomorfismo e $S = T^{-1}$.
 \end{proof}
 
+Vamos enfatizar alguns casos particulares importantes.
+
+\begin{definition}
+    Seja $V$ um espaço vetorial sobre um corpo $\mathbb K$, com $1\leq \dim V=n<\infty$.
+    Sejam $\mathcal B = (v_1, \dots, v_n)$ e $\mathcal C = (w_1, \dots, w_n)$ bases ordenadas de $V$.
+
+    A matriz de mudança de base de $\mathcal B$ para $\mathcal C$ é a matriz $P$ tal que:
+    \begin{equation*}
+        P[x]_{\mathcal B} = [x]_{\mathcal C}
+    \end{equation*}
+    para todo vetor $x \in V$.
+
+    Ou seja, $P=[\id_V]_{\mathcal B\mathcal C}$.
+
+    A matriz de mudança de base de $\mathcal B$ para $\mathcal C$ é denotada por $I_{\mathcal B\mathcal C}$.
+\end{definition}
+
+Dessa forma, $I_{\mathcal B\mathcal C}$ é a matriz cuja $j$-ésima coluna é dada por $[v_j]_{\mathcal C}$, e $I_{\mathcal B\mathcal C}=[\id_V]_{\mathcal B\mathcal C}$.
+Pelo que vimos, é imediato que:
+
+\begin{corollary}
+    Sejam $V$ um espaço vetorial sobre um corpo $\mathbb K$, com $1\leq \dim V=n<\infty$.
+    Sejam $\mathcal B = (v_1, \dots, v_n)$ e $\mathcal C = (w_1, \dots, w_n)$ bases ordenadas de $V$.
+    Então, $I_{\mathcal B\mathcal C}$ é invertível e $I_{\mathcal C\mathcal B} = (I_{\mathcal B\mathcal C})^{-1}$.
+\end{corollary}
+\begin{proof}
+    Temos que $I_{\mathcal B\mathcal C} = [\id_V]_{\mathcal B\mathcal C}$.
+    Como $\id_V$ é um isomorfismo, pelo teorema anterior, $I_{\mathcal B\mathcal C}$ é invertível e $[ (\id_V)^{-1} ]_{\mathcal C\mathcal B} = (I_{\mathcal B\mathcal C})^{-1}=[\id_V]_{\mathcal C\mathcal B}=I_{\mathcal C\mathcal B}$.
+\end{proof}
+
+Outro caso particular importante é o seguinte: se temos bases ordenadas $\mathcal B, \mathcal B'$ de $V$ e $\mathcal C, \mathcal C'$ de $W$, como relacionar $[T]_{\mathcal B\mathcal C}$ e $[T]_{\mathcal B'\mathcal C'}$?
+
+\begin{proposition}
+    Sejam $V$ e $W$ espaços vetoriais sobre um corpo $\mathbb K$, com $1\leq \dim V=n<\infty$ e $1\leq \dim W=m<\infty$.
+    Sejam $\mathcal B, \mathcal B'$ bases ordenadas de $V$ e $\mathcal C, \mathcal C'$ bases ordenadas de $W$.
+    Seja $T: V \to W$ uma transformação linear.
+    Então:
+    \begin{equation*}
+        [T]_{\mathcal B'\mathcal C'} = I_{\mathcal C\mathcal C'} [T]_{\mathcal B\mathcal C} I_{\mathcal B'\mathcal B}.
+    \end{equation*}
+\end{proposition}
+\begin{proof}
+    Pelos teoremas anteriores, temos:
+    \begin{equation*}
+        \begin{aligned}
+            I_{\mathcal C\mathcal C'} [T]_{\mathcal B\mathcal C} I_{\mathcal B'\mathcal B} &= [\id_W]_{\mathcal C\mathcal C'} [T]_{\mathcal B\mathcal C} [\id_V]_{\mathcal B'\mathcal B}\\
+            &= [\id_W \circ T]_{\mathcal B\mathcal C'} [\id_V]_{\mathcal B'\mathcal B}\\
+            &= [\id_W \circ T\circ \id_V]{\mathcal B'\mathcal C'}\\
+            &= [T]_{\mathcal B'\mathcal C'}.
+        \end{aligned}
+    \end{equation*}
+\end{proof}
+
