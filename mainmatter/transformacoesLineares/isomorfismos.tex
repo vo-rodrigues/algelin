@@ -36,3 +36,53 @@ A relação de isomorfismo entre espaços vetoriais é uma relação de equival�
         \end{aligned}
     \end{equation*}
 \end{proof}
+
+Da mesma forma que a transformação $x \mapsto (x)_{\mathcal B}$ é um isomorfismo entre $V$ e $\mathbb K^n$, a transformação $x \mapsto [x]_{\mathcal B}$ também é um isomorfismo entre $V$ e $M_{n\times 1}(\mathbb K)$.
+
+\begin{lemma}
+    Sejam $V$ um espaço vetorial sobre um corpo $\mathbb K$, com $1\leq \dim V=n<\infty$, e $\mathcal B$ uma base ordenada de $V$.
+    A transformação $[\,\cdot\,]_{\mathcal B}: V \to M_{n\times 1}(\mathbb K)$ é um isomorfismo.
+\end{lemma}
+\begin{proof}
+    Verificaremos a linearidade.
+    Sejam $u, w \in V$ e $\beta \in \mathbb K$, com $(\alpha_1, \dots, \alpha_n)=(u)_{\mathcal B}$ e $(\gamma_1, \dots, \gamma_n)=(w)_{\mathcal B}$.
+
+    Sejam as coordenadas de $u$ e $w$ na base $\mathcal B$ dadas por $(\alpha_1, \dots, \alpha_n)$ e $(\gamma_1, \dots, \gamma_n)$, respectivamente.
+    Então as coordenadas de $u+w$ e de $\beta w$ na base $\mathcal B$ são dadas por $(\alpha_1 + \gamma_1, \dots, \alpha_n + \gamma_n)$ e $(\beta \gamma_1, \dots, \beta \gamma_n)$, respectivamente.
+    Logo:
+    \begin{equation*}
+        \begin{aligned}
+            \left[u + \beta w\right]_{\mathcal B} &= 
+            \begin{pmatrix}
+                \alpha_1 + \beta \gamma_1\\
+                \alpha_2 + \beta \gamma_2\\
+                \vdots\\
+                \alpha_n + \beta \gamma_n
+            \end{pmatrix}\\
+            &=
+            \begin{pmatrix}
+                \alpha_1\\
+                \alpha_2\\
+                \vdots\\
+                \alpha_n
+            \end{pmatrix}
+            +
+            \beta
+            \begin{pmatrix}
+                \gamma_1\\
+                \gamma_2\\
+                \vdots\\
+                \gamma_n
+            \end{pmatrix}\\
+            &=
+            [u]_{\mathcal B} + \beta [w]_{\mathcal B}.
+        \end{aligned}
+    \end{equation*}
+    O que prova que $[\,\cdot\,]_{\mathcal B}$ é linear.
+
+    Para a injetividade, veremos que o núcleo é trivial.
+    Seja $u \in V$ tal que $[u]_{\mathcal B} = 0$.
+    Então as coordenadas de $u$ na base $\mathcal B$ são todas nulas, ou seja, $u = 0$.
+
+    Para a sobrejetividade, temos, pelo Teorema do Núcleo e Imagem, que $\dim(\operatorname{Im}([\,\cdot\,]_{\mathcal B})) = \dim(V)=n=\dim(M_{n\times 1}(\mathbb K))$.
+\end{proof}
