@@ -146,6 +146,51 @@ Não vamos lidar com isso nesse momento, e sim estudar outra operação entre fu
     Então:
     \begin{itemize}
         \item (Associatividade da composição) $R \circ (S \circ T) = (R \circ S) \circ T$.
-        \item (Elemento neutro da composição) Se $\id_V: V \to V$ é a transformação identidade em $V$, então, para qualquer $T \in L(U, V)$ e qualquer $S \in L(V, W)$, temos $I_V \circ T = T$ e $S \circ I_V = S$.
+        \item (Elemento neutro da composição) Se $\id_V: V \to V$ e $\id_W:W\rightarrow W$ são as transformações identidades em $V$ e $W$, então, para qualquer $T \in L(U, V)$ e qualquer $S \in L(V, W)$, temos $\id_V \circ T = T$ e $S \circ \id_W = S$.
+        \item (Distributividade à direita) Para quaisquer $S_1, S_2 \in L(V, W)$ e qualquer $T \in L(U, V)$, temos $(S_1 + S_2) \circ T = S_1 \circ T + S_2 \circ T$.
+        \item (Distributividade à esquerda) Para quaisquer $S \in L(V, W)$ e $T_1, T_2 \in L(U, V)$, temos $S \circ (T_1 + T_2) = S \circ T_1 + S \circ T_2$.
+        \item (Compatibilidade com o produto por escalar) Para qualquer $S \in L(V, W)$, qualquer $T \in L(U, V)$ e qualquer $\alpha \in \mathbb K$, temos $(\alpha S) \circ T = \alpha (S \circ T)$.
     \end{itemize}
 \end{proposition}
+\begin{proof}
+    As demonstrações são diretas, baseando-se na definição de composição de funções e nas propriedades das transformações lineares.
+    Os dois primeiros itens são propriedades gerais de composição de funções, não dependendo da linearidade, e são deixadas como exercício.
+
+    Provaremos as outras.
+
+    \begin{itemize}
+        \item (Distributividade à direita) Sejam $S_1, S_2 \in L(V, W)$, $T \in L(U, V)$ e $u \in U$.
+        Temos:
+        \begin{equation*}
+            \begin{aligned}
+                ((S_1 + S_2) \circ T)(u) &= (S_1 + S_2)(T(u)) \\
+                                         &= S_1(T(u)) + S_2(T(u)) \\
+                                         &= (S_1 \circ T)(u) + (S_2 \circ T)(u) \\
+                                         &= (S_1 \circ T + S_2 \circ T)(u).
+            \end{aligned}
+        \end{equation*}
+        Logo, $(S_1 + S_2) \circ T = S_1 \circ T + S_2 \circ T$.
+        \item (Distributividade à esquerda) Sejam $S \in L(V, W)$, $T_1, T_2 \in L(U, V)$ e $u \in U$.
+        Temos:
+        \begin{equation*}
+            \begin{aligned}
+                (S \circ (T_1 + T_2))(u) &= S((T_1 + T_2)(u)) \\
+                                         &= S(T_1(u) + T_2(u)) \\
+                                         &= S(T_1(u)) + S(T_2(u)) \\
+                                         &= (S \circ T_1)(u) + (S \circ T_2)(u) \\
+                                         &= (S \circ T_1 + S \circ T_2)(u).
+            \end{aligned}
+        \end{equation*}
+        Logo, $S \circ (T_1 + T_2) = S \circ T_1 + S \circ T_2$.
+        \item (Compatibilidade com o produto por escalar) Sejam $S \in L(V, W)$, $T \in L(U, V)$, $\alpha \in \mathbb K$ e $u \in U$.
+        Temos:
+        \begin{equation*}
+            \begin{aligned}
+                ((\alpha S) \circ T)(u) &= (\alpha S)(T(u)) \\
+                                         &= \alpha S(T(u)) \\
+                                         &= \alpha (S \circ T)(u).
+            \end{aligned}
+        \end{equation*}
+        Logo, $(\alpha S) \circ T = \alpha (S \circ T)$.
+    \end{itemize}
+\end{proof}
