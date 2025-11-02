@@ -108,3 +108,74 @@ Então:
     \end{pmatrix}.
 \end{equation*}
 \end{definition}
+
+O mesmo fenômeno descrito anteriormente ocorre aqui, como expressado formalmente pela seguinte proposição.
+
+\begin{proposition}
+    Sejam $V$ e $W$ espaços vetoriais sobre um corpo $\mathbb K$, com $1\leq \dim V=n<\infty$ e $1\leq \dim W=m<\infty$.
+    Sejam $\mathcal B = (v_1, \dots, v_n)$ uma base ordenada de $V$ e $\mathcal C = (w_1, \dots, w_m)$ uma base ordenada de $W$.
+    Para toda transformação linear $T: V \to W$ e todo $x \in V$, temos:
+    \begin{equation*}
+        [T]_{\mathcal B\mathcal C} [x]_{\mathcal B}=[T(x)]_{\mathcal C}.
+    \end{equation*}
+
+    Além disso, $[T]_{\mathcal B\mathcal C}$ é a única matriz em $M_{m\times n}(\mathbb K)$ que satisfaz essa propriedade.
+    Ou seja, se $A \in M_{m\times n}(\mathbb K)$ é tal que $A[x]_{\mathcal B} = [T(x)]_{\mathcal C}$ para todo $x \in V$, então $A = [T]_{\mathcal B\mathcal C}$.
+\end{proposition}
+
+\begin{proof}
+    Seja $x \in V$ e $(\alpha_1, \dots, \alpha_n)=(x)_{\mathcal B}$.
+    Temos:
+    \begin{equation*}
+        \begin{aligned}
+            \left[T\right]_{\mathcal B\mathcal C} [x]_{\mathcal B} &= 
+            \begin{pmatrix}
+                | & | & & |\\
+                [T(v_1)]_{\mathcal C} & [T(v_2)]_{\mathcal C} & \cdots & [T(v_n)]_{\mathcal C}\\
+                | & | & & |
+            \end{pmatrix}
+            \begin{pmatrix}
+                \alpha_1\\
+                \alpha_2\\
+                \vdots\\
+                \alpha_n
+            \end{pmatrix}\\
+            &= \sum_{i=1}^n \alpha_i [T(v_i)]_{\mathcal C}\\
+            &= \left[\sum_{i=1}^n \alpha_i T(v_i)\right]_{\mathcal C}\\
+            &= \left[T\left(\sum_{i=1}^n \alpha_i v_i\right)\right]_{\mathcal C}\\
+            &= [T(x)]_{\mathcal C}.
+        \end{aligned}
+    \end{equation*}
+
+    Agora, seja $A \in M_{m\times n}(\mathbb K)$ tal que $A[x]_{\mathcal B} = [T(x)]_{\mathcal C}$ para todo $x \in V$.
+    Seja $j \in \{1, \dots, n\}$.
+    Então, tomando $x = v_j$, temos que $(v_j)_{\mathcal B}$ é o vetor coluna com $1$ na $j$-ésima posição e $0$ nas demais, ou seja, $(v_j)_{\mathcal B}=(\delta_{ij})_{i=1}^n$.
+    \begin{equation*}
+        A[e_j] = A[v_j]_{\mathcal B} = [T(v_j)]_{\mathcal C},
+    \end{equation*}
+    onde $e_j$ é o $j$-ésimo vetor da base canônica de $\mathbb K^n$.
+    Logo, sendo $A_1, A_2, \dots, A_n$ as colunas de $A$, temos que:
+
+    \begin{equation*}
+        \begin{aligned}
+            A [v_j]_{\mathcal B} &= 
+            \begin{pmatrix}
+                | & | & & |\\
+                A_1 & A_2 & \cdots & A_n\\
+                | & | & & |
+            \end{pmatrix}
+            \begin{pmatrix}
+                \delta_{1j}\\
+                \delta_{2j}\\
+                \vdots\\
+                \delta_{nj}
+            \end{pmatrix}\\
+            &= \sum_{i=1}^n \delta_{ij}A_i\\
+            &= A_j.
+        \end{aligned}
+    \end{equation*}
+
+    Por outro lado, $A[v_j]_{\mathcal B} = [T(v_j)]_{\mathcal C}$.
+    Assim, a $j$-ésima coluna de $A$ é igual à $j$-ésima coluna de $[T]_{\mathcal B\mathcal C}$.
+    Como isso vale para todo $j \in \{1, \dots, n\}$, concluímos que $A = [T]_{\mathcal B\mathcal C}$.
+\end{proof}
