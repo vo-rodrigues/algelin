@@ -112,35 +112,111 @@ Iniciaremos com a existência.
 \begin{proof}
     Verificaremos a multilinearidade.
     Sejam $k \in \{1, \dots, n+1\}$, $v_1, \ldots, v_{n+1}, v_k' \in R^{n+1}$ e $\alpha \in R$.
-
-    Se $k\neq j$, temos que:
     \begin{equation*}
         \begin{aligned}
-            f(v_1, \ldots, v_{k-1}, v_k + \alpha v_k', v_{k+1}, \ldots, v_{n+1}) &= \sum_{j=1}^{n+1} (-1)^{j+i} v_{ij} g(v_1^{(i)}, \ldots, (v_k + \alpha v_k')^{(i)}, \ldots, v_{n+1}^{(i)})\\
-            &= \sum_{j=1}^{n+1} (-1)^{j+i} v_{ij} \big(g(v_1^{(i)}, \ldots, v_k^{(i)}, \ldots, v_{n+1}^{(i)}) + g(v_1^{(i)}, \ldots, \alpha v_k'^{(i)}, \ldots, v_{n+1}^{(i)})\big)\\
+            f(v_1, \ldots, v_{k-1}, v_k + \alpha v_k', v_{k+1}, \ldots, v_{n+1}) 
+            &= (-1)^{k+i}(v_{ik}+\alpha v_{ik'})\,g(v_1^{(i)}, \dots, v_{k-1}^{(i)}, v_{k+1}^{(i)}, \dots, v_{n+1}^{(i)}) \\
+            &\quad + \sum_{\substack{j=1\\ j\neq k}}^{n+1} (-1)^{j+i} v_{ij}\, g(v_1^{(i)}, \ldots, (v_k + \alpha v_k')^{(i)}, \ldots, v_{n+1}^{(i)})\\
+            &= (-1)^{k+i}(v_{ik}+\alpha v_{ik'})\,g(v_1^{(i)}, \dots, v_{k-1}^{(i)}, v_{k+1}^{(i)}, \dots, v_{n+1}^{(i)})\\
+            &\quad + \sum_{\substack{j=1\\ j\neq k}}^{n+1} (-1)^{j+i} v_{ij} \big(g(v_1^{(i)}, \ldots, v_k^{(i)}, \ldots, v_{n+1}^{(i)}) \\
+            &\qquad\quad + g(v_1^{(i)}, \ldots, \alpha v_k'^{(i)}, \ldots, v_{n+1}^{(i)})\big)\\
             &= f(v_1, \ldots, v_{n+1}) + \alpha f(v_1, \ldots, v_{k-1}, v_k', v_{k+1}, \ldots, v_{n+1}).
         \end{aligned}
     \end{equation*}
-
-    E, se $k = j$, temos que:
-    \begin{equation*}
-        \begin{aligned}
-            f(v_1, \ldots, v_{i-1}, v_i + \alpha v_i', v_{i+1}, \ldots, v_{n+1}) &= \sum_{j=1}^{n+1} (-1)^{j+i} (v_{ij} + \alpha v_{ij}') g(v_1^{(j)}, \ldots, v_{i-1}^{(j)}, v_{i+1}^{(j)}, \ldots, v_{n+1}^{(j)})\\
-            &= \sum_{j=1}^{n+1} (-1)^{j+i} v_{ij} g(v_1^{(j)}, \ldots, v_{i-1}^{(j)}, v_{i+1}^{(j)}, \ldots, v_{n+1}^{(j)})\\
-            &\quad + \alpha \sum_{j=1}^{n+1} (-1)^{j+i} v_{ij}' g(v_1^{(j)}, \ldots, v_{i-1}^{(j)}, v_{i+1}^{(j)}, \ldots, v_{n+1}^{(j)})\\
-            &= f(v_1, \ldots, v_{n+1}) + \alpha f(v_1, \ldots, v_{i-1}, v_i', v_{i+1}, \ldots, v_{n+1}).
-        \end{aligned}
-    \end{equation*}
-
     Agora vejamos que $f$ é alternada.
 
     Sejam $v_1, \ldots, v_{n+1} \in R^{n+1}$ tais que existem $k, l \in \{1, \ldots, n+1\}$ com $k \neq l$ e $v_k = v_l$.
-
-    Se $i \neq k$ e $i \neq l$, então:
+    Veremos que $f(v_1, \ldots, v_{n+1}) = 0$.
+    Perceba que na expressão que define a função, todas as parcelas para as quais $j\notin\{k, l\}$ são nulas.
+    Assim:
     \begin{equation*}
         \begin{aligned}
-            f(v_1, \ldots, v_{n+1}) &= \sum_{j=1}^{n+1} (-1)^{j+i} v_{ij} g(v_1^{(j)}, \ldots, v_k^{(j)}, \ldots, v_l^{(j)}, \ldots, v_{n+1}^{(j)})\\
-            &= \sum_{j=1}^{n+1} (-1)^{j+i} v_{ij} \cdot 0 = 0,
+            f(v_1, \ldots, v_{n+1}) &= (-1)^{k+i} v_{ik} g(v_1^{(i)}, \ldots, v_{k-1}^{(i)}, v_{k+1}^{(i)}, \ldots, v_{n+1}^{(i)}) \\
+            &\quad + (-1)^{l+i} v_{il} g(v_1^{(i)}, \ldots, v_{l-1}^{(i)}, v_{l+1}^{(i)}, \ldots, v_{n+1}^{(i)})\\
+        \end{aligned}
+    \end{equation*}
+    Perceba que $(v_1^{(i)}, \ldots, v_{k-1}^{(i)}, v_{k+1}^{(i)}, \ldots, v_{n+1}^{(i)})$ é a mesma sequência que $(v_1^{(i)}, \ldots, v_{l-1}^{(i)}, v_{l+1}^{(i)}, \ldots, v_{n+1}^{(i)})$, exceto pela aplicação de $|k-l-1|$ transposições.
+    Logo:
+
+    \begin{equation*}
+        \begin{aligned}
+            f(v_1, \ldots, v_{n+1}) &= (-1)^{k+i} v_{ik} g(v_1^{(i)}, \ldots, v_{k-1}^{(i)}, v_{k+1}^{(i)}, \ldots, v_{n+1}^{(i)}) \\
+            &\quad + (-1)^{l+i} v_{il} g(v_1^{(i)}, \ldots, v_{l-1}^{(i)}, v_{l+1}^{(i)}, \ldots, v_{n+1}^{(i)})\\
+            &= (-1)^{k+i} v_{ik} g(v_1^{(i)}, \ldots, v_{k-1}^{(i)}, v_{k+1}^{(i)}, \ldots, v_{n+1}^{(i)}) \\
+            &\quad + (-1)^{l+i} v_{ik} (-1)^{k-l+1} g(v_1^{(i)}, \ldots, v_{k-1}^{(i)}, v_{k+1}^{(i)}, \ldots, v_{n+1}^{(i)})\\
+            &= 0.
+        \end{aligned}
+    \end{equation*}
+
+    Para a última afirmação, note que ao calcular $f(e_1, e_2, \ldots, e_{n+1})$, a única parcela que não é nula é aquela em que $j = i$, o que nos dá exatamente $g$ aplicada na base canônica de $R^n$, que é $r$.
+\end{proof}
+
+Em particular, existem funções determinantes.
+Agora podemos provar a unicidade dessas funções.
+
+\begin{lemma}
+    Para todo $n\geq 1$, existe no máximo uma função multilinear e alternada $f: (R^n)^n \to R$, e esta é dada por:
+
+    \begin{equation*}
+        f(v_1, v_2, \ldots, v_n) = \sum_{\sigma \in S_n} \sgn(\sigma) \prod_{i=1}^n v_{i\sigma(i)}.
+    \end{equation*}
+    Acima, $\sgn(\sigma)$ é a paridade do número de transposições necessárias para obter a permutação $\sigma$ a partir da permutação identidade, $v_{ij}$ é a $j$-ésima coordenada do vetor $v_i$, e $S_n$ é o conjunto de todas as permutações de $\{1, 2, \ldots, n\}$.
+\end{lemma}
+
+\begin{proof}
+    Temos que:
+
+    \begin{equation*}
+        \begin{aligned}
+            f(v_1, v_2, \ldots, v_n) &= f\left(\sum_{j_1=1}^n v_{1j_1} e_{j_1}, \sum_{j_2=1}^n v_{2j_2} e_{j_2}, \ldots, \sum_{j_n=1}^n v_{nj_n} e_{j_n}\right)\\
+            &= \sum_{j_1=1}^n \sum_{j_2=1}^n \cdots \sum_{j_n=1}^n v_{1j_1} v_{2j_2} \cdots v_{nj_n} f(e_{j_1}, e_{j_2}, \ldots, e_{j_n}).
+        \end{aligned}
+    \end{equation*}
+        \begin{equation*}
+        \begin{aligned}
+            f(v_1, v_2, \ldots, v_n) &= f\left(\sum_{\sigma \in S_n} \sgn(\sigma) \prod_{i=1}^n v_{i\sigma(i)}\right)f(e_{\sigma(1)}, e_{\sigma(2)}, \ldots, e_{\sigma(n)})\\
+            &= \sum_{\sigma \in S_n} \sgn(\sigma) \prod_{i=1}^n v_{i\sigma(i)}.
         \end{aligned}
     \end{equation*}
 \end{proof}
+
+    \begin{example}
+    Para $n=1$, a função determinante em um anel comutativo $R$ é dada por $\det(v_1) = v_{11}$.
+    \end{example}
+
+    \begin{example}
+    Para $n=2$, a função determinante em um anel comutativo $R$ é dada por $\det(v_1, v_2) = v_{11}v_{22} - v_{12}v_{21}$.
+    \end{example}
+
+    \begin{example}
+    Para $n=3$, a função determinante em um anel comutativo $R$ é dada por $\det(v_1, v_2, v_3) = v_{11}v_{22}v_{33} + v_{12}v_{23}v_{31} + v_{13}v_{21}v_{32} - v_{13}v_{22}v_{31} - v_{11}v_{23}v_{32} - v_{12}v_{21}v_{33}$.
+    \end{example}
+
+    \begin{example}
+    Para $n\geq 1$, a função determinante $n+1\times n+1$ em um anel comutativo $R$ é dada pela expressão recursiva:
+    \begin{equation*}
+        \det(v_1, v_2, \ldots, v_{n+1}) = \sum_{j=1}^{n+1} (-1)^{j+i} v_{ij} \det(v_2^{(i)}, \ldots, v_{j-1}^{(i)}, v_{j+1}^{(i)}, \ldots, v_{n+1}^{(i)}),
+    \end{equation*}
+
+    em que $i$ está fixo.
+\end{example}
+
+\begin{theorem}[Binet]
+    Sejam $A, B \in M_n(R)$.
+    Então $\det(AB) = \det(A)\det(B)$.
+\end{theorem}
+\begin{proof}
+Fixe $A$. Defina $f: (R^n)^n \to R$ por $f(v_1, v_2, \ldots, v_n) = \det(Av_1, Av_2, \ldots, Av_n)$.
+Note que $f$ é multilinear e alternada e que $f(e_1, e_2, \ldots, e_n) = \det(A)$.
+Logo, $f(v_1, v_2, \ldots, v_n) = \det(A) \det(v_1, v_2, \ldots, v_n)$.
+
+Por outro lado, $g:(R^n)^n \to R$ definida por $g(v_1, v_2, \ldots, v_n) = \det(A)\det(v_1, v_2, \ldots, v_n)$ também é multilinear e alternada e vale $\det(A)$ em $(e_1, e_2, \ldots, e_n)$.
+Logo, $f(v_1, v_2, \ldots, v_n) = g(v_1, v_2, \ldots, v_n)$ para todos $v_1, v_2, \ldots, v_n \in R^n$.
+Em particular, para as colunas de $B$, temos:
+\begin{equation*}
+    \det(AB) = f(\text{col}_1(B), \text{col}_2(B), \ldots, \text{col}_n(B)) = g(\text{col}_1(B), \text{col}_2(B), \ldots, \text{col}_n(B)) = \det(A)\det(B).
+\end{equation*}
+\end{proof}
+
+
+
