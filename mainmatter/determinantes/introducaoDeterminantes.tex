@@ -3,4 +3,144 @@
 Os determinantes são funções que associam a cada matriz quadrada um escalar, de forma que essa associação capture certas propriedades importantes da matriz.
 
 Para defini-los, pensarmos em uma matriz quadrada $n\times n$ como uma coleção de $n$ vetores em um espaço vetorial de dimensão $n$.
-O determinante mede o "volume" do paralelogramo (ou paralelepípedo) formado por esses vetores.
+
+Em nossa discussão inicial, pensaremos no corpo dos números reais.
+No corpo dos números reais, o determinante mede o "volume" do paralelogramo (ou paralelepípedo) formado por esses vetores.
+
+Listaremos algumas propriedades que esperamos que o determinante satisfaça. Abaixo, todos os vetores são elementos de $\mathbb R^n$.
+
+\begin{enumerate}[label=\alph*)]
+    \item $\det(e_1, e_2, \ldots, e_n) = 1$, em que $e_i$ são os vetores da base canônica, pois este é o paralelogramo unitário.
+    \item Temos que $\det(v_1, v_2, \ldots, v_n) = 0$ caso tenhamos dois vetores repetidos, pois o paralelogramo colapsa em um espaço de dimensão menor, resultando em volume zero.
+    \item Ao multiplicar um vetor por algum escalar, o determinante é multiplicado por esse escalar.
+    Ou seja, para todos os escalares $\alpha \in \mathbb R$ e qualquer coordenada $i$, temos que $\det(v_1, \ldots, \alpha v_i, \ldots, v_n) = \alpha \det(v_1, v_2, \ldots, v_n)$.
+    Notemos que isso abre margem para a possibilidade de o determinante ser negativo, o que tem a ver com a orientação do paralelogramo.
+    \item Se $v_1, v_2, \ldots, v_n$ são vetores e $v_i'$ é outro vetor, então $\det(v_1, \ldots, v_{i-1}, v_i + v_i', v_{i+1}, \ldots, v_n) = \det(v_1, v_2, \ldots, v_n) + \det(v_1, \ldots, v_{i-1}, v_i', v_{i+1}, \ldots, v_n)$.
+    Tal propriedade é esperada, pois o paralelogramo determinado pelos vetores do lado esquerdo da igualdade pode ser visto como uma junção do paralelogramo determinado pelos vetores do primeiro determinante do lado direito com o paralelogramo determinado pelos vetores do segundo determinante do lado direito, o que faz as áreas serem somadas.
+    Note que isso também abre margem para volumes negativos, o que será ignorado na discussão inicial, mas que tem a ver, novamente, com a orientação.
+\end{enumerate}
+
+As propriedades c) e d) indicam que o determinante é uma função \emph{linear em cada coordenada}.
+
+Olhando para elas isoladamente, é possível definir o seguinte conceito.
+Abaixo, note que $(R^n)^n=R^n \times R^n \times \dots \times R^n$ ($n$ vezes).
+
+\begin{definition}
+Seja $R$ um anel comutativo.
+Uma função $f: (R^n)^n \to R$ é dita \emph{multilinear} se, para cada $i \in \{1, \ldots, n\}$, a função obtida ao fixar todos os argumentos de $f$ exceto o $i$-ésimo é linear.
+Formalmente, se para todos $v_1, \dots, v_n, v_j'\in R^n$ e todo $\alpha \in R$, temos:
+\begin{itemize}[leftmargin=4.1mm]
+    \item A função $f$ abre para soma coordenada-a-coordenada, ou seja:
+    \begin{equation*}
+    f(v_1, \ldots, v_{j-1}, v_j + v_j', v_{j+1}, \ldots, v_n) = f(v_1, \ldots, v_{j-1}, v_j, v_{j+1}, \ldots, v_n) + f(v_1, \ldots, v_{j-1}, v_j', v_{j+1}, \ldots, v_n).
+    \end{equation*}
+    \item A função $f$ respeita o produto por escalar em cada coordenada, ou seja:
+    \begin{equation*}
+    f(v_1, \ldots, v_{j-1}, \alpha v_j, v_{j+1}, \ldots, v_n) = \alpha f(v_1, \ldots, v_{j-1}, v_j, v_{j+1}, \ldots, v_n).
+    \end{equation*}
+\end{itemize}
+\end{definition}
+
+Agora olharemos para a propriedade b).
+Na presença da multilinearidade, ela é equivalente a outra propriedade no corpo dos números reais.
+
+\begin{proposition}
+Seja $f: (R^n)^n \to R$ uma função multilinear.
+Considere as seguintes afirmações:
+\begin{enumerate}[label=\alph*)]
+    \item ($f$ é antissimétrica) Para quaisquer $v_1, \ldots, v_n \in R^n$ e $i, j \in \{1, \ldots, n\}$ com $i \neq j$, temos que:
+    \begin{equation*}
+        f(v_1, \ldots, v_n)=-f(v_1, \ldots, v_{i-1}, v_j, v_{i+1}, \ldots, v_{j-1}, v_i, v_{j+1}, \ldots, v_n).
+    \end{equation*}
+    \item ($f$ é alternada) Para quaisquer $v_1, \ldots, v_n \in R^n$ e $i, j \in \{1, \ldots, n\}$ com $i \neq j$, se $v_i = v_j$, então:
+    \begin{equation*}
+        f(v_1, \ldots, v_n) = 0.
+    \end{equation*}
+\end{enumerate}
+Então a propriedade (b) implica a propriedade (a).
+Além disso, se, em $R$, $2(=1+1)$ é tal que para todo $a \in R$, $2a = 0$ implica $a = 0$ então (a) implica (b).
+\end{proposition}
+
+\begin{proof}
+Suponha que (b) seja verdadeira.
+Temos que:
+\begin{equation*}
+    \begin{aligned}
+        0 &= f(v_1, \ldots, v_{i-1}, v_i + v_j, v_{i+1}, \ldots, v_{j-1}, v_i + v_j, v_{j+1}, \ldots, v_n)\\
+        &= f(v_1, \ldots, v_n) + f(v_1, \ldots, v_{i-1}, v_j, v_{i+1}, \ldots, v_n)+ f(v_1, \ldots, v_{i-1}, v_j, v_{i+1}, \ldots, v_n)\\
+        &\quad  + f(v_1, \ldots, v_{i-1}, v_j, v_{i+1}, \ldots, v_{j-1}, v_i, v_{j+1}, \ldots, v_n)\\
+        &\quad =  f(v_1, \ldots, v_n)+ f(v_1, \ldots, v_{i-1}, v_j, v_{i+1}, \ldots, v_{j-1}, v_i, v_{j+1}, \ldots, v_n).
+    \end{aligned}
+\end{equation*}
+
+Agora suponha que (a) seja verdadeira, além da hipótese adicional sobre $R$, e sejam dados $v_1, \ldots, v_n \in R^n$ tais que existem $i, j \in \{1, \ldots, n\}$ com $i \neq j$ e $v_i = v_j$.
+Então, aplicando (a) e trocando $v_i$ por $v_j$ na expressão de (a), temos:
+\begin{equation*}
+    f(v_1, \ldots, v_n) = -f(v_1, \ldots, v_n).
+\end{equation*}
+Logo, $2f(v_1, \ldots, v_n) = 0$, o que implica que $f(v_1, \ldots, v_n) = 0$.
+\end{proof}
+
+Na definição de determinante, o que usaremos é a propriedade de $f$ ser alternada.
+Estamos prontos para enunciar a definição de determinante.
+
+\begin{definition}
+Seja $R$ um anel comutativo.
+O \emph{determinante} $n\times n$ de $R$ é a única função $\det: (R^n)^n \to R$ multilinear, alternada, e que vale $1$ em $(e_1, e_2, \ldots, e_n)$, em que $e_i$ são os vetores da base canônica de $R^n$.
+\end{definition}
+
+É claro que, por enquanto, não provamos a existência nem a unicidade de tal função.
+
+Iniciaremos com a existência.
+\begin{lemma}
+    Seja $R$ um anel comutativo e $r \in R$.
+    Então existe uma função multilinear e antissimétrica $f: (R^n)^n \to R$ tal que $f(e_1, e_2, \ldots, e_n) = r$.
+\end{lemma}
+
+\begin{lemma}
+    Seja $R$ um anel comutativo e $g: (R^n)^n \to R$ uma função multilinear e alternada.
+    Seja $j\in \{1, \ldots, n+1\}$.
+    Então a função $f: (R^{n+1})^{n+1} \to R$ definida por
+    \begin{equation*}
+        f(v_1, v_2, \ldots, v_{n+1}) = \sum_{j=1}^{n+1} (-1)^{j+i} v_{ij} g(v_1^{(j)}, \dots, v_{i-1}^{(j)}, v_{i+1}^{(j)}, \ldots, v_{n+1}^{(j)}),
+    \end{equation*}
+
+    em que $v_{ij}$ é a $j$-ésima coordenada do vetor $v_i$ e $v_k^{(j)}$ é o vetor obtido de $v_k$ ao remover sua $j$-ésima coordenada, é multilinear e alternada.
+    Além disso, $f(e_1, e_2, \ldots, e_{n+1}) = g(e_1, e_2, \ldots, e_n)$.
+\end{lemma}
+
+\begin{proof}
+    Verificaremos a multilinearidade.
+    Sejam $k \in \{1, \dots, n+1\}$, $v_1, \ldots, v_{n+1}, v_k' \in R^{n+1}$ e $\alpha \in R$.
+
+    Se $k\neq i$, temos que:
+    \begin{equation*}
+        \begin{aligned}
+            f(v_1, \ldots, v_{k-1}, v_k + \alpha v_k', v_{k+1}, \ldots, v_{n+1}) &= \sum_{j=1}^{n+1} (-1)^{j+i} v_{ij} g(v_1^{(j)}, \ldots, (v_k + \alpha v_k')^{(j)}, \ldots, v_{n+1}^{(j)})\\
+            &= \sum_{j=1}^{n+1} (-1)^{j+i} v_{ij} \big(g(v_1^{(j)}, \ldots, v_k^{(j)}, \ldots, v_{n+1}^{(j)}) + g(v_1^{(j)}, \ldots, \alpha v_k'^{(j)}, \ldots, v_{n+1}^{(j)})\big)\\
+            &= f(v_1, \ldots, v_{n+1}) + \alpha f(v_1, \ldots, v_{k-1}, v_k', v_{k+1}, \ldots, v_{n+1}).
+        \end{aligned}
+    \end{equation*}
+
+    E, se $k = i$, temos que:
+    \begin{equation*}
+        \begin{aligned}
+            f(v_1, \ldots, v_{i-1}, v_i + \alpha v_i', v_{i+1}, \ldots, v_{n+1}) &= \sum_{j=1}^{n+1} (-1)^{j+i} (v_{ij} + \alpha v_{ij}') g(v_1^{(j)}, \ldots, v_{i-1}^{(j)}, v_{i+1}^{(j)}, \ldots, v_{n+1}^{(j)})\\
+            &= \sum_{j=1}^{n+1} (-1)^{j+i} v_{ij} g(v_1^{(j)}, \ldots, v_{i-1}^{(j)}, v_{i+1}^{(j)}, \ldots, v_{n+1}^{(j)})\\
+            &\quad + \alpha \sum_{j=1}^{n+1} (-1)^{j+i} v_{ij}' g(v_1^{(j)}, \ldots, v_{i-1}^{(j)}, v_{i+1}^{(j)}, \ldots, v_{n+1}^{(j)})\\
+            &= f(v_1, \ldots, v_{n+1}) + \alpha f(v_1, \ldots, v_{i-1}, v_i', v_{i+1}, \ldots, v_{n+1}).
+        \end{aligned}
+    \end{equation*}
+
+    Agora vejamos que $f$ é alternada.
+
+    Sejam $v_1, \ldots, v_{n+1} \in R^{n+1}$ tais que existem $k, l \in \{1, \ldots, n+1\}$ com $k \neq l$ e $v_k = v_l$.
+
+    Se $i \neq k$ e $i \neq l$, então:
+    \begin{equation*}
+        \begin{aligned}
+            f(v_1, \ldots, v_{n+1}) &= \sum_{j=1}^{n+1} (-1)^{j+i} v_{ij} g(v_1^{(j)}, \ldots, v_k^{(j)}, \ldots, v_l^{(j)}, \ldots, v_{n+1}^{(j)})\\
+            &= \sum_{j=1}^{n+1} (-1)^{j+i} v_{ij} \cdot 0 = 0,
+        \end{aligned}
+    \end{equation*}
+\end{proof}
