@@ -99,13 +99,13 @@ Iniciaremos com a existência.
 
 \begin{lemma}
     Seja $R$ um anel comutativo e $g: (R^n)^n \to R$ uma função multilinear e alternada.
-    Seja $j\in \{1, \ldots, n+1\}$.
+    Seja $i\in \{1, \ldots, n+1\}$.
     Então a função $f: (R^{n+1})^{n+1} \to R$ definida por
     \begin{equation*}
-        f(v_1, v_2, \ldots, v_{n+1}) = \sum_{j=1}^{n+1} (-1)^{j+i} v_{ij} g(v_1^{(j)}, \dots, v_{i-1}^{(j)}, v_{i+1}^{(j)}, \ldots, v_{n+1}^{(j)}),
+        f(v_1, v_2, \ldots, v_{n+1}) = \sum_{j=1}^{n+1} (-1)^{j+i} v_{ij} g(v_1^{(i)}, \dots, v_{j-1}^{(i)}, v_{j+1}^{(i)}, \ldots, v_{n+1}^{(i)}),
     \end{equation*}
 
-    em que $v_{ij}$ é a $j$-ésima coordenada do vetor $v_i$ e $v_k^{(j)}$ é o vetor obtido de $v_k$ ao remover sua $j$-ésima coordenada, é multilinear e alternada.
+    em que $v_{ij}$ é a $j$-ésima coordenada do vetor $v_i$ e $v_k^{(i)}$ é o vetor obtido de $v_k$ ao remover sua $i$-ésima coordenada, é multilinear e alternada.
     Além disso, $f(e_1, e_2, \ldots, e_{n+1}) = g(e_1, e_2, \ldots, e_n)$.
 \end{lemma}
 
@@ -113,16 +113,16 @@ Iniciaremos com a existência.
     Verificaremos a multilinearidade.
     Sejam $k \in \{1, \dots, n+1\}$, $v_1, \ldots, v_{n+1}, v_k' \in R^{n+1}$ e $\alpha \in R$.
 
-    Se $k\neq i$, temos que:
+    Se $k\neq j$, temos que:
     \begin{equation*}
         \begin{aligned}
-            f(v_1, \ldots, v_{k-1}, v_k + \alpha v_k', v_{k+1}, \ldots, v_{n+1}) &= \sum_{j=1}^{n+1} (-1)^{j+i} v_{ij} g(v_1^{(j)}, \ldots, (v_k + \alpha v_k')^{(j)}, \ldots, v_{n+1}^{(j)})\\
-            &= \sum_{j=1}^{n+1} (-1)^{j+i} v_{ij} \big(g(v_1^{(j)}, \ldots, v_k^{(j)}, \ldots, v_{n+1}^{(j)}) + g(v_1^{(j)}, \ldots, \alpha v_k'^{(j)}, \ldots, v_{n+1}^{(j)})\big)\\
+            f(v_1, \ldots, v_{k-1}, v_k + \alpha v_k', v_{k+1}, \ldots, v_{n+1}) &= \sum_{j=1}^{n+1} (-1)^{j+i} v_{ij} g(v_1^{(i)}, \ldots, (v_k + \alpha v_k')^{(i)}, \ldots, v_{n+1}^{(i)})\\
+            &= \sum_{j=1}^{n+1} (-1)^{j+i} v_{ij} \big(g(v_1^{(i)}, \ldots, v_k^{(i)}, \ldots, v_{n+1}^{(i)}) + g(v_1^{(i)}, \ldots, \alpha v_k'^{(i)}, \ldots, v_{n+1}^{(i)})\big)\\
             &= f(v_1, \ldots, v_{n+1}) + \alpha f(v_1, \ldots, v_{k-1}, v_k', v_{k+1}, \ldots, v_{n+1}).
         \end{aligned}
     \end{equation*}
 
-    E, se $k = i$, temos que:
+    E, se $k = j$, temos que:
     \begin{equation*}
         \begin{aligned}
             f(v_1, \ldots, v_{i-1}, v_i + \alpha v_i', v_{i+1}, \ldots, v_{n+1}) &= \sum_{j=1}^{n+1} (-1)^{j+i} (v_{ij} + \alpha v_{ij}') g(v_1^{(j)}, \ldots, v_{i-1}^{(j)}, v_{i+1}^{(j)}, \ldots, v_{n+1}^{(j)})\\
