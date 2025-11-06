@@ -81,6 +81,46 @@ Então, aplicando (a) e trocando $v_i$ por $v_j$ na expressão de (a), temos:
 Logo, $2f(v_1, \ldots, v_n) = 0$, o que implica que $f(v_1, \ldots, v_n) = 0$.
 \end{proof}
 
+Algumas propriedades de funções $n$-lineares são:
+\begin{proposition}
+    Seja $f: (R^n)^n \to R$ uma função $n$-linear.
+    Então, para quaisquer $v_1, \ldots, v_n \in R^n$ e $i \in \{1, \ldots, n\}$, se $v_i = 0$, então:
+    \begin{equation*}
+        f(v_1, \ldots, v_n) = 0.
+    \end{equation*}
+\end{proposition}
+\begin{proof}
+    Seja $v_1, \ldots, v_n \in R^n$ tais que $v_i = 0$ para algum $i$.
+    Então:
+    \begin{equation*}
+        \begin{aligned}
+            f(v_1, \ldots, v_n) &= f(v_1, \ldots, v_{i-1}, 0 + 0, v_{i+1}, \ldots, v_n)\\
+            &= f(v_1, \ldots, v_{i-1}, 0, v_{i+1}, \ldots, v_n) + f(v_1, \ldots, v_{i-1}, 0, v_{i+1}, \ldots, v_n)\\
+            &= 2 f(v_1, \ldots, v_{i-1}, 0, v_{i+1}, \ldots, v_n).
+        \end{aligned}
+    \end{equation*}
+    Pela hipótese sobre $R$, temos que $f(v_1, \ldots, v_n) = 0$.
+\end{proof}
+\begin{proposition}
+    Seja $f: (R^n)^n \to R$ uma função $n$-linear e alternada.
+    Então, para quaisquer $v_1, \ldots, v_n \in R^n$ e $i, j \in \{1, \ldots, n\}$ com $i \neq j$, se $r \in R$, então:
+    \begin{equation*}
+        f(v_1, \ldots, v_{i-1}, v_i + r v_j, v_{i+1}, \ldots, v_n) = f(v_1, \ldots, v_n).
+        \end{equation*}
+
+\end{proposition}
+\begin{proof}
+    Seja $v_1, \ldots, v_n \in R^n$ e $i, j \in \{1, \ldots, n\}$ com $i \neq j$.
+    Então:
+    \begin{equation*}
+        \begin{aligned}
+            f(v_1, \ldots, v_{i-1}, v_i + r v_j, v_{i+1}, \ldots, v_n) &= f(v_1, \ldots, v_n) + r f(v_1, \ldots, v_{i-1}, v_j, v_{i+1}, \ldots, v_n)\\
+            &= f(v_1, \ldots, v_n) + r \cdot 0\\
+            &= f(v_1, \ldots, v_n).
+        \end{aligned}
+    \end{equation*}
+\end{proof}
+
 Na definição de determinante, o que usaremos é a propriedade de $f$ ser alternada.
 Estamos prontos para enunciar a definição de determinante.
 
@@ -155,34 +195,66 @@ Em particular, existem funções determinantes.
 Agora podemos provar a unicidade dessas funções.
 
 \begin{lemma}
-    Para todo $n\geq 1$, existe no máximo uma função multilinear e alternada $f: (R^n)^n \to R$, e esta é dada por:
-
-    \begin{equation*}
-        f(v_1, v_2, \ldots, v_n) = \sum_{\sigma \in S_n} \sgn(\sigma) \prod_{i=1}^n v_{i\sigma(i)}.
-    \end{equation*}
-    Acima, $\sgn(\sigma)$ é a paridade do número de transposições necessárias para obter a permutação $\sigma$ a partir da permutação identidade, $v_{ij}$ é a $j$-ésima coordenada do vetor $v_i$, e $S_n$ é o conjunto de todas as permutações de $\{1, 2, \ldots, n\}$.
+    Seja $R$ um anel. Para todo $n\geq 1$ e todo $r \in R$, existe no máximo uma função multilinear e alternada $f: (R^n)^n \to R$ tal que $f(e_1, e_2, \ldots, e_n) = r$.
 \end{lemma}
 
 \begin{proof}
-    Temos que:
+
+    Uma transposição é uma função bijetora $\tau: \{1, 2, \ldots, n\} \to \{1, 2, \ldots, n\}$ que troca dois elementos de posição e mantém os demais fixos.
+
+    Se $f: (R^n)^n \to R$ é multilinear e alternada, se $v_1, v_2, \ldots, v_n \in R^n$ e $\tau$ é uma transposição, então $f(v_1, v_2, \ldots, v_n) = -f(v_{\tau(1)}, v_{\tau(2)}, \ldots, v_{\tau(n)})$.
+
+    Para cada função bijetora $\sigma: \{1, 2, \ldots, n\} \to \{1, 2, \ldots, n\}$, existem $k\geq 0$ transposições $\tau_1, \tau_2, \ldots, \tau_k$ tais que $\tau_k \circ \tau_{k-1} \circ \cdots \circ \tau_1 \circ \sigma$ é a identidade.
+    Tal fato pode ser provado por indução em $n$.
+    Notemos que $f(v_{\sigma(1)}, v_{\sigma(2)}, \ldots, v_{\sigma(n)}) = (-1)^k f(v_{\tau_1 \circ \tau_2 \circ \cdots \circ \tau_k \circ \sigma(1)}, v_{\tau_1 \circ \tau_2 \circ \cdots \circ \tau_k \circ \sigma(2)}, \ldots, v_{\tau_1 \circ \tau_2 \circ \cdots \circ \tau_k \circ \sigma(n)}) = (-1)^k f(v_1, v_2, \ldots, v_n)$.
+
+    Para cada $\sigma: \{1, 2, \ldots, n\} \to \{1, 2, \ldots, n\}$ bijetora, fixamos um número $k_\sigma$ qualquer para o qual existem transposições $\tau_1, \tau_2, \ldots, \tau_{k_\sigma}$ tais que $\tau_{k_\sigma} \circ \tau_{k_\sigma-1} \circ \cdots \circ \tau_1 \circ \sigma$ é a identidade e definimos $\sgn(\sigma) = (-1)^{k_\sigma}$.
+
+    Suponha agora que $f, g$ são funções como no enunciado. Temos que, dados $v_1, v_2, \ldots, v_n \in R^n$,
+    
 
     \begin{equation*}
         \begin{aligned}
-            f(v_1, v_2, \ldots, v_n) &= f\left(\sum_{j_1=1}^n v_{1j_1} e_{j_1}, \sum_{j_2=1}^n v_{2j_2} e_{j_2}, \ldots, \sum_{j_n=1}^n v_{nj_n} e_{j_n}\right)\\
-            &= \sum_{j_1=1}^n \sum_{j_2=1}^n \cdots \sum_{j_n=1}^n v_{1j_1} v_{2j_2} \cdots v_{nj_n} f(e_{j_1}, e_{j_2}, \ldots, e_{j_n}).
+            f(v_1, v_2, \ldots, v_n) &= f\left(\sum_{i_1=1}^n v_{1i_1} e_{i_1}, \sum_{i_2=1}^n v_{2i_2} e_{i_2}, \ldots, \sum_{i_n=1}^n v_{ni_n} e_{i_n}\right)\\
+            &= \sum_{i_1=1}^n \sum_{i_2=1}^n \cdots \sum_{i_n=1}^n v_{1i_1} v_{2i_2} \cdots v_{ni_n} f(e_{i_1}, e_{i_2}, \ldots, e_{i_n}).
         \end{aligned}
     \end{equation*}
-        \begin{equation*}
+
+    As parcelas para as quais há repetição de índices $i_j$ são nulas, pois $f$ é alternada.
+    Assim, as únicas parcelas são nulas são aquelas para as quais $(i_1, i_2, \ldots, i_n)$ é uma sequência injetora em $\{1, 2, \ldots, n\}$.
+    Mas isso implica que tal sequência é uma bijeção $\sigma$ de $\{1, 2, \ldots, n\}$ em $\{1, 2, \ldots, n\}$.
+
+    Seja $S_n$ o conjunto das bijeções de $\{1, 2, \ldots, n\}$ em $\{1, 2, \ldots, n\}$.
+    A expressão anterior é igual à
+
+    \begin{equation*}
         \begin{aligned}
-            f(v_1, v_2, \ldots, v_n) &= f\left(\sum_{\sigma \in S_n} \sgn(\sigma) \prod_{i=1}^n v_{i\sigma(i)}\right)f(e_{\sigma(1)}, e_{\sigma(2)}, \ldots, e_{\sigma(n)})\\
-            &= \sum_{\sigma \in S_n} \sgn(\sigma) \prod_{i=1}^n v_{i\sigma(i)}.
+            f(v_1, v_2, \ldots, v_n) &= \sum_{\sigma \in S_n} v_{1\sigma(1)} v_{2\sigma(2)} \cdots v_{n\sigma(n)} f(e_{\sigma(1)}, e_{\sigma(2)}, \ldots, e_{\sigma(n)})\\
+            &= \sum_{\sigma \in S_n} (-1)^{k_\sigma} v_{1\sigma(1)} v_{2\sigma(2)} \cdots v_{n\sigma(n)} f(e_1, e_2, \ldots, e_n)\\
+            &= r\sum_{\sigma \in S_n} (-1)^{k_\sigma} v_{1\sigma(1)} v_{2\sigma(2)} \cdots v_{n\sigma(n)}
         \end{aligned}
     \end{equation*}
+
+    De forma completamente análoga, temos que
+    \begin{equation*}
+        g(v_1, v_2, \ldots, v_n) = r\sum_{\sigma \in S_n} (-1)^{k_\sigma} v_{1\sigma(1)} v_{2\sigma(2)} \cdots v_{n\sigma(n)}.
+    \end{equation*}
+    Logo, $f(v_1, v_2, \ldots, v_n) = g(v_1, v_2, \ldots, v_n)$ para todos $v_1, v_2, \ldots, v_n \in R^n$.
 \end{proof}
 
-    \begin{example}
-    Para $n=1$, a função determinante em um anel comutativo $R$ é dada por $\det(v_1) = v_{11}$.
-    \end{example}
+Isso termina a prova da existência e unicidade do determinante.
+\begin{definition}
+Seja $R$ um anel comutativo.
+O \emph{determinante} $n\times n$ em $R$ é a função $\det: (R^n)^n \to R$ multilinear, alternada, e que vale $1$ em $(e_1, e_2, \ldots, e_n)$, em que $e_i$ são os vetores da base canônica de $R^n$.
+\end{definition}
+Na demonstração anterior, fixamos um número arbitrário $k_\sigma$ para cada bijeção $\sigma$.
+No entanto, é possível mostrar que o número de transposições necessárias para transformar $\sigma$ na identidade tem sempre a mesma paridade, de modo que a expressão $(-1)^{k_\sigma}$, que nos dá um sinal, é bem definida.
+Uma das formas de provar isso é usando determinantes!
+Faremos isso como aplicação.
+
+\begin{example}
+Para $n=1$, a função determinante em um anel comutativo $R$ é dada por $\det(v_1) = v_{11}$.
+\end{example}
 
     \begin{example}
     Para $n=2$, a função determinante em um anel comutativo $R$ é dada por $\det(v_1, v_2) = v_{11}v_{22} - v_{12}v_{21}$.
@@ -192,14 +264,48 @@ Agora podemos provar a unicidade dessas funções.
     Para $n=3$, a função determinante em um anel comutativo $R$ é dada por $\det(v_1, v_2, v_3) = v_{11}v_{22}v_{33} + v_{12}v_{23}v_{31} + v_{13}v_{21}v_{32} - v_{13}v_{22}v_{31} - v_{11}v_{23}v_{32} - v_{12}v_{21}v_{33}$.
     \end{example}
 
-    \begin{example}
+\begin{example}[Expansão de Laplace em uma linha]
     Para $n\geq 1$, a função determinante $n+1\times n+1$ em um anel comutativo $R$ é dada pela expressão recursiva:
     \begin{equation*}
-        \det(v_1, v_2, \ldots, v_{n+1}) = \sum_{j=1}^{n+1} (-1)^{j+i} v_{ij} \det(v_2^{(i)}, \ldots, v_{j-1}^{(i)}, v_{j+1}^{(i)}, \ldots, v_{n+1}^{(i)}),
+        \det(v_1, v_2, \ldots, v_{n+1}) = \sum_{j=1}^{n+1} (-1)^{j+i} v_{ij} \det(v_1^{(i)}, \ldots, v_{j-1}^{(i)}, v_{j+1}^{(i)}, \ldots, v_{n+1}^{(i)}),
     \end{equation*}
 
     em que $i$ está fixo.
+
+    Em linguagem matricial, sendo $A \in M_{n+1}(R)$, temos:
+    \begin{equation*}
+        \det(A) = \sum_{j=1}^{n+1} (-1)^{j+i} a_{ij} \det(A(i|j)),
+    \end{equation*}
+    Em que $i$ é uma linha fixa, e $A(i|j)$ é a matriz obtida de $A$ ao remover a linha $i$ e a coluna $j$.
 \end{example}
+
+\begin{proposition}
+    Seja $R$ um anel comutativo e $n\geq 1$.
+    Para toda bijeção $\sigma: \{1, 2, \ldots, n\} \to \{1, 2, \ldots, n\}$, se $k$ e $s$ são inteiros positivos para os quais existem transposições $\tau_1, \tau_2, \ldots, \tau_k$ e $\rho_1, \rho_2, \ldots, \rho_s$ tais que $\tau_k \circ \tau_{k-1} \circ \cdots \circ \tau_1 \circ \sigma$ e $\rho_s \circ \rho_{s-1} \circ \cdots \circ \rho_1 \circ \sigma$ são a identidade, então $k$ e $s$ têm a mesma paridade.
+\begin{proof}
+    Seja $\sigma$ uma bijeção de $\{1, 2, \ldots, n\}$ em $\{1, 2, \ldots, n\}$.
+    Temos que $\det(e_{\sigma(1)}, e_{\sigma(2)}, \ldots, e_{\sigma(n)}) = (-1)^k \det(e_1, e_2, \ldots, e_n) = (-1)^k$.
+    De forma análoga, $\det(e_{\sigma(1)}, e_{\sigma(2)}, \ldots, e_{\sigma(n)}) = (-1)^s$.
+    Logo, $(-1)^k = (-1)^s$, o que implica que $k$ e $s$ têm a mesma paridade.
+\end{proof}
+
+\begin{definition}
+Dado um anel comutativo $R$ e $n\geq 1$, para cada bijeção $\sigma: \{1, 2, \ldots, n\} \to \{1, 2, \ldots, n\}$, definimos o \emph{sinal} de $\sigma$ como sendo
+\begin{equation*}
+    \sgn(\sigma) = (-1)^{k_\sigma},
+\end{equation*}
+em que $k_\sigma$ é um número de transposições necessárias para transformar $\sigma$ na identidade.
+\end{definition}
+\begin{corollary}
+    Seja $R$ um anel comutativo e $n\geq 1$.
+    Então para todos $v_1, v_2, \ldots, v_n \in R^n$, temos que
+    \begin{equation*}
+        \det(v_1, \ldots, v_n) = \sum_{\sigma \in S_n} \sgn(\sigma) v_{1\sigma(1)} v_{2\sigma(2)} \cdots v_{n\sigma(n)}, 
+    \end{equation*}
+
+    E, se $r \in R$ e $f$ é uma função multilinear e alternada tal que $f(e_1, e_2, \ldots, e_n) = r$, então $f(v_1, v_2, \ldots, v_n) = r \det(v_1, v_2, \ldots, v_n)$ para todos $v_1, v_2, \ldots, v_n \in R^n$.
+\end{corollary}
+\end{proposition}
 
 \begin{theorem}[Binet]
     Sejam $A, B \in M_n(R)$.
@@ -217,6 +323,205 @@ Em particular, para as colunas de $B$, temos:
     \det(AB) = f(\text{col}_1(B), \text{col}_2(B), \ldots, \text{col}_n(B)) = g(\text{col}_1(B), \text{col}_2(B), \ldots, \text{col}_n(B)) = \det(A)\det(B).
 \end{equation*}
 \end{proof}
+\begin{proposition}
+    Seja $R$ um anel comutativo e $A \in M_n(R)$.
+    Então $\det(A)=\det(A^t)$, onde $t$ é a matriz transporta de $A$.
+\end{proposition}
+\begin{proof}
+Seja $A=(a_{ij})_{i,j}$.
+Temos que $A^t=(b_{ij})_{i, j}=(a_{ji})_{i,j}$.
+Logo,
+\begin{equation*}
+    \begin{aligned}
+        \det(A^t) &= \sum_{\sigma \in S_n} \sgn(\sigma) b_{1\sigma(1)} b_{2\sigma(2)} \cdots b_{n\sigma(n)}\\
+        &= \sum_{\sigma \in S_n} \sgn(\sigma) a_{\sigma(1)1} a_{\sigma(2)2} \cdots a_{\sigma(n)n}\\
+        &= \sum_{\sigma \in S_n} \sgn(\sigma) \prod_{i=1}^n a_{\sigma(i)i}
+    \end{aligned}
+\end{equation*}
+Em cada produtório, fazendo $j=\sigma(i)$, temos: que $i=\sigma^{-1}(j)$.
+Logo,
+\begin{equation*}
+    \prod_{i=1}^n a_{\sigma(i)i} = \prod_{j=1}^n a_{j\sigma^{-1}(j)}.
+\end{equation*}
 
+Assim:
+\begin{equation*}
+    \begin{aligned}
+        \det(A^t) &= \sum_{\sigma \in S_n} \sgn(\sigma) \prod_{j=1}^n a_{j\sigma^{-1}(j)}
+    \end{aligned}
+\end{equation*}
+No somatório, fazendo $\rho=\sigma^{-1}$, temos que $\sigma=\rho^{-1}$.
 
+Assim:
 
+\begin{equation*}
+    \begin{aligned}
+        \det(A^t) &= \sum_{\rho \in S_n} \sgn(\rho^{-1}) \prod_{j=1}^n a_{j\rho(j)}\\
+        &= \sum_{\rho \in S_n} \sgn(\rho) \prod_{j=1}^n a_{j\rho(j)}\\
+        &= \det(A).
+    \end{aligned}
+\end{equation*}
+
+Para essa igualdade, devemos ver que $\sgn(\rho^{-1}) = \sgn(\rho)$.
+Mas, se $\tau_1, \tau_2, \ldots, \tau_k$ são transposições tais que $\tau_k \circ \cdots \circ \tau_1 \circ \rho=\id$, então $\tau_k\circ \cdots \circ \tau_1=\rho^{-1}$.
+Invertendo os dois lados, temos que $\tau_1^{-1} \circ \cdots \circ \tau_k^{-1} = \rho$.
+Compondo com $\rho^{-1}$ e do fato que a inversa de uma transposição é ela mesma, temos que $\tau_1 \circ \cdots \circ \tau_k \circ \rho^{-1} = \id$.
+Logo, um número de transposições necessárias para transformar $\rho$ na identidade é o mesmo que o número de transposições necessárias para transformar $\rho^{-1}$ na identidade.
+Portanto, $\sgn(\rho^{-1}) = \sgn(\rho)$.
+\end{proof}
+
+    \begin{proposition}[Expansão de Laplace em uma coluna]
+    Para $n\geq 1$, $A \in M_{n+1}(R)$, e $j \in \{1, \ldots, n+1\}$, temos que
+    \begin{equation*}
+        \det(A) = \sum_{j=1}^{n+1} (-1)^{j+i} a_{ji} \det(A(i|j)),
+    \end{equation*}
+
+    em que $A(i|j)$ é a matriz obtida de $A$ ao remover a linha $i$ e a coluna $j$.
+\end{proposition}
+
+\begin{proof}
+    Note que $\det(A) = \det(A^t)$.
+    Seja $\bar i=j$.
+    Escreva $A^t=(b_{ij})_{i,j}$ e $A=(a_{ij})_{i,j}$.
+    Temos que $b_{ij} = a_{ji}$ para todos $i, j$.
+    Usando a expansão de Laplace em na linha $\bar i$ de $A^t$, temos:
+    \begin{equation*}
+        \det(A)=\det(A^t) = \sum_{k=1}^{n+1} (-1)^{\bar i + k} b_{\bar i k} \det((A^t)(\bar i|k)).
+    \end{equation*}
+    Note que $(A^t)(\bar i|k) = (A(k|\bar i))^t$.
+    Logo, $\det((A^t)(\bar i|k)) = \det(A(k|\bar i))$.
+
+    Assim:
+
+    \begin{equation*}
+        \det(A) = \sum_{k=1}^{n+1} (-1)^{\bar i + k} a_{k\bar i} \det(A(k|\bar i)).
+    \end{equation*}
+
+    Lembrando que $j=\bar i$, e trocando a letra muda $k$ por $i$ na expressão acima, temos o resultado desejado.
+\end{proof}
+
+\begin{example}[Regra de Sarrus]
+    Seja $R$ um anel comutativo e $A \in M_3(R)$ dada por
+    \begin{equation*}
+        A = \begin{pmatrix}
+        a_{11} & a_{12} & a_{13}\\
+        a_{21} & a_{22} & a_{23}\\
+        a_{31} & a_{32} & a_{33}
+        \end{pmatrix}.
+    \end{equation*}
+    Então:
+    \begin{equation*}
+        \det(A) = a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32} - a_{13}a_{22}a_{31} - a_{11}a_{23}a_{32} - a_{12}a_{21}a_{33}.
+    \end{equation*}
+\end{example}
+\begin{proof}
+    Fazendo a expansão de Laplace na primeira coluna, temos que:
+    \begin{equation*}
+        \det(A) = a_{11} \det(A(1|1)) - a_{21} \det(A(2|1)) + a_{31} \det(A(3|1)).
+    \end{equation*}
+
+    Ou seja:
+    \begin{equation*}
+        \begin{aligned}
+            \det(A) &= a_{11} \begin{vmatrix}
+            a_{22} & a_{23}\\
+            a_{32} & a_{33}
+            \end{vmatrix} - a_{21} \begin{vmatrix}
+            a_{12} & a_{13}\\
+            a_{32} & a_{33}
+            \end{vmatrix} + a_{31} \begin{vmatrix}
+            a_{12} & a_{13}\\
+            a_{22} & a_{23}
+            \end{vmatrix}\\
+            &= a_{11}(a_{22}a_{33} - a_{23}a_{32}) - a_{21}(a_{12}a_{33} - a_{13}a_{32}) + a_{31}(a_{12}a_{23} - a_{13}a_{22})\\
+            &= a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32} - a_{13}a_{22}a_{31} - a_{11}a_{23}a_{32} - a_{12}a_{21}a_{33}.
+        \end{aligned}
+    \end{equation*}
+\end{proof}
+
+\begin{definition}
+    Seja $R$ um anel comutativo e $A \in M_n(R)$.
+
+    Se $i, j \in \{1, \ldots, n\}$, o \emph{cofator} $(i, j)$ de $A$ é o elemento de $R$ dado por
+    \begin{equation*}
+        c_{ij} = (-1)^{i+j} \det(A(i|j)).
+    \end{equation*}
+
+    A transposta $(c_{ji})_{i,j}$ da matriz dos cofatores de $A$ é chamada de \emph{matriz adjunta} de $A$ e é denotada por $\adj(A)$.
+\end{definition}
+
+\begin{proposition}
+    Seja $R$ um anel comutativo e $A \in M_n(R)$.
+    Então $A \cdot \adj(A) = \adj(A) \cdot A = \det(A) I_n$.
+\end{proposition}
+\begin{proof}
+    Seja $B = \adj(A)$.
+    Note que o elemento $(i, j)$ de $AB$ é dado por
+    \begin{equation*}
+        (AB)_{ij} = \sum_{k=1}^n a_{ik} b_{kj} = \sum_{k=1}^n a_{ik} (-1)^{k+j} \det(A(k|j)).
+    \end{equation*}
+
+    Se $i=j$, pela expansão de Laplace na linha $i$ de $A$, temos que $(AB)_{ii} = \det(A)$.
+
+    Se $i \neq j$, considere a matriz $C$ obtida de $A$ ao substituir a linha $j$ pela linha $i$.
+    Pela expansão de Laplace na linha $j$ de $C$, temos que
+    \begin{equation*}
+        0 = \det(C) = \sum_{k=1}^n a_{ik} (-1)^{k+j} \det(A(k|j)) = (AB)_{ij}.
+    \end{equation*}
+
+    Logo, $AB = \det(A) I_n$.
+    De forma análoga, podemos mostrar que $BA = \det(A) I_n$.
+\end{proof}
+
+\begin{corollary}
+    Seja $R$ um anel comutativo e $A \in M_n(R)$.
+    Então $A$ é invertível em $M_n(R)$ se, e somente se, $\det(A)$ é invertível em $R$, e, nesse caso, $A^{-1} = \det(A)^{-1} \adj(A)$.
+
+    Em particular, se $R$ é um corpo, então $A$ é invertível em $M_n(R)$ se, e somente se, $\det(A) \neq 0$.
+\end{corollary}
+\begin{proof}
+    Se $A$ é invertível em $M_n(R)$, então existe $B \in M_n(R)$ tal que $AB = I_n$.
+    Logo, $\det(A)\det(B) = \det(AB) = \det(I_n) = 1$, o que implica que $\det(A)$ é invertível em $R$.
+
+    A reciproca é imediata a partir da proposição anterior.
+\end{proof}
+
+Finalmente, provaremos a fórmula de Cramer para sistemas lineares.
+
+\begin{proposition}
+    Seja $R$ um anel comutativo, $A \in M_n(R)$ e $b \in R^n$.
+    Se $\det(A)$ é invertível em $R$, então o sistema linear $Ax = b$ tem solução única $(\alpha_1, \dots, \alpha_n)$ dada por
+    \begin{equation*}
+        \alpha_i = \det(A_i) \det(A)^{-1},
+    \end{equation*}
+
+    em que $A_i$ é a matriz obtida de $A$ ao substituir a coluna $i$ por $b$.
+\end{proposition}
+\begin{proof}
+    Seja $v=(\alpha_1, \ldots, \alpha_n)$ a solução do sistema.
+    Seja $[v]$ a matriz coluna associada a $v$, ou seja, $[v] = \begin{pmatrix}
+    \alpha_1\\
+    \alpha_2\\
+    \vdots\\
+    \alpha_n
+    \end{pmatrix}$.
+    Para cada $i \in \{1, \ldots, n\}$, seja $A_i$ a matriz obtida de $A$ ao substituir a coluna $i$ por $b$.
+    Note que $A[v] = [b]$.
+    Multiplicando ambos os lados por $\adj(A)$, temos que $\adj(A)Av = \adj(A)[b]$.
+
+    Assim, \begin{equation*}
+        \det(A) v = \adj(A) [b].
+    \end{equation*}
+    Logo, para cada $j \in \{1, \ldots, n\}$, temos que
+    \begin{equation*}
+        \det(A) \alpha_j = (\adj(A) [b])_j = \sum_{i=1}^n c_{ji} b_i = \sum_{i=1}^n (-1)^{i+j} \det(A(i|j) b_i.
+    \end{equation*}
+    Note que a soma acima é exatamente a expansão de Laplace na coluna $j$ de $A_j$.
+    Logo, \begin{equation*}
+        \det(A) \alpha_j = \det(A_j),
+    \end{equation*}
+    o que implica que
+    \begin{equation*}
+        \alpha_j = \det(A_j) \det(A)^{-1}.
+    \end{equation*}
+\end{proof}
