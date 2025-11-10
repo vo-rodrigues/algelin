@@ -204,19 +204,25 @@ Agora podemos provar a unicidade dessas funções.
 
     Se $f: (R^n)^n \to R$ é multilinear e alternada, se $v_1, v_2, \ldots, v_n \in R^n$ e $\tau$ é uma transposição, então $f(v_1, v_2, \ldots, v_n) = -f(v_{\tau(1)}, v_{\tau(2)}, \ldots, v_{\tau(n)})$.
 
-    Para cada função bijetora $\sigma: \{1, 2, \ldots, n\} \to \{1, 2, \ldots, n\}$, existem $k\geq 0$ transposições $\tau_1, \tau_2, \ldots, \tau_k$ tais que $\tau_k \circ \tau_{k-1} \circ \cdots \circ \tau_1 \circ \sigma$ é a identidade.
-    Tal fato pode ser provado por indução em $n$.
-    Notemos que $f(v_{\sigma(1)}, v_{\sigma(2)}, \ldots, v_{\sigma(n)}) = (-1)^k f(v_{\tau_1 \circ \tau_2 \circ \cdots \circ \tau_k \circ \sigma(1)}, v_{\tau_1 \circ \tau_2 \circ \cdots \circ \tau_k \circ \sigma(2)}, \ldots, v_{\tau_1 \circ \tau_2 \circ \cdots \circ \tau_k \circ \sigma(n)}) = (-1)^k f(v_1, v_2, \ldots, v_n)$.
+    Para cada função bijetora $\sigma: \{1, 2, \ldots, n\} \to \{1, 2, \ldots, n\}$, existem $k\geq 0$ transposições $\tau_1, \tau_2, \ldots, \tau_k$ tais que:
+    \begin{equation*}
+        \tau_k \circ \tau_{k-1} \circ \cdots \circ \tau_1 = \sigma.
+    \end{equation*}
+    Tal fato pode ser provado por indução em $n$ e é deixado ao leitor.
+    Notemos que:
+    \begin{equation*}
+        f(v_{\sigma(1)}, \ldots, v_{\sigma(n)}) = (-1)^k f(v_{\tau_1 \circ \tau_2 \circ \cdots \circ \tau_k(1)},  \ldots, v_{\tau_1 \circ \tau_2 \circ \cdots \circ \tau_k(n)}) = (-1)^k f(v_1, v_2, \ldots, v_n).
+    \end{equation*}
 
     Para cada $\sigma: \{1, 2, \ldots, n\} \to \{1, 2, \ldots, n\}$ bijetora, fixamos um número $k_\sigma$ qualquer para o qual existem transposições $\tau_1, \tau_2, \ldots, \tau_{k_\sigma}$ tais que $\tau_{k_\sigma} \circ \tau_{k_\sigma-1} \circ \cdots \circ \tau_1 \circ \sigma$ é a identidade e definimos $\sgn(\sigma) = (-1)^{k_\sigma}$.
 
-    Suponha agora que $f, g$ são funções como no enunciado. Temos que, dados $v_1, v_2, \ldots, v_n \in R^n$,
+    Suponha agora que $f, g$ são funções como no enunciado. Temos que, dados $v_1, v_2, \ldots, v_n \in R^n$, seja, para cada $j\in \{1, 2, \ldots, n\}$, $v_j = \sum_{i=1}^n v_{ij} e_i$, em que $v_{ij} \in R$.
     
 
     \begin{equation*}
         \begin{aligned}
-            f(v_1, v_2, \ldots, v_n) &= f\left(\sum_{i_1=1}^n v_{1i_1} e_{i_1}, \sum_{i_2=1}^n v_{2i_2} e_{i_2}, \ldots, \sum_{i_n=1}^n v_{ni_n} e_{i_n}\right)\\
-            &= \sum_{i_1=1}^n \sum_{i_2=1}^n \cdots \sum_{i_n=1}^n v_{1i_1} v_{2i_2} \cdots v_{ni_n} f(e_{i_1}, e_{i_2}, \ldots, e_{i_n}).
+            f(v_1, v_2, \ldots, v_n) &= f\left(\sum_{i_1=1}^n v_{i_11} e_{i_1}, \sum_{i_2=1}^n v_{i_22} e_{i_2}, \ldots, \sum_{i_n=1}^n v_{i_nn} e_{i_n}\right)\\
+            &= \sum_{i_1=1}^n \sum_{i_2=1}^n \cdots \sum_{i_n=1}^n v_{i_11} v_{i_22} \cdots v_{i_nn} f(e_{i_1}, e_{i_2}, \ldots, e_{i_n})\\
         \end{aligned}
     \end{equation*}
 
@@ -229,15 +235,15 @@ Agora podemos provar a unicidade dessas funções.
 
     \begin{equation*}
         \begin{aligned}
-            f(v_1, v_2, \ldots, v_n) &= \sum_{\sigma \in S_n} v_{1\sigma(1)} v_{2\sigma(2)} \cdots v_{n\sigma(n)} f(e_{\sigma(1)}, e_{\sigma(2)}, \ldots, e_{\sigma(n)})\\
-            &= \sum_{\sigma \in S_n} (-1)^{k_\sigma} v_{1\sigma(1)} v_{2\sigma(2)} \cdots v_{n\sigma(n)} f(e_1, e_2, \ldots, e_n)\\
-            &= r\sum_{\sigma \in S_n} (-1)^{k_\sigma} v_{1\sigma(1)} v_{2\sigma(2)} \cdots v_{n\sigma(n)}
+            f(v_1, v_2, \ldots, v_n) &= \sum_{\sigma \in S_n} v_{\sigma(1)1} v_{\sigma(2)2} \cdots v_{\sigma(n)n} f(e_{\sigma(1)}, e_{\sigma(2)}, \ldots, e_{\sigma(n)})\\
+            &= \sum_{\sigma \in S_n} v_{\sigma(1)1} v_{\sigma(2)2} \cdots v_{\sigma(n)n} (-1)^{k_\sigma} f(e_1, e_2, \ldots, e_n)\\
+            &= r\sum_{\sigma \in S_n} (-1)^{k_\sigma} v_{\sigma(1)1} v_{\sigma(2)2} \cdots v_{\sigma(n)n}.
         \end{aligned}
     \end{equation*}
 
     De forma completamente análoga, temos que
     \begin{equation*}
-        g(v_1, v_2, \ldots, v_n) = r\sum_{\sigma \in S_n} (-1)^{k_\sigma} v_{1\sigma(1)} v_{2\sigma(2)} \cdots v_{n\sigma(n)}.
+        g(v_1, v_2, \ldots, v_n) = r\sum_{\sigma \in S_n} (-1)^{k_\sigma} v_{\sigma(1)1} v_{\sigma(2)2} \cdots v_{\sigma(n)n}.
     \end{equation*}
     Logo, $f(v_1, v_2, \ldots, v_n) = g(v_1, v_2, \ldots, v_n)$ para todos $v_1, v_2, \ldots, v_n \in R^n$.
 \end{proof}
@@ -281,7 +287,7 @@ Para $n=1$, a função determinante em um anel comutativo $R$ é dada por $\det(
 
 \begin{proposition}
     Seja $R$ um anel comutativo e $n\geq 1$.
-    Para toda bijeção $\sigma: \{1, 2, \ldots, n\} \to \{1, 2, \ldots, n\}$, se $k$ e $s$ são inteiros positivos para os quais existem transposições $\tau_1, \tau_2, \ldots, \tau_k$ e $\rho_1, \rho_2, \ldots, \rho_s$ tais que $\tau_k \circ \tau_{k-1} \circ \cdots \circ \tau_1 \circ \sigma$ e $\rho_s \circ \rho_{s-1} \circ \cdots \circ \rho_1 \circ \sigma$ são a identidade, então $k$ e $s$ têm a mesma paridade.
+    Para toda bijeção $\sigma: \{1, 2, \ldots, n\} \to \{1, 2, \ldots, n\}$, se $k$ e $s$ são inteiros positivos para os quais existem transposições $\tau_1, \tau_2, \ldots, \tau_k$ e $\rho_1, \rho_2, \ldots, \rho_s$ tais que $\tau_k \circ \tau_{k-1} =\sigma$ e $\rho_s \circ \rho_{s-1} \circ \cdots \circ \rho_1 =\sigma$, então $k$ e $s$ têm a mesma paridade.
 \begin{proof}
     Seja $\sigma$ uma bijeção de $\{1, 2, \ldots, n\}$ em $\{1, 2, \ldots, n\}$.
     Temos que $\det(e_{\sigma(1)}, e_{\sigma(2)}, \ldots, e_{\sigma(n)}) = (-1)^k \det(e_1, e_2, \ldots, e_n) = (-1)^k$.
@@ -300,7 +306,7 @@ em que $k_\sigma$ é um número de transposições necessárias para transformar
     Seja $R$ um anel comutativo e $n\geq 1$.
     Então para todos $v_1, v_2, \ldots, v_n \in R^n$, temos que
     \begin{equation*}
-        \det(v_1, \ldots, v_n) = \sum_{\sigma \in S_n} \sgn(\sigma) v_{1\sigma(1)} v_{2\sigma(2)} \cdots v_{n\sigma(n)}, 
+        \det(v_1, \ldots, v_n) = \sum_{\sigma \in S_n} \sgn(\sigma) v_{\sigma(1)1} v_{\sigma(2)2} \cdots v_{\sigma(n)n}, 
     \end{equation*}
 
     E, se $r \in R$ e $f$ é uma função multilinear e alternada tal que $f(e_1, e_2, \ldots, e_n) = r$, então $f(v_1, v_2, \ldots, v_n) = r \det(v_1, v_2, \ldots, v_n)$ para todos $v_1, v_2, \ldots, v_n \in R^n$.
@@ -333,21 +339,20 @@ Temos que $A^t=(b_{ij})_{i, j}=(a_{ji})_{i,j}$.
 Logo,
 \begin{equation*}
     \begin{aligned}
-        \det(A^t) &= \sum_{\sigma \in S_n} \sgn(\sigma) b_{1\sigma(1)} b_{2\sigma(2)} \cdots b_{n\sigma(n)}\\
-        &= \sum_{\sigma \in S_n} \sgn(\sigma) a_{\sigma(1)1} a_{\sigma(2)2} \cdots a_{\sigma(n)n}\\
-        &= \sum_{\sigma \in S_n} \sgn(\sigma) \prod_{i=1}^n a_{\sigma(i)i}
+        \det(A^t) &= \sum_{\sigma \in S_n} \sgn(\sigma) b_{\sigma(1)1} b_{\sigma(2)2} \cdots b_{\sigma(n)n}\\
+        &= \sum_{\sigma \in S_n} \sgn(\sigma) \prod_{i=1}^n a_{i\sigma(i)}.
     \end{aligned}
 \end{equation*}
 Em cada produtório, fazendo $j=\sigma(i)$, temos: que $i=\sigma^{-1}(j)$.
 Logo,
 \begin{equation*}
-    \prod_{i=1}^n a_{\sigma(i)i} = \prod_{j=1}^n a_{j\sigma^{-1}(j)}.
+    \prod_{i=1}^n a_{i\sigma(i)} = \prod_{j=1}^n a_{\sigma^{-1}(j)j}.
 \end{equation*}
 
 Assim:
 \begin{equation*}
     \begin{aligned}
-        \det(A^t) &= \sum_{\sigma \in S_n} \sgn(\sigma) \prod_{j=1}^n a_{j\sigma^{-1}(j)}
+        \det(A^t) &= \sum_{\sigma \in S_n} \sgn(\sigma) \prod_{j=1}^n a_{\sigma^{-1}(j)j}.
     \end{aligned}
 \end{equation*}
 No somatório, fazendo $\rho=\sigma^{-1}$, temos que $\sigma=\rho^{-1}$.
@@ -356,17 +361,16 @@ Assim:
 
 \begin{equation*}
     \begin{aligned}
-        \det(A^t) &= \sum_{\rho \in S_n} \sgn(\rho^{-1}) \prod_{j=1}^n a_{j\rho(j)}\\
-        &= \sum_{\rho \in S_n} \sgn(\rho) \prod_{j=1}^n a_{j\rho(j)}\\
+        \det(A^t) &= \sum_{\rho \in S_n} \sgn(\rho^{-1}) \prod_{j=1}^n a_{\rho(j)j}\\
+        &= \sum_{\rho \in S_n} \sgn(\rho) \prod_{j=1}^n a_{\rho(j)j}\\
         &= \det(A).
     \end{aligned}
 \end{equation*}
 
-Para essa igualdade, devemos ver que $\sgn(\rho^{-1}) = \sgn(\rho)$.
-Mas, se $\tau_1, \tau_2, \ldots, \tau_k$ são transposições tais que $\tau_k \circ \cdots \circ \tau_1 \circ \rho=\id$, então $\tau_k\circ \cdots \circ \tau_1=\rho^{-1}$.
-Invertendo os dois lados, temos que $\tau_1^{-1} \circ \cdots \circ \tau_k^{-1} = \rho$.
-Compondo com $\rho^{-1}$ e do fato que a inversa de uma transposição é ela mesma, temos que $\tau_1 \circ \cdots \circ \tau_k \circ \rho^{-1} = \id$.
-Logo, um número de transposições necessárias para transformar $\rho$ na identidade é o mesmo que o número de transposições necessárias para transformar $\rho^{-1}$ na identidade.
+Para essa penúltima igualdade, devemos ver que $\sgn(\rho^{-1}) = \sgn(\rho)$.
+S $\tau_1, \tau_2, \ldots, \tau_k$ são transposições tais que $\tau_k \circ \cdots \circ \tau_1 = \rho$, então $\tau_1 \circ \cdots \circ \tau_k = \rho^{-1}$.
+Do fato que a inversa de uma transposição é ela mesma, temos que $\tau_1 \circ \cdots \circ \tau_k = \rho^{-1}$.
+Logo, um número de transposições necessárias para obter $\rho^{-1}$ é o mesmo que para obter $\rho$.
 Portanto, $\sgn(\rho^{-1}) = \sgn(\rho)$.
 \end{proof}
 
@@ -380,7 +384,7 @@ Portanto, $\sgn(\rho^{-1}) = \sgn(\rho)$.
 \end{proposition}
 
 \begin{proof}
-    Note que $\det(A) = \det(A^t)$.
+    Como visto, $\det(A) = \det(A^t)$.
     Seja $\bar i=j$.
     Escreva $A^t=(b_{ij})_{i,j}$ e $A=(a_{ij})_{i,j}$.
     Temos que $b_{ij} = a_{ji}$ para todos $i, j$.
@@ -524,4 +528,76 @@ Finalmente, provaremos a fórmula de Cramer para sistemas lineares.
     \begin{equation*}
         \alpha_j = \det(A_j) \det(A)^{-1}.
     \end{equation*}
+\end{proof}
+
+Agora vejamos como calcular o determinante em blocos.
+
+\begin{proposition}
+    Seja $R$ um anel comutativo e $n, m \geq 1$.
+    Sejam $A \in M_n(R)$, $B \in M_{n\times m}(R)$, $0 \in M_{m\times n}(R)$, e $D \in M_m(R)$.
+    Se $C A = A C$, então
+    \begin{equation*}
+        \det\begin{pmatrix}
+        A & B\\
+        0 & D
+        \end{pmatrix} = \det(A)\det(D).
+    \end{equation*}
+
+\begin{proof}
+    Primeiro, vamos provar que, para todo $A \in M_n(R)$ e $B \in M_{n\times m}(R)$, temos que
+    \begin{equation*}
+        \det\begin{pmatrix}
+        A & B\\
+        0 & I_m
+        \end{pmatrix} = \det(A).
+    \end{equation*}
+
+    Para tanto, seja $f: M_{n+m}(R) \to R$ dada por $f(X) = \det\begin{pmatrix}
+    X & B\\
+    0 & I_m
+    \end{pmatrix}$.
+    É fácil ver que $f$ é multilinear e alternada em relação às primeiras $n$ colunas de $X$.
+    Além disso, $f(I_n) = \det\begin{pmatrix}
+    I_n & B\\
+    0 & I_m
+    \end{pmatrix} = 1$,
+\end{proof}
+uma vez que as últimas $m$ linhas podem, via escalonamento, eliminar a matriz $B$ sem alterar o determinante.
+Logo, $f(X) = \det(X)$ para todo $X \in M_n(R)$.
+
+Agora, fixemos $A \in M_n(R)$ e definimos $g: M_{m}(R) \to R$ por $g(Y) = \det\begin{pmatrix}
+A & B\\
+0 & Y
+\end{pmatrix}$.
+É fácil ver que $g$ é multilinear e alternada em relação às últimas $m$ colunas de $Y$.
+Além disso, $g(I_m) = \det\begin{pmatrix}
+A & B\\
+0 & I_m
+\end{pmatrix}$.
+Logo, $g(Y) = \det(A) \det(Y)$ para todo $Y \in M_m(R)$.
+Em particular, para $Y = D$, temos o resultado desejado.
+\end{proposition}
+
+\begin{proposition}
+    Seja $R$ um anel comutativo $A \in M_n(R)$.
+    Se $A$ é uma matriz triangular superior ou inferior, então
+    \begin{equation*}
+        \det(A) = a_{11} a_{22} \cdots a_{nn}.
+    \end{equation*}
+\end{proposition}
+\begin{proof}
+    Visualmente, temos que:
+    \begin{equation*}
+        A = \begin{pmatrix}
+        a_{11} & a_{12} & \cdots & a_{1n}\\
+        0 & a_{22} & \cdots & a_{2n}\\
+        \vdots & \vdots & \ddots & \vdots\\
+        0 & 0 & \cdots & a_{nn}
+        \end{pmatrix}.
+    \end{equation*}
+
+    Lembremos que $\det(A) = \sum_{\sigma \in S_n} \sgn(\sigma) a_{\sigma(1)1} a_{\sigma(2)2} \cdots a_{\sigma(n)n}$.
+    Note que, se $\sigma$ não é a identidade, então existe $k \in \{1, \ldots, n-1\}$ tal que $\sigma(k) \neq k$.
+    Sendo $k$ o menor com essa propriedade, temos que $\sigma(k) > k$, o que implica que $a_{\sigma(k)k} = 0$.
+    Logo, a única parcela não nula na soma acima é aquela em que $\sigma$ é a identidade, o que nos dá o resultado desejado.
 \end{proof}
