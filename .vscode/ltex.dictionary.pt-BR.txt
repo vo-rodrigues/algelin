@@ -11,3 +11,4 @@ LD
 bijetam
 Laplace
 Cramer
+autoespaço
