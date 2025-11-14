@@ -9,3 +9,5 @@ upla
 Kronecker
 LD
 bijetam
+Laplace
+Cramer

@@ -1,0 +1,112 @@
+\section{A matriz adjunta e a fórmula de Cramer}
+\begin{definition}
+    Seja $R$ um anel comutativo e $A \in M_n(R)$.
+
+    Se $i, j \in \{1, \ldots, n\}$, o \emph{cofator} $(i, j)$ de $A$ é o elemento de $R$ dado por
+    \begin{equation*}
+        c_{ij} = (-1)^{i+j} \det(A(i|j)).
+    \end{equation*}
+
+    A transposta $(c_{ji})_{i,j}$ da matriz dos cofatores de $A$ é chamada de \emph{matriz adjunta} de $A$ e é denotada por $\adj(A)$.
+\end{definition}
+
+\begin{proposition}
+    Seja $R$ um anel comutativo e $A \in M_n(R)$.
+    Então $A \cdot \adj(A) = \adj(A) \cdot A = \det(A) I_n$.
+\end{proposition}
+\begin{proof}
+    Seja $B = \adj(A)$.
+    Note que o elemento $(i, j)$ de $AB$ é dado por
+    \begin{equation*}
+        (AB)_{ij} = \sum_{k=1}^n a_{ik} b_{kj} = \sum_{k=1}^n a_{ik} (-1)^{k+j} \det(A(k|j)).
+    \end{equation*}
+
+    Se $i=j$, pela expansão de Laplace na linha $i$ de $A$, temos que $(AB)_{ii} = \det(A)$.
+
+    Se $i \neq j$, considere a matriz $C$ obtida de $A$ ao substituir a linha $j$ pela linha $i$.
+    Pela expansão de Laplace na linha $j$ de $C$, temos que
+    \begin{equation*}
+        0 = \det(C) = \sum_{k=1}^n a_{ik} (-1)^{k+j} \det(A(k|j)) = (AB)_{ij}.
+    \end{equation*}
+
+    Logo, $AB = \det(A) I_n$.
+    De forma análoga, podemos mostrar que $BA = \det(A) I_n$.
+\end{proof}
+
+\begin{corollary}
+    Seja $R$ um anel comutativo e $A \in M_n(R)$.
+    Então $A$ é invertível em $M_n(R)$ se, e somente se, $\det(A)$ é invertível em $R$, e, nesse caso, $A^{-1} = \det(A)^{-1} \adj(A)$.
+
+    Em particular, se $R$ é um corpo, então $A$ é invertível em $M_n(R)$ se, e somente se, $\det(A) \neq 0$.
+\end{corollary}
+\begin{proof}
+    Se $A$ é invertível em $M_n(R)$, então existe $B \in M_n(R)$ tal que $AB = I_n$.
+    Logo, $\det(A)\det(B) = \det(AB) = \det(I_n) = 1$, o que implica que $\det(A)$ é invertível em $R$.
+
+    A reciproca é imediata a partir da proposição anterior.
+\end{proof}
+
+Finalmente, provaremos a fórmula de Cramer para sistemas lineares.
+
+\begin{proposition}
+    Seja $R$ um anel comutativo, $A \in M_n(R)$ e $b \in R^n$.
+    Se $\det(A)$ é invertível em $R$, então o sistema linear $Ax = b$ tem solução única $(\alpha_1, \dots, \alpha_n)$ dada por
+    \begin{equation*}
+        \alpha_i = \det(A_i) \det(A)^{-1},
+    \end{equation*}
+
+    em que $A_i$ é a matriz obtida de $A$ ao substituir a coluna $i$ por $b$.
+\end{proposition}
+\begin{proof}
+    Seja $v=(\alpha_1, \ldots, \alpha_n)$ a solução do sistema.
+    Seja $[v]$ a matriz coluna associada a $v$, ou seja, $[v] = \begin{pmatrix}
+    \alpha_1\\
+    \alpha_2\\
+    \vdots\\
+    \alpha_n
+    \end{pmatrix}$.
+    Para cada $i \in \{1, \ldots, n\}$, seja $A_i$ a matriz obtida de $A$ ao substituir a coluna $i$ por $b$.
+    Note que $A[v] = [b]$.
+    Multiplicando ambos os lados por $\adj(A)$, temos que $\adj(A)Av = \adj(A)[b]$.
+
+    Assim, \begin{equation*}
+        \det(A) v = \adj(A) [b].
+    \end{equation*}
+    Logo, para cada $j \in \{1, \ldots, n\}$, temos que
+    \begin{equation*}
+        \det(A) \alpha_j = (\adj(A) [b])_j = \sum_{i=1}^n c_{ji} b_i = \sum_{i=1}^n (-1)^{i+j} \det(A(i|j) b_i.
+    \end{equation*}
+    Note que a soma acima é exatamente a expansão de Laplace na coluna $j$ de $A_j$.
+    Logo, \begin{equation*}
+        \det(A) \alpha_j = \det(A_j),
+    \end{equation*}
+    o que implica que
+    \begin{equation*}
+        \alpha_j = \det(A_j) \det(A)^{-1}.
+    \end{equation*}
+\end{proof}
+
+
+\begin{proposition}
+    Seja $R$ um anel comutativo $A \in M_n(R)$.
+    Se $A$ é uma matriz triangular superior ou inferior, então
+    \begin{equation*}
+        \det(A) = a_{11} a_{22} \cdots a_{nn}.
+    \end{equation*}
+\end{proposition}
+\begin{proof}
+    Visualmente, temos que:
+    \begin{equation*}
+        A = \begin{pmatrix}
+        a_{11} & a_{12} & \cdots & a_{1n}\\
+        0 & a_{22} & \cdots & a_{2n}\\
+        \vdots & \vdots & \ddots & \vdots\\
+        0 & 0 & \cdots & a_{nn}
+        \end{pmatrix}.
+    \end{equation*}
+
+    Lembremos que $\det(A) = \sum_{\sigma \in S_n} \sgn(\sigma) a_{\sigma(1)1} a_{\sigma(2)2} \cdots a_{\sigma(n)n}$.
+    Note que, se $\sigma$ não é a identidade, então existe $k \in \{1, \ldots, n-1\}$ tal que $\sigma(k) \neq k$.
+    Sendo $k$ o menor com essa propriedade, temos que $\sigma(k) > k$, o que implica que $a_{\sigma(k)k} = 0$.
+    Logo, a única parcela não nula na soma acima é aquela em que $\sigma$ é a identidade, o que nos dá o resultado desejado.
+\end{proof}

@@ -1,0 +1,184 @@
+\section{Existência e unicidade de determinantes}
+No fim da seção anterior, chegamos à definição de uma função determinante, mas não provamos que tal função existe ou que é única.
+
+Iniciaremos com a existência.
+\begin{lemma}
+    Seja $R$ um anel comutativo e $r \in R$.
+    Então existe uma função multilinear e antissimétrica $f: (R^n)^n \to R$ tal que $f(e_1, e_2, \ldots, e_n) = r$.
+\end{lemma}
+
+\begin{lemma}
+    Seja $R$ um anel comutativo e $g: (R^n)^n \to R$ uma função multilinear e alternada.
+    Seja $i\in \{1, \ldots, n+1\}$.
+    Então a função $f: (R^{n+1})^{n+1} \to R$ definida por
+    \begin{equation*}
+        f(v_1, v_2, \ldots, v_{n+1}) = \sum_{j=1}^{n+1} (-1)^{j+i} v_{ij} g(v_1^{(i)}, \dots, v_{j-1}^{(i)}, v_{j+1}^{(i)}, \ldots, v_{n+1}^{(i)}),
+    \end{equation*}
+
+    em que $v_{ij}$ é a $j$-ésima coordenada do vetor $v_i$ e $v_k^{(i)}$ é o vetor obtido de $v_k$ ao remover sua $i$-ésima coordenada, é multilinear e alternada.
+    Além disso, $f(e_1, e_2, \ldots, e_{n+1}) = g(e_1, e_2, \ldots, e_n)$.
+\end{lemma}
+
+\begin{proof}
+    Verificaremos a multilinearidade.
+    Sejam $k \in \{1, \dots, n+1\}$, $v_1, \ldots, v_{n+1}, v_k' \in R^{n+1}$ e $\alpha \in R$.
+    \begin{equation*}
+        \begin{aligned}
+            f(v_1, \ldots, v_{k-1}, v_k + \alpha v_k', v_{k+1}, \ldots, v_{n+1}) 
+            &= (-1)^{k+i}(v_{ik}+\alpha v_{ik'})\,g(v_1^{(i)}, \dots, v_{k-1}^{(i)}, v_{k+1}^{(i)}, \dots, v_{n+1}^{(i)}) \\
+            &\quad + \sum_{\substack{j=1\\ j\neq k}}^{n+1} (-1)^{j+i} v_{ij}\, g(v_1^{(i)}, \ldots, (v_k + \alpha v_k')^{(i)}, \ldots, v_{n+1}^{(i)})\\
+            &= (-1)^{k+i}(v_{ik}+\alpha v_{ik'})\,g(v_1^{(i)}, \dots, v_{k-1}^{(i)}, v_{k+1}^{(i)}, \dots, v_{n+1}^{(i)})\\
+            &\quad + \sum_{\substack{j=1\\ j\neq k}}^{n+1} (-1)^{j+i} v_{ij} \big(g(v_1^{(i)}, \ldots, v_k^{(i)}, \ldots, v_{n+1}^{(i)}) \\
+            &\qquad\quad + g(v_1^{(i)}, \ldots, \alpha v_k'^{(i)}, \ldots, v_{n+1}^{(i)})\big)\\
+            &= f(v_1, \ldots, v_{n+1}) + \alpha f(v_1, \ldots, v_{k-1}, v_k', v_{k+1}, \ldots, v_{n+1}).
+        \end{aligned}
+    \end{equation*}
+    Agora vejamos que $f$ é alternada.
+
+    Sejam $v_1, \ldots, v_{n+1} \in R^{n+1}$ tais que existem $k, l \in \{1, \ldots, n+1\}$ com $k \neq l$ e $v_k = v_l$.
+    Veremos que $f(v_1, \ldots, v_{n+1}) = 0$.
+    Perceba que na expressão que define a função, todas as parcelas para as quais $j\notin\{k, l\}$ são nulas.
+    Assim:
+    \begin{equation*}
+        \begin{aligned}
+            f(v_1, \ldots, v_{n+1}) &= (-1)^{k+i} v_{ik} g(v_1^{(i)}, \ldots, v_{k-1}^{(i)}, v_{k+1}^{(i)}, \ldots, v_{n+1}^{(i)}) \\
+            &\quad + (-1)^{l+i} v_{il} g(v_1^{(i)}, \ldots, v_{l-1}^{(i)}, v_{l+1}^{(i)}, \ldots, v_{n+1}^{(i)})\\
+        \end{aligned}
+    \end{equation*}
+    Perceba que $(v_1^{(i)}, \ldots, v_{k-1}^{(i)}, v_{k+1}^{(i)}, \ldots, v_{n+1}^{(i)})$ é a mesma sequência que $(v_1^{(i)}, \ldots, v_{l-1}^{(i)}, v_{l+1}^{(i)}, \ldots, v_{n+1}^{(i)})$, exceto pela aplicação de $|k-l-1|$ transposições.
+    Logo:
+
+    \begin{equation*}
+        \begin{aligned}
+            f(v_1, \ldots, v_{n+1}) &= (-1)^{k+i} v_{ik} g(v_1^{(i)}, \ldots, v_{k-1}^{(i)}, v_{k+1}^{(i)}, \ldots, v_{n+1}^{(i)}) \\
+            &\quad + (-1)^{l+i} v_{il} g(v_1^{(i)}, \ldots, v_{l-1}^{(i)}, v_{l+1}^{(i)}, \ldots, v_{n+1}^{(i)})\\
+            &= (-1)^{k+i} v_{ik} g(v_1^{(i)}, \ldots, v_{k-1}^{(i)}, v_{k+1}^{(i)}, \ldots, v_{n+1}^{(i)}) \\
+            &\quad + (-1)^{l+i} v_{ik} (-1)^{k-l+1} g(v_1^{(i)}, \ldots, v_{k-1}^{(i)}, v_{k+1}^{(i)}, \ldots, v_{n+1}^{(i)})\\
+            &= 0.
+        \end{aligned}
+    \end{equation*}
+
+    Para a última afirmação, note que ao calcular $f(e_1, e_2, \ldots, e_{n+1})$, a única parcela que não é nula é aquela em que $j = i$, o que nos dá exatamente $g$ aplicada na base canônica de $R^n$, que é $r$.
+\end{proof}
+
+Em particular, existem funções determinantes.
+Agora podemos provar a unicidade dessas funções.
+
+\begin{lemma}
+    Seja $R$ um anel. Para todo $n\geq 1$ e todo $r \in R$, existe no máximo uma função multilinear e alternada $f: (R^n)^n \to R$ tal que $f(e_1, e_2, \ldots, e_n) = r$.
+\end{lemma}
+
+\begin{proof}
+
+    Uma transposição é uma função bijetora $\tau: \{1, 2, \ldots, n\} \to \{1, 2, \ldots, n\}$ que troca dois elementos de posição e mantém os demais fixos.
+
+    Se $f: (R^n)^n \to R$ é multilinear e alternada, se $v_1, v_2, \ldots, v_n \in R^n$ e $\tau$ é uma transposição, então $f(v_1, v_2, \ldots, v_n) = -f(v_{\tau(1)}, v_{\tau(2)}, \ldots, v_{\tau(n)})$.
+
+    Para cada função bijetora $\sigma: \{1, 2, \ldots, n\} \to \{1, 2, \ldots, n\}$, existem $k\geq 0$ transposições $\tau_1, \tau_2, \ldots, \tau_k$ tais que:
+    \begin{equation*}
+        \tau_k \circ \tau_{k-1} \circ \cdots \circ \tau_1 = \sigma.
+    \end{equation*}
+    Tal fato pode ser provado por indução em $n$ e é deixado ao leitor.
+    Notemos que:
+    \begin{equation*}
+        f(v_{\sigma(1)}, \ldots, v_{\sigma(n)}) = (-1)^k f(v_{\tau_1 \circ \tau_2 \circ \cdots \circ \tau_k(1)},  \ldots, v_{\tau_1 \circ \tau_2 \circ \cdots \circ \tau_k(n)}) = (-1)^k f(v_1, v_2, \ldots, v_n).
+    \end{equation*}
+
+    Para cada $\sigma: \{1, 2, \ldots, n\} \to \{1, 2, \ldots, n\}$ bijetora, fixamos um número $k_\sigma$ qualquer para o qual existem transposições $\tau_1, \tau_2, \ldots, \tau_{k_\sigma}$ tais que $\tau_{k_\sigma} \circ \tau_{k_\sigma-1} \circ \cdots \circ \tau_1 \circ \sigma$ é a identidade e definimos $\sgn(\sigma) = (-1)^{k_\sigma}$.
+
+    Suponha agora que $f, g$ são funções como no enunciado. Temos que, dados $v_1, v_2, \ldots, v_n \in R^n$, seja, para cada $j\in \{1, 2, \ldots, n\}$, $v_j = \sum_{i=1}^n v_{ij} e_i$, em que $v_{ij} \in R$.
+    
+
+    \begin{equation*}
+        \begin{aligned}
+            f(v_1, v_2, \ldots, v_n) &= f\left(\sum_{i_1=1}^n v_{i_11} e_{i_1}, \sum_{i_2=1}^n v_{i_22} e_{i_2}, \ldots, \sum_{i_n=1}^n v_{i_nn} e_{i_n}\right)\\
+            &= \sum_{i_1=1}^n \sum_{i_2=1}^n \cdots \sum_{i_n=1}^n v_{i_11} v_{i_22} \cdots v_{i_nn} f(e_{i_1}, e_{i_2}, \ldots, e_{i_n})\\
+        \end{aligned}
+    \end{equation*}
+
+    As parcelas para as quais há repetição de índices $i_j$ são nulas, pois $f$ é alternada.
+    Assim, as únicas parcelas são nulas são aquelas para as quais $(i_1, i_2, \ldots, i_n)$ é uma sequência injetora em $\{1, 2, \ldots, n\}$.
+    Mas isso implica que tal sequência é uma bijeção $\sigma$ de $\{1, 2, \ldots, n\}$ em $\{1, 2, \ldots, n\}$.
+
+    Seja $S_n$ o conjunto das bijeções de $\{1, 2, \ldots, n\}$ em $\{1, 2, \ldots, n\}$.
+    A expressão anterior é igual à
+
+    \begin{equation*}
+        \begin{aligned}
+            f(v_1, v_2, \ldots, v_n) &= \sum_{\sigma \in S_n} v_{\sigma(1)1} v_{\sigma(2)2} \cdots v_{\sigma(n)n} f(e_{\sigma(1)}, e_{\sigma(2)}, \ldots, e_{\sigma(n)})\\
+            &= \sum_{\sigma \in S_n} v_{\sigma(1)1} v_{\sigma(2)2} \cdots v_{\sigma(n)n} (-1)^{k_\sigma} f(e_1, e_2, \ldots, e_n)\\
+            &= r\sum_{\sigma \in S_n} (-1)^{k_\sigma} v_{\sigma(1)1} v_{\sigma(2)2} \cdots v_{\sigma(n)n}.
+        \end{aligned}
+    \end{equation*}
+
+    De forma completamente análoga, temos que
+    \begin{equation*}
+        g(v_1, v_2, \ldots, v_n) = r\sum_{\sigma \in S_n} (-1)^{k_\sigma} v_{\sigma(1)1} v_{\sigma(2)2} \cdots v_{\sigma(n)n}.
+    \end{equation*}
+    Logo, $f(v_1, v_2, \ldots, v_n) = g(v_1, v_2, \ldots, v_n)$ para todos $v_1, v_2, \ldots, v_n \in R^n$.
+\end{proof}
+
+Isso termina a prova da existência e unicidade do determinante.
+\begin{definition}
+Seja $R$ um anel comutativo.
+O \emph{determinante} $n\times n$ em $R$ é a função $\det: (R^n)^n \to R$ multilinear, alternada, e que vale $1$ em $(e_1, e_2, \ldots, e_n)$, em que $e_i$ são os vetores da base canônica de $R^n$.
+\end{definition}
+Na demonstração anterior, fixamos um número arbitrário $k_\sigma$ para cada bijeção $\sigma$.
+No entanto, é possível mostrar que o número de transposições necessárias para transformar $\sigma$ na identidade tem sempre a mesma paridade, de modo que a expressão $(-1)^{k_\sigma}$, que nos dá um sinal, é bem definida.
+Uma das formas de provar isso é usando determinantes!
+Faremos isso como aplicação.
+
+\begin{example}
+Para $n=1$, a função determinante em um anel comutativo $R$ é dada por $\det(v_1) = v_{11}$.
+\end{example}
+
+    \begin{example}
+    Para $n=2$, a função determinante em um anel comutativo $R$ é dada por $\det(v_1, v_2) = v_{11}v_{22} - v_{12}v_{21}$.
+    \end{example}
+
+    \begin{example}
+    Para $n=3$, a função determinante em um anel comutativo $R$ é dada por $\det(v_1, v_2, v_3) = v_{11}v_{22}v_{33} + v_{12}v_{23}v_{31} + v_{13}v_{21}v_{32} - v_{13}v_{22}v_{31} - v_{11}v_{23}v_{32} - v_{12}v_{21}v_{33}$.
+    \end{example}
+
+\begin{example}[Expansão de Laplace em uma linha]
+    Para $n\geq 1$, a função determinante $n+1\times n+1$ em um anel comutativo $R$ é dada pela expressão recursiva:
+    \begin{equation*}
+        \det(v_1, v_2, \ldots, v_{n+1}) = \sum_{j=1}^{n+1} (-1)^{j+i} v_{ij} \det(v_1^{(i)}, \ldots, v_{j-1}^{(i)}, v_{j+1}^{(i)}, \ldots, v_{n+1}^{(i)}),
+    \end{equation*}
+
+    em que $i$ está fixo.
+
+    Em linguagem matricial, sendo $A \in M_{n+1}(R)$, temos:
+    \begin{equation*}
+        \det(A) = \sum_{j=1}^{n+1} (-1)^{j+i} a_{ij} \det(A(i|j)),
+    \end{equation*}
+    Em que $i$ é uma linha fixa, e $A(i|j)$ é a matriz obtida de $A$ ao remover a linha $i$ e a coluna $j$.
+\end{example}
+
+\begin{proposition}
+    Seja $R$ um anel comutativo e $n\geq 1$.
+    Para toda bijeção $\sigma: \{1, 2, \ldots, n\} \to \{1, 2, \ldots, n\}$, se $k$ e $s$ são inteiros positivos para os quais existem transposições $\tau_1, \tau_2, \ldots, \tau_k$ e $\rho_1, \rho_2, \ldots, \rho_s$ tais que $\tau_k \circ \tau_{k-1} =\sigma$ e $\rho_s \circ \rho_{s-1} \circ \cdots \circ \rho_1 =\sigma$, então $k$ e $s$ têm a mesma paridade.
+\begin{proof}
+    Seja $\sigma$ uma bijeção de $\{1, 2, \ldots, n\}$ em $\{1, 2, \ldots, n\}$.
+    Temos que $\det(e_{\sigma(1)}, e_{\sigma(2)}, \ldots, e_{\sigma(n)}) = (-1)^k \det(e_1, e_2, \ldots, e_n) = (-1)^k$.
+    De forma análoga, $\det(e_{\sigma(1)}, e_{\sigma(2)}, \ldots, e_{\sigma(n)}) = (-1)^s$.
+    Logo, $(-1)^k = (-1)^s$, o que implica que $k$ e $s$ têm a mesma paridade.
+\end{proof}
+
+\begin{definition}
+Dado um anel comutativo $R$ e $n\geq 1$, para cada bijeção $\sigma: \{1, 2, \ldots, n\} \to \{1, 2, \ldots, n\}$, definimos o \emph{sinal} de $\sigma$ como sendo
+\begin{equation*}
+    \sgn(\sigma) = (-1)^{k_\sigma},
+\end{equation*}
+em que $k_\sigma$ é um número de transposições necessárias para transformar $\sigma$ na identidade.
+\end{definition}
+\begin{corollary}
+    Seja $R$ um anel comutativo e $n\geq 1$.
+    Então para todos $v_1, v_2, \ldots, v_n \in R^n$, temos que
+    \begin{equation*}
+        \det(v_1, \ldots, v_n) = \sum_{\sigma \in S_n} \sgn(\sigma) v_{\sigma(1)1} v_{\sigma(2)2} \cdots v_{\sigma(n)n}, 
+    \end{equation*}
+
+    E, se $r \in R$ e $f$ é uma função multilinear e alternada tal que $f(e_1, e_2, \ldots, e_n) = r$, então $f(v_1, v_2, \ldots, v_n) = r \det(v_1, v_2, \ldots, v_n)$ para todos $v_1, v_2, \ldots, v_n \in R^n$.
+\end{corollary}
+\end{proposition}

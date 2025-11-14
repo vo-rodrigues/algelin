@@ -1,0 +1,178 @@
+  
+\section{Propriedades dos determinantes}
+\begin{theorem}[Binet]
+    Sejam $A, B \in M_n(R)$.
+    Então $\det(AB) = \det(A)\det(B)$.
+\end{theorem}
+\begin{proof}
+Fixe $A$. Defina $f: (R^n)^n \to R$ por $f(v_1, v_2, \ldots, v_n) = \det(Av_1, Av_2, \ldots, Av_n)$.
+Note que $f$ é multilinear e alternada e que $f(e_1, e_2, \ldots, e_n) = \det(A)$.
+Logo, $f(v_1, v_2, \ldots, v_n) = \det(A) \det(v_1, v_2, \ldots, v_n)$.
+
+Por outro lado, $g:(R^n)^n \to R$ definida por $g(v_1, v_2, \ldots, v_n) = \det(A)\det(v_1, v_2, \ldots, v_n)$ também é multilinear e alternada e vale $\det(A)$ em $(e_1, e_2, \ldots, e_n)$.
+Logo, $f(v_1, v_2, \ldots, v_n) = g(v_1, v_2, \ldots, v_n)$ para todos $v_1, v_2, \ldots, v_n \in R^n$.
+Em particular, para as colunas de $B$, temos:
+\begin{equation*}
+    \det(AB) = f(\text{col}_1(B), \text{col}_2(B), \ldots, \text{col}_n(B)) = g(\text{col}_1(B), \text{col}_2(B), \ldots, \text{col}_n(B)) = \det(A)\det(B).
+\end{equation*}
+\end{proof}
+\begin{proposition}
+    Seja $R$ um anel comutativo e $A \in M_n(R)$.
+    Então $\det(A)=\det(A^t)$, onde $t$ é a matriz transporta de $A$.
+\end{proposition}
+\begin{proof}
+Seja $A=(a_{ij})_{i,j}$.
+Temos que $A^t=(b_{ij})_{i, j}=(a_{ji})_{i,j}$.
+Logo,
+\begin{equation*}
+    \begin{aligned}
+        \det(A^t) &= \sum_{\sigma \in S_n} \sgn(\sigma) b_{\sigma(1)1} b_{\sigma(2)2} \cdots b_{\sigma(n)n}\\
+        &= \sum_{\sigma \in S_n} \sgn(\sigma) \prod_{i=1}^n a_{i\sigma(i)}.
+    \end{aligned}
+\end{equation*}
+Em cada produtório, fazendo $j=\sigma(i)$, temos: que $i=\sigma^{-1}(j)$.
+Logo,
+\begin{equation*}
+    \prod_{i=1}^n a_{i\sigma(i)} = \prod_{j=1}^n a_{\sigma^{-1}(j)j}.
+\end{equation*}
+
+Assim:
+\begin{equation*}
+    \begin{aligned}
+        \det(A^t) &= \sum_{\sigma \in S_n} \sgn(\sigma) \prod_{j=1}^n a_{\sigma^{-1}(j)j}.
+    \end{aligned}
+\end{equation*}
+No somatório, fazendo $\rho=\sigma^{-1}$, temos que $\sigma=\rho^{-1}$.
+
+Assim:
+
+\begin{equation*}
+    \begin{aligned}
+        \det(A^t) &= \sum_{\rho \in S_n} \sgn(\rho^{-1}) \prod_{j=1}^n a_{\rho(j)j}\\
+        &= \sum_{\rho \in S_n} \sgn(\rho) \prod_{j=1}^n a_{\rho(j)j}\\
+        &= \det(A).
+    \end{aligned}
+\end{equation*}
+
+Para essa penúltima igualdade, devemos ver que $\sgn(\rho^{-1}) = \sgn(\rho)$.
+S $\tau_1, \tau_2, \ldots, \tau_k$ são transposições tais que $\tau_k \circ \cdots \circ \tau_1 = \rho$, então $\tau_1 \circ \cdots \circ \tau_k = \rho^{-1}$.
+Do fato que a inversa de uma transposição é ela mesma, temos que $\tau_1 \circ \cdots \circ \tau_k = \rho^{-1}$.
+Logo, um número de transposições necessárias para obter $\rho^{-1}$ é o mesmo que para obter $\rho$.
+Portanto, $\sgn(\rho^{-1}) = \sgn(\rho)$.
+\end{proof}
+
+    \begin{proposition}[Expansão de Laplace em uma coluna]
+    Para $n\geq 1$, $A \in M_{n+1}(R)$, e $j \in \{1, \ldots, n+1\}$, temos que
+    \begin{equation*}
+        \det(A) = \sum_{j=1}^{n+1} (-1)^{j+i} a_{ji} \det(A(i|j)),
+    \end{equation*}
+
+    em que $A(i|j)$ é a matriz obtida de $A$ ao remover a linha $i$ e a coluna $j$.
+\end{proposition}
+
+\begin{proof}
+    Como visto, $\det(A) = \det(A^t)$.
+    Seja $\bar i=j$.
+    Escreva $A^t=(b_{ij})_{i,j}$ e $A=(a_{ij})_{i,j}$.
+    Temos que $b_{ij} = a_{ji}$ para todos $i, j$.
+    Usando a expansão de Laplace em na linha $\bar i$ de $A^t$, temos:
+    \begin{equation*}
+        \det(A)=\det(A^t) = \sum_{k=1}^{n+1} (-1)^{\bar i + k} b_{\bar i k} \det((A^t)(\bar i|k)).
+    \end{equation*}
+    Note que $(A^t)(\bar i|k) = (A(k|\bar i))^t$.
+    Logo, $\det((A^t)(\bar i|k)) = \det(A(k|\bar i))$.
+
+    Assim:
+
+    \begin{equation*}
+        \det(A) = \sum_{k=1}^{n+1} (-1)^{\bar i + k} a_{k\bar i} \det(A(k|\bar i)).
+    \end{equation*}
+
+    Lembrando que $j=\bar i$, e trocando a letra muda $k$ por $i$ na expressão acima, temos o resultado desejado.
+\end{proof}
+
+\begin{example}[Regra de Sarrus]
+    Seja $R$ um anel comutativo e $A \in M_3(R)$ dada por
+    \begin{equation*}
+        A = \begin{pmatrix}
+        a_{11} & a_{12} & a_{13}\\
+        a_{21} & a_{22} & a_{23}\\
+        a_{31} & a_{32} & a_{33}
+        \end{pmatrix}.
+    \end{equation*}
+    Então:
+    \begin{equation*}
+        \det(A) = a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32} - a_{13}a_{22}a_{31} - a_{11}a_{23}a_{32} - a_{12}a_{21}a_{33}.
+    \end{equation*}
+\end{example}
+\begin{proof}
+    Fazendo a expansão de Laplace na primeira coluna, temos que:
+    \begin{equation*}
+        \det(A) = a_{11} \det(A(1|1)) - a_{21} \det(A(2|1)) + a_{31} \det(A(3|1)).
+    \end{equation*}
+
+    Ou seja:
+    \begin{equation*}
+        \begin{aligned}
+            \det(A) &= a_{11} \begin{vmatrix}
+            a_{22} & a_{23}\\
+            a_{32} & a_{33}
+            \end{vmatrix} - a_{21} \begin{vmatrix}
+            a_{12} & a_{13}\\
+            a_{32} & a_{33}
+            \end{vmatrix} + a_{31} \begin{vmatrix}
+            a_{12} & a_{13}\\
+            a_{22} & a_{23}
+            \end{vmatrix}\\
+            &= a_{11}(a_{22}a_{33} - a_{23}a_{32}) - a_{21}(a_{12}a_{33} - a_{13}a_{32}) + a_{31}(a_{12}a_{23} - a_{13}a_{22})\\
+            &= a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32} - a_{13}a_{22}a_{31} - a_{11}a_{23}a_{32} - a_{12}a_{21}a_{33}.
+        \end{aligned}
+    \end{equation*}
+\end{proof}
+
+Agora vejamos como calcular o determinante em blocos.
+
+\begin{proposition}
+    Seja $R$ um anel comutativo e $n, m \geq 1$.
+    Sejam $A \in M_n(R)$, $B \in M_{n\times m}(R)$, $0 \in M_{m\times n}(R)$, e $D \in M_m(R)$.
+    \begin{equation*}
+        \det\begin{pmatrix}
+        A & B\\
+        0 & D
+        \end{pmatrix} = \det(A)\det(D).
+    \end{equation*}
+
+\begin{proof}
+    Primeiro, vamos provar que, para todo $A \in M_n(R)$ e $B \in M_{n\times m}(R)$, temos que
+    \begin{equation*}
+        \det\begin{pmatrix}
+        A & B\\
+        0 & I_m
+        \end{pmatrix} = \det(A).
+    \end{equation*}
+
+    Para tanto, seja $f: M_{n+m}(R) \to R$ dada por $f(X) = \det\begin{pmatrix}
+    X & B\\
+    0 & I_m
+    \end{pmatrix}$.
+    É fácil ver que $f$ é multilinear e alternada em relação às primeiras $n$ colunas de $X$.
+    Além disso, $f(I_n) = \det\begin{pmatrix}
+    I_n & B\\
+    0 & I_m
+    \end{pmatrix} = 1$,
+    uma vez que as últimas $m$ linhas podem, via escalonamento, eliminar a matriz $B$ sem alterar o determinante.
+    Logo, $f(X) = \det(X)$ para todo $X \in M_n(R)$.
+
+    Agora, fixemos $A \in M_n(R)$ e definimos $g: M_{m}(R) \to R$ por $g(Y) = \det\begin{pmatrix}
+A & B\\
+0 & Y
+\end{pmatrix}$.
+É fácil ver que $g$ é multilinear e alternada em relação às últimas $m$ colunas de $Y$.
+Além disso, $g(I_m) = \det\begin{pmatrix}
+A & B\\
+0 & I_m
+\end{pmatrix}$.
+Logo, $g(Y) = \det(A) \det(Y)$ para todo $Y \in M_m(R)$.
+Em particular, para $Y = D$, temos o resultado desejado.
+\end{proof}
+\end{proposition}
