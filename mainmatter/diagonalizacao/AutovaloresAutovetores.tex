@@ -12,7 +12,30 @@ O \emph{autoespaço} de $T$ associado a um autovalor $\lambda$ é o conjunto
     \aut_\lambda(T) = \{v \in V: T(v) = \lambda v\}.
 \end{equation*}
 Assim, $\aut_\lambda(T)$ é o conjunto de todos os autovetores de $T$ associados a $\lambda$, e o vetor nulo.
+
+O \emph{espectro} de $T$ é o conjunto de todos os autovalores de $T$.
+A \emph{dimensão geométrica} de um autovalor $\lambda$ de $T$ é a dimensão do autoespaço $\aut_\lambda(T)$.
 \end{definition}
+
+\begin{definition}
+    Seja $V$ um espaço vetorial sobre um corpo $\mathbb{K}$ e $T: V \to V$ um operador linear.
+    
+    Dizemos que $T$ é \emph{diagonalizável} se existir uma base de $V$ formada por autovetores de $T$.
+\end{definition}
+
+\begin{proposition}
+    Seja $V$ um espaço vetorial sobre um corpo $\mathbb{K}$ de dimensão $n\geq 1$ e $T: V \to V$ um operador linear.
+
+    Então $n$ é diagonalizável se, e somente se, existe uma base ordenada $\mathcal{B}$ de $V$ tal que a matriz associada $[T]_{\mathcal{B}}$ seja uma matriz diagonal.
+\end{proposition}
+
+\begin{proof}
+    Suponha que $T$ seja diagonalizável.
+    Existe $\mathcal B$ uma base ordenada composta de autovetores de $V$. Para cada $v$ na base, $T(v)= \lambda v$ para algum escalar $\lambda \in \mathbb{K}$, logo, a matriz associada $[T]_{\mathcal{B}}$ é diagonal.
+
+    Reciprocamente, se $[T]_{\mathcal{B}}$ é uma matriz diagonal para alguma base ordenada $\mathcal B$ de $V$, então, para cada vetor $v$ em $\mathcal B$, $T(v) = \lambda v$ para algum escalar $\lambda \in \mathbb{K}$.
+    Assim, $v$ é um autovetor de $T$.
+\end{proof}
 
 \begin{lemma}
     Na notação acima, $\aut_\lambda(T)$ é um subespaço vetorial de $V$ e $\aut_\lambda(T) = \ker(\lambda \id-T)$.
@@ -26,6 +49,105 @@ Assim, $\aut_\lambda(T)$ é o conjunto de todos os autovetores de $T$ associados
     \end{equation*}
 \end{proof}
 
+Os autoespaços estão em soma direta.
+Isso é:
+
+\begin{proposition}
+    Sejam $V$ um espaço vetorial sobre um corpo $\mathbb{K}$, $T: V \to V$ um operador linear, e $\lambda_1, \ldots, \lambda_k \in \mathbb{K}$ autovalores distintos de $T$.
+    Então se $v_1 \in \aut_{\lambda_1}(T), \ldots, v_k \in \aut_{\lambda_k}(T)$ são tais que $v_1 + \cdots + v_k = 0$, segue que $v_1 = \cdots = v_k = 0$.
+\end{proposition}
+\begin{proof}
+    Faremos indução em $k$.
+
+    Caso base: $k=1$.
+    Nesse caso, se $v_1 \in \aut_{\lambda_1}(T)$ é tal que $v_1 = 0$, então $v_1 = 0$.
+
+    Passo indutivo: suponha que a proposição seja verdadeira para algum $k \geq 1$.
+    Seja $v_1 \in \aut_{\lambda_1}(T), \ldots, v_{k+1} \in \aut_{\lambda_{k+1}}(T)$ tais que
+    \begin{equation*}
+        v_1 +  \cdots + v_k+ v_{k+1} = 0.
+    \end{equation*}
+    Aplicando $T$ em ambos os lados da equação acima, temos:
+    \begin{equation*}
+        T(v_1) +  \cdots + T(v_k) + T(v_{k+1}) = 0.
+    \end{equation*}
+    Ou seja,
+    \begin{equation*}
+        \lambda_1 v_1 + \cdots + \lambda_k v_k + \lambda_{k+1} v_{k+1} = 0.
+    \end{equation*}
+    Multiplicando a primeira equação por $\lambda_{k+1}$ e subtraindo da segunda, obtemos:
+    \begin{equation*}
+        (\lambda_1 - \lambda_{k+1}) v_1 + (\lambda_2 - \lambda_{k+1}) v_2 + \cdots + (\lambda_k - \lambda_{k+1}) v_k = 0.
+    \end{equation*}
+    Pelo passo indutivo, segue que, para cada $i \in \{1, \ldots, k\}$, temos que $(\lambda_i - \lambda_{k+1}) v_i = 0$.
+    Como os autovalores são distintos, segue que $v_i = 0$ para cada $i \in \{1, \ldots, k\}$.
+    Voltando à equação inicial, segue que $v_{k+1} = 0$.
+\end{proof}
+\begin{corollary}
+    Sejam $V$ um espaço vetorial sobre um corpo $\mathbb{K}$, $T: V \to V$ um operador linear, e $\lambda_1, \ldots, \lambda_k \in \mathbb{K}$ autovalores distintos de $T$.
+    Então, se para cada $i \in \{1, \ldots, k\}$, $\mathcal{B}_i$ é um conjunto LI de $\aut_{\lambda_i}(T)$, a união $\mathcal{B}_1 \cup \mathcal{B}_2 \cup \cdots \cup \mathcal{B}_k$ é disjunta, e é LI em $V$.
+\end{corollary}
+\begin{proof}
+    Para cada $i \in \{1, \ldots, k\}$, seja $\mathcal B_i=\{v_{i1}, v_{i2}, \ldots, v_{i n_i}\}$ uma base de $\aut_{\lambda_i}(T)$, escrita sem repetições.
+    Seja $c_{ij} \in \mathbb{K}$ tais que
+    \begin{equation*}
+        \sum_{i=1}^k \sum_{j=1}^{n_i} c_{ij} v_{ij} = 0.
+    \end{equation*}
+    Pelo lema, segue que, para cada $i \in \{1, \ldots, k\}$, temos que
+    \begin{equation*}
+        \sum_{j=1}^{n_i} c_{ij} v_{ij} = 0.
+    \end{equation*}
+    Como $\mathcal B_i$ é LI em $\aut_{\lambda_i}(T)$, segue que, para cada $i \in \{1, \ldots, k\}$ e $j \in \{1, \ldots, n_i\}$, temos que $c_{ij} = 0$.
+
+    Para ver que a união é disjunta, note que, se existisse $v\mathcal B_i\cap \mathcal B_{i'}$, com $i \neq i'$, então teríamos $T(v)=\lambda_i v$ e $T(v) = \lambda_{i'} v$, o que implicaria que $(\lambda_i - \lambda_{i'}) v = 0$.
+    Como os autovalores são distintos, segue que $v = 0$, o que é um absurdo, pois conjuntos LI não contêm o vetor nulo.
+\end{proof}
+\begin{corollary}
+    Seja $V$ um espaço vetorial sobre um corpo $\mathbb{K}$ de dimensão finita positiva $n$ e $T: V \to V$ um operador linear.
+
+    Seja $S$ o espectro de $T$.
+
+    Então:
+
+    \begin{enumerate}[label=(\roman*)]
+        \item O número de autovalores distintos de $T$ é, no máximo, $n$.
+        \item A soma das dimensões geométricas dos autovalores de $T$ é, no máximo, $n$.
+        \item $T$ é diagonalizável se, e somente se, a soma das dimensões geométricas dos autovalores de $T$ é igual a $n$.
+        Em símbolos, $T$ é diagonalizável se, e somente se,
+        \begin{equation*}
+            \sum_{\lambda \in S} \dim(\aut_\lambda(T)) = n.
+        \end{equation*}
+
+        Além disso, nesse caso, toda base $\mathcal B$ de $V$ se decompõe como união disjunta de bases dos autoespaços de $T$.
+        \item Se $T$ possui $n$ autovalores distintos, então $T$ é diagonalizável.
+    \end{enumerate}
+\end{corollary}
+\begin{proof}
+    \begin{enumerate}[label=(\roman*)]
+        \item Se $T$ tivesse mais que $n$ autovalores distintos, então, escolhendo um autovetor não nulo para cada autovalor, teríamos mais que $n$ vetores LI em $V$, o que é um absurdo.
+        \item Similar à (i): se a soma das dimensões geométricas dos autovalores de $T$ fosse maior que $n$, então, escolhendo uma base para cada autoespaço e unindo tais bases, obteríamos mais que $n$ vetores LI em $V$, o que é um absurdo.
+        \item ($\Rightarrow$) Se $T$ é diagonalizável, então existe uma base $\mathcal{B}$ de $V$ formada por autovetores de $T$.
+        
+        Para cada $\lambda \in S$, seja $\mathcal{B}_\lambda = \mathcal{B} \cap \aut_\lambda(T)$ e $n_\lambda=\dim(\aut_\lambda(T))$.
+
+        Como todo elemento de $\mathcal{B}$ é um autovetor de $T$, segue que $\mathcal B=\dot \bigcup_{\lambda \in S} \mathcal{B}_\lambda$.
+        Cada $\mathcal B_\lambda$ é LI em $\aut_\lambda(T)$.
+        Logo, $|\mathcal B_\lambda| \leq n_\lambda$.
+        
+        Além disso, $n=|\mathcal B|=\sum_{\lambda \in S} |\mathcal B_\lambda| \leq \sum_{\lambda \in S} n_\lambda$.
+        Caso, para algum $\lambda \in S$, tivéssemos $|\mathcal B_\lambda| < n_\lambda$, então teríamos que a desigualdade intermediária é estrita o que nos dá um absurdo.
+        Logo, para cada $\lambda \in S$, temos que $|\mathcal B_\lambda| = n_\lambda$, o que implica que $\mathcal B_\lambda$ é uma base de $\aut_\lambda(T)$ e que $n = \sum_{\lambda \in S} n_\lambda$.
+
+        ($\Leftarrow$) Suponha que $\sum_{\lambda \in S} \dim(\aut_\lambda(T)) = n$.
+        Para cada $\lambda \in S$, seja $\mathcal{B}_\lambda$ uma base de $\aut_\lambda(T)$.
+        Então, pela proposição anterior, a união disjunta $\mathcal{B} = \dot \bigcup_{\lambda \in S} \mathcal{B}_\lambda$ é LI em $V$.
+        Como o número de elementos de $\mathcal B$ é igual a $n=\dim V$, segue que $\mathcal B$ é uma base de $V$ formada por autovetores de $T$.
+        Assim, $T$ é diagonalizável.
+        \item Decorre dos itens anteriores: se $T$ possui $n$ autovalores distintos, então a soma das dimensões geométricas dos autovalores de $T$ é, no mínimo, $n$, e, no máximo, $n$.
+        Assim, a soma das dimensões geométricas dos autovalores de $T$ é igual a $n$.
+        Pelo item (iii), segue que $T$ é diagonalizável.
+    \end{enumerate}
+\end{proof}
 Como encontrar autovalores e autovetores?
 Uma forma natural é buscar autovetores em coordenadas.
 Para tanto, temos o seguinte.

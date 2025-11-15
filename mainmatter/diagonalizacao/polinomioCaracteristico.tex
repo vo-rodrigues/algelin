@@ -5,3 +5,104 @@ O \emph{polinômio característico} de $T$ é o polinômio $p_T(t) = \det(t I_n 
 \end{definition}
 
 Pelo que foi visto, os autovalores de $T$ são exatamente as raízes do polinômio característico de $T$.
+
+Vejamos algumas propriedades do polinômio característico.
+\begin{proposition}
+    Seja $V$ um espaço vetorial sobre um corpo $\mathbb{K}$ de dimensão finita positiva, e $T: V \to V$ um operador linear.
+    Então o polinômio característico de $T$ é um polinômio monico de grau igual à dimensão de $V$.
+\end{proposition}
+\begin{proof}
+    Temos que $p_T(t) = \det(t I_n - [T]_{\mathcal{B}})$, em que $\mathcal{B}$ é uma base ordenada de $V$.
+
+    Em coordenadas, temos que, sendo $[T]_{\mathcal{B}} = (a_{ij})_{i, j}$,
+    \begin{equation*}
+        t I_n - [T]_{\mathcal{B}} = \begin{pmatrix}
+        t - a_{11} & -a_{12} & \cdots & -a_{1n}\\
+        -a_{21} & t - a_{22} & \cdots & -a_{2n}\\
+        \vdots & \vdots & \ddots & \vdots\\
+        -a_{n1} & -a_{n2} & \cdots & t - a_{nn}
+        \end{pmatrix}.
+    \end{equation*}
+    Seja $b_{ij}$ o elemento da linha $i$ e coluna $j$ da matriz acima.
+    Então o determinante solicitado é dado por:
+    \begin{equation*}
+        p_T(t) = \sum_{\sigma \in S_n} \sgn(\sigma) b_{\sigma(1)1} \cdots b_{\sigma(n)n}.
+    \end{equation*}
+    Cada parcela da soma acima é, a menos de um sinal, uma escolha (bijetora) de um elemento de cada linha e coluna da matriz.
+    Assim, o grau máximo de $t$ em cada parcela é $n$, obtido quando escolhemos o elemento $t - a_{ii}$ de cada linha $i$, o que é dado pela permutação identidade, cujo sinal é $1$.
+    Todos as outras parcelas têm grau estritamente menor que $n$.
+
+    Assim, o grau do polinômio $p_T(t)$ é $n$ e o coeficiente dominante dele é o mesmo da parcela associada à permutação identidade, que é $(t-a_{11})\cdots (t-a_{nn})$.
+    Tal coeficiente é $1$.
+\end{proof}
+
+\begin{lemma}
+    Seja $T: V \to V$ um operador linear, em que $V$ é um espaço vetorial sobre um corpo $\mathbb{K}$ de dimensão finita positiva $n$.
+    Sejam $\lambda_1, \ldots, \lambda_m$ autovalores distintos de $T$, e, para cada $i \in \{1, \ldots, m\}$, seja $n_i=\dim(\aut_{\lambda_i}(T))$.
+
+    Então o polinômio $\prod_{i=1}^m (t - \lambda_i)^{n_i}$ divide o polinômio característico de $T$, ou seja, existe $q(t) \in \mathbb{K}[t]$ tal que $p_T(t) = q(t)\prod_{i=1}^m (t - \lambda_i)^{n_i}$.
+
+    Além disso, se $T$ é diagonalizável, então $q(t)=1$, ou seja, $p_T(t) = \prod_{i=1}^m (t - \lambda_i)^{n_i}$.
+\end{lemma}
+\begin{proof}
+    Para cada $i \in \{1, \ldots, m\}$, seja $\mathcal{B}_i$ uma base de $\aut_{\lambda_i}(T)$.
+    Escreva $\mathcal B_i=\{v_{i1}, v_{i2}, \ldots, v_{in_i}\}$.
+    Pela proposição sobre autovetores associados a autovalores distintos, a união disjunta $\mathcal{B} = \dot \bigcup_{i=1}^m \mathcal{B}_i$ é LI em $V$.
+    Seja $\mathcal C$ um conjunto LI em $V$ tal que $\mathcal B \cup \mathcal C$ é uma base de $V$.
+    Ordenemos a base $\mathcal B \cup \mathcal C$ como $\mathcal D=(v_{11}, \ldots, v_{1n_1}, v_{21}, \ldots, v_{2n_2}, \ldots, v_{m1}, \ldots, v_{mn_m}, w_1, \ldots, w_k)$, em que $\mathcal C = \{w_1, \ldots, w_k\}$.
+
+    A matriz de $T$ nessa base ordenada é dada por:
+
+    \begin{equation*}
+        [T]_{\mathcal D} = \begin{pmatrix}
+        \lambda_1 I_{n_1} & 0 & 0 & 0 & *\\
+        0 & \lambda_2 I_{n_2} & 0 & 0 & *\\
+        0 & 0 & \ddots & 0 & *\\
+        0 & 0 & 0 & \lambda_m I_{n_m} & *\\
+        0 & 0 & 0 & 0 & C
+        \end{pmatrix},
+    \end{equation*}
+
+    Assim:
+
+        \begin{equation*}
+        tI_n-[T]_{\mathcal D} = \begin{pmatrix}
+        tI_{n_1} - \lambda_1 I_{n_1} & 0 & 0 & 0 & *\\
+        0 & tI_{n_2} - \lambda_2 I_{n_2} & 0 & 0 & *\\
+        0 & 0 & \ddots & 0 & *\\
+        0 & 0 & 0 & tI_{n_m} - \lambda_m I_{n_m} & *\\
+        0 & 0 & 0 & 0 & tI_k - C
+        \end{pmatrix},
+    \end{equation*}
+
+    Logo, $p_T(t) = \det(tI_n - [T]_{\mathcal D})=\det(tI_{n_1} - \lambda_1 I_{n_1}) \cdots \det(tI_{n_m} - \lambda_m I_{n_m}) \det(*)= (t - \lambda_1)^{n_1} \cdots (t - \lambda_m)^{n_m} \det(tI_k - C)$.
+
+    Sendo $q(t) = \det(tI_k - C)$, temos o primeiro item.
+    Para o segundo item, notemos que, em realidade, a tal matriz $C$ não se encontra na ilustração acima, e o determinante da matriz bloco é simplesmente o produto dos determinantes dos blocos diagonais.
+    Assim, $p_T(t) = \prod_{i=1}^m (t - \lambda_i)^{n_i}$.
+\end{proof}
+
+\begin{definition}
+    Seja $V$ um espaço vetorial sobre um corpo $\mathbb{K}$ de dimensão finita positiva, e $T: V \to V$ um operador linear.
+    A dimensão algébrica de um autovalor $\lambda$ de $T$ é a multiplicidade de $\lambda$ como raiz do polinômio característico de $T$.
+    Ou seja, é o maior inteiro $m \geq 1$ tal que $(t - \lambda)^m$ divide $p_T(t)$.
+\end{definition}
+
+\begin{corollary}
+    Na notação anterior, para cada autovalor $\lambda$ de $T$, a dimensão geométrica de $\lambda$ é menor ou igual à dimensão algébrica de $\lambda$.
+\end{corollary}
+\begin{theorem}
+    Seja $V$ um espaço vetorial sobre um corpo $\mathbb{K}$ de dimensão finita positiva, e $T: V \to V$ um operador linear.
+    São equivalentes:
+    \begin{enumerate}[label=(\roman*)]
+        \item $T$ é diagonalizável.
+        \item O polinômio característico de $T$ se fatoriza como $p_T(t) = \prod_{i=1}^m (t - \lambda_i)^{n_i}$, em que $\lambda_1, \ldots, \lambda_m$ são os autovalores distintos de $T$ e, para cada $i$, $n_i$ é a dimensão geométrica do autovalor $\lambda_i$.
+        \item $p_T(t)$ se decompõe em fatores lineares, e para cada autovalor $\lambda$ de $T$, a dimensão geométrica de $\lambda$ é igual à dimensão algébrica de $\lambda$.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    (i) $\Rightarrow$ (ii) já foi visto no lema anterior.
+    (ii) $\Rightarrow$ (iii) é imediato.
+    (iii) $\Rightarrow$ (i) segue pois, nesse caso, a soma das dimensões geométricas dos autovalores de $T$ é igual à soma das dimensões algébricas dos autovalores de $T$, que é igual ao grau do polinômio característico de $T$, que é igual a $\dim V$.
+    Assim, pelo corolário sobre diagonalizabilidade, $T$ é diagonalizável
+\end{proof}
